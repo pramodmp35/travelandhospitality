@@ -1,0 +1,803 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, viewport-fit=cover"
+    />
+    <title>Sign Up · STACKLY — Travel &amp; Hospitality</title>
+    <meta name="description" content="Create your STACKLY account." />
+
+    <!-- ============ FONTS ============ -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800&family=Inter:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- ============ BOOTSTRAP 5 ============ -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+
+    <!-- ============ AOS ============ -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css"
+      rel="stylesheet"
+    />
+
+    <!-- ============ TAILWIND ============ -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              brand: "#39b6ab",
+              sand: "#e7b490",
+              accent: "#ff6f1a",
+              ink: "#000000",
+            },
+            fontFamily: {
+              display: ['"Plus Jakarta Sans"', "system-ui", "sans-serif"],
+              body: ["Inter", "system-ui", "sans-serif"],
+            },
+          },
+        },
+      };
+    </script>
+
+    <style>
+      /* ============================================================
+   STACKLY — DESIGN TOKENS
+   ============================================================ */
+      :root {
+        --brand: #39b6ab;
+        --sand: #e7b490;
+        --accent: #ff6f1a;
+        --ink: #000000;
+
+        --clay:
+          12px 12px 28px rgba(0, 0, 0, 0.1),
+          -12px -12px 28px rgba(255, 255, 255, 0.92);
+        --clay-sm:
+          6px 6px 16px rgba(0, 0, 0, 0.09),
+          -6px -6px 16px rgba(255, 255, 255, 0.95);
+        --clay-in:
+          inset 4px 4px 10px rgba(0, 0, 0, 0.07),
+          inset -4px -4px 10px rgba(255, 255, 255, 0.95);
+      }
+
+      html,
+      body {
+        overflow-x: hidden;
+        -webkit-text-size-adjust: 100%;
+        text-size-adjust: 100%;
+      }
+      * {
+        -webkit-tap-highlight-color: transparent;
+        touch-action: manipulation;
+      }
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        font-family: "Inter", system-ui, sans-serif;
+        color: var(--ink);
+        background-color: #ffffff;
+        background-image:
+          radial-gradient(
+            60vw 60vw at 6% 4%,
+            rgba(57, 182, 171, 0.14),
+            transparent 62%
+          ),
+          radial-gradient(
+            60vw 60vw at 96% 98%,
+            rgba(231, 180, 144, 0.3),
+            transparent 62%
+          ),
+          radial-gradient(
+            38vw 38vw at 92% 3%,
+            rgba(255, 111, 26, 0.08),
+            transparent 62%
+          );
+        max-width: 100%;
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+      }
+      @media (min-width: 768px) {
+        body {
+          background-attachment: fixed;
+        }
+      }
+
+      h1,
+      h2,
+      h3,
+      h4,
+      h5,
+      h6,
+      .font-display {
+        font-family: "Plus Jakarta Sans", system-ui, sans-serif;
+        letter-spacing: -0.02em;
+        overflow-wrap: break-word;
+        word-wrap: break-word;
+      }
+
+      img,
+      svg,
+      iframe {
+        max-width: 100%;
+      }
+
+      /* ============================================================
+   CLAYMORPHISM PRIMITIVES
+   ============================================================ */
+      .clay {
+        background: rgba(255, 255, 255, 0.86);
+        -webkit-backdrop-filter: blur(8px);
+        backdrop-filter: blur(8px);
+        border-radius: 1.5rem;
+        box-shadow: var(--clay);
+      }
+      @media (min-width: 640px) {
+        .clay {
+          border-radius: 1.75rem;
+        }
+      }
+      .clay-sm {
+        background: rgba(255, 255, 255, 0.9);
+        border-radius: 1rem;
+        box-shadow: var(--clay-sm);
+      }
+      .clay-accent {
+        background: linear-gradient(145deg, #ff8540, #ee5f05);
+        color: #fff;
+        box-shadow:
+          8px 8px 22px rgba(255, 111, 26, 0.35),
+          -6px -6px 18px rgba(255, 255, 255, 0.9),
+          inset 2px 2px 6px rgba(255, 255, 255, 0.4),
+          inset -3px -3px 8px rgba(0, 0, 0, 0.14);
+        transition:
+          transform 0.2s ease,
+          box-shadow 0.2s ease;
+      }
+      .clay-accent:hover {
+        transform: translateY(-2px);
+        box-shadow:
+          10px 10px 26px rgba(255, 111, 26, 0.45),
+          -6px -6px 18px rgba(255, 255, 255, 0.9),
+          inset 2px 2px 6px rgba(255, 255, 255, 0.4),
+          inset -3px -3px 8px rgba(0, 0, 0, 0.14);
+      }
+      .clay-brand {
+        background: linear-gradient(145deg, #46c4b8, #2ba49b);
+        color: #fff;
+        box-shadow:
+          8px 8px 22px rgba(57, 182, 171, 0.35),
+          -6px -6px 18px rgba(255, 255, 255, 0.9),
+          inset 2px 2px 6px rgba(255, 255, 255, 0.4),
+          inset -3px -3px 8px rgba(0, 0, 0, 0.14);
+      }
+
+      /* ============================================================
+   TRIANGULAR PANEL (Left Side)
+   ============================================================ */
+      .tri-panel {
+        position: relative;
+      }
+
+      @media (min-width: 1024px) {
+        .tri-panel {
+          clip-path: polygon(0 0, 100% 0, 86% 100%, 0 100%);
+        }
+        .tri-panel::after {
+          content: "";
+          position: absolute;
+          right: 0;
+          bottom: 0;
+          width: 66%;
+          height: 52%;
+          background: linear-gradient(
+            135deg,
+            rgba(231, 180, 144, 0.55),
+            rgba(255, 111, 26, 0.45)
+          );
+          clip-path: polygon(100% 0, 100% 100%, 0 100%);
+          pointer-events: none;
+          z-index: 0;
+        }
+      }
+
+      /* ============================================================
+   FORM — CLAY INPUTS + TOGGLE
+   ============================================================ */
+      .field {
+        position: relative;
+      }
+
+      .clay-input {
+        width: 100%;
+        max-width: 100%;
+        font-size: 16px;
+        line-height: 1.4;
+        color: var(--ink);
+        background: #fff;
+        border: 0;
+        border-radius: 0.9rem;
+        padding: 0.85rem 0.95rem;
+        box-shadow: var(--clay-in);
+        outline: none;
+        transition: box-shadow 0.25s ease;
+        -webkit-appearance: none;
+        appearance: none;
+      }
+      @media (min-width: 640px) {
+        .clay-input {
+          font-size: 15px;
+          border-radius: 1rem;
+          padding: 0.9rem 1.05rem;
+        }
+      }
+      .clay-input::placeholder {
+        color: rgba(0, 0, 0, 0.36);
+      }
+      .clay-input:focus {
+        box-shadow:
+          inset 4px 4px 10px rgba(0, 0, 0, 0.06),
+          inset -4px -4px 10px rgba(255, 255, 255, 1),
+          0 0 0 3px rgba(57, 182, 171, 0.42);
+      }
+
+      /* error state */
+      .field.has-error .clay-input {
+        box-shadow:
+          inset 4px 4px 10px rgba(255, 111, 26, 0.2),
+          inset -4px -4px 10px rgba(255, 255, 255, 1),
+          0 0 0 3px rgba(255, 111, 26, 0.36);
+      }
+      .err-msg {
+        display: none;
+        margin: 0.45rem 0 0 0.3rem;
+        font-size: 0.76rem;
+        font-weight: 600;
+        line-height: 1.35;
+        color: #c94f00;
+      }
+      .field.has-error .err-msg {
+        display: block;
+        animation: errIn 0.26s ease both;
+      }
+      @keyframes errIn {
+        from {
+          opacity: 0;
+          transform: translateY(-4px);
+        }
+        to {
+          opacity: 1;
+          transform: none;
+        }
+      }
+
+      /* Role Toggle Switch */
+      .role-toggle-container {
+        display: flex;
+        background: #fff;
+        border-radius: 1rem;
+        padding: 0.35rem;
+        box-shadow: var(--clay-in);
+        position: relative;
+      }
+
+      .role-btn {
+        flex: 1;
+        text-align: center;
+        padding: 0.7rem 0.5rem;
+        border-radius: 0.75rem;
+        font-family: "Plus Jakarta Sans", system-ui, sans-serif;
+        font-size: 0.85rem;
+        font-weight: 800;
+        color: rgba(0, 0, 0, 0.4);
+        border: none;
+        background: transparent;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        z-index: 1;
+      }
+
+      .role-btn.active {
+        color: #fff;
+        background: linear-gradient(145deg, #39b6ab, #2ba49b);
+        box-shadow:
+          4px 4px 12px rgba(57, 182, 171, 0.35),
+          -2px -2px 8px rgba(255, 255, 255, 0.8);
+      }
+
+      .role-btn[data-role="admin"].active {
+        background: linear-gradient(145deg, #ff8540, #ee5f05);
+        box-shadow:
+          4px 4px 12px rgba(255, 111, 26, 0.35),
+          -2px -2px 8px rgba(255, 255, 255, 0.8);
+      }
+
+      /* ============================================================
+   REDUCED MOTION
+   ============================================================ */
+      @media (prefers-reduced-motion: reduce) {
+        html {
+          scroll-behavior: auto;
+        }
+        * {
+          animation-duration: 0.001ms !important;
+          transition-duration: 0.001ms !important;
+        }
+      }
+    </style>
+  </head>
+
+  <body class="font-body antialiased">
+    <main
+      class="flex-1 flex items-center justify-center px-4 sm:px-5 lg:px-8 py-8 sm:py-12"
+    >
+      <div class="w-full max-w-6xl mx-auto">
+        <div
+          class="clay overflow-hidden rounded-[2rem] sm:rounded-[2.5rem] lg:rounded-[3rem]"
+          data-aos="fade-up"
+          data-aos-duration="800"
+        >
+          <div class="grid lg:grid-cols-2">
+            <!-- ============================================================
+             LEFT : COMPANY DETAILS & LOGO
+             ============================================================ -->
+            <div
+              class="tri-panel relative min-h-[380px] lg:min-h-[650px] flex flex-col justify-between"
+            >
+              <!-- Background Image -->
+              <div
+                class="absolute inset-0 bg-cover bg-center"
+                style="background-image: url(&quot;./assets/tour1.webp&quot;)"
+              ></div>
+              <div
+                class="absolute inset-0"
+                style="
+                  background: linear-gradient(
+                    160deg,
+                    rgba(0, 0, 0, 0.85) 0%,
+                    rgba(0, 0, 0, 0.65) 45%,
+                    rgba(57, 182, 171, 0.85) 100%
+                  );
+                "
+              ></div>
+
+              <!-- Content -->
+              <div
+                class="relative z-10 p-6 sm:p-10 lg:p-12 lg:pr-24 xl:pr-28 flex flex-col h-full justify-between"
+              >
+                <div>
+                  <!-- LOGO (User will provide src) -->
+                  <div
+                    class="clay-sm inline-flex p-3 sm:p-4 bg-white/95 mb-6 sm:mb-8"
+                    style="border-radius: 12px"
+                  >
+                    <!-- Replace the src below with your actual logo path -->
+                    <img
+                      src="./assets/logo.webp"
+                      alt="STACKLY Logo"
+                      class="h-8 sm:h-10 w-auto object-contain"
+                    />
+                  </div>
+
+                  <h2
+                    class="font-display font-extrabold text-white text-[clamp(1.6rem,5vw,2.5rem)] leading-[1.1]"
+                  >
+                    Begin your<br class="hidden sm:block" />
+                    next chapter.
+                  </h2>
+
+                  <p
+                    class="mt-3 sm:mt-4 text-[13px] sm:text-[15px] leading-relaxed text-white/75 max-w-sm"
+                  >
+                    Create an account to start designing your journeys, save
+                    your favourite stays, and connect with local experts.
+                  </p>
+                </div>
+
+                <!-- Go to Home Button -->
+                <div class="mt-8 lg:mt-0 pt-6 lg:pt-0">
+                  <a
+                    href="./index.html"
+                    class="clay-sm inline-flex items-center gap-2 px-5 py-3 text-[11px] font-extrabold uppercase tracking-[.14em] text-ink no-underline hover:text-brand transition bg-white/90"
+                  >
+                    <svg
+                      width="14"
+                      height="14"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2.6"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    >
+                      <path
+                        d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"
+                      />
+                      <polyline points="9 22 9 12 15 12 15 22" />
+                    </svg>
+                    Go to Home
+                  </a>
+                </div>
+              </div>
+            </div>
+
+            <!-- ============================================================
+             RIGHT : SIGNUP FORM
+             ============================================================ -->
+            <div
+              class="p-6 sm:p-10 lg:p-12 lg:pl-16 xl:pl-20 flex flex-col justify-center"
+            >
+              <h3
+                class="font-display font-extrabold text-ink text-[clamp(1.5rem,5vw,2.2rem)] leading-tight"
+              >
+                Create an account
+              </h3>
+              <p class="mt-2 text-[13px] sm:text-sm text-ink/60">
+                Enter any details to test the signup flow.
+              </p>
+
+              <form id="signupForm" class="mt-6 sm:mt-8" novalidate>
+                <div class="space-y-4 sm:space-y-5">
+                  <!-- Full Name -->
+                  <div class="field">
+                    <label
+                      for="fullName"
+                      class="block mb-1.5 sm:mb-2 text-[10px] font-bold uppercase tracking-[.14em] text-ink/55"
+                    >
+                      Full Name
+                    </label>
+                    <input
+                      id="fullName"
+                      name="fullName"
+                      type="text"
+                      class="clay-input"
+                      placeholder="Aarav Sharma"
+                      autocomplete="name"
+                      aria-describedby="err-fullName"
+                    />
+                    <p class="err-msg" id="err-fullName"></p>
+                  </div>
+
+                  <!-- Email -->
+                  <div class="field">
+                    <label
+                      for="email"
+                      class="block mb-1.5 sm:mb-2 text-[10px] font-bold uppercase tracking-[.14em] text-ink/55"
+                    >
+                      Email address
+                    </label>
+                    <input
+                      id="email"
+                      name="email"
+                      type="email"
+                      class="clay-input"
+                      placeholder="you@example.com"
+                      autocomplete="email"
+                      inputmode="email"
+                      aria-describedby="err-email"
+                    />
+                    <p class="err-msg" id="err-email"></p>
+                  </div>
+
+                  <!-- Password -->
+                  <div class="field">
+                    <label
+                      for="password"
+                      class="block mb-1.5 sm:mb-2 text-[10px] font-bold uppercase tracking-[.14em] text-ink/55"
+                    >
+                      Password
+                    </label>
+                    <input
+                      id="password"
+                      name="password"
+                      type="password"
+                      class="clay-input"
+                      placeholder="••••••••"
+                      autocomplete="new-password"
+                      aria-describedby="err-password"
+                    />
+                    <p class="err-msg" id="err-password"></p>
+                  </div>
+
+                  <!-- Confirm Password -->
+                  <div class="field">
+                    <label
+                      for="confirmPassword"
+                      class="block mb-1.5 sm:mb-2 text-[10px] font-bold uppercase tracking-[.14em] text-ink/55"
+                    >
+                      Confirm Password
+                    </label>
+                    <input
+                      id="confirmPassword"
+                      name="confirmPassword"
+                      type="password"
+                      class="clay-input"
+                      placeholder="••••••••"
+                      autocomplete="new-password"
+                      aria-describedby="err-confirmPassword"
+                    />
+                    <p class="err-msg" id="err-confirmPassword"></p>
+                  </div>
+
+                  <!-- Role Toggle -->
+                  <div class="field">
+                    <label
+                      class="block mb-1.5 sm:mb-2 text-[10px] font-bold uppercase tracking-[.14em] text-ink/55"
+                    >
+                      Register as
+                    </label>
+                    <div class="role-toggle-container">
+                      <button
+                        type="button"
+                        class="role-btn active"
+                        data-role="user"
+                      >
+                        User
+                      </button>
+                      <button type="button" class="role-btn" data-role="admin">
+                        Admin
+                      </button>
+                    </div>
+                    <!-- Hidden input to store the role for the form submission -->
+                    <input type="hidden" id="role" name="role" value="user" />
+                  </div>
+                </div>
+
+                <!-- Submit Button -->
+                <button
+                  type="submit"
+                  class="clay-accent mt-6 sm:mt-8 w-full inline-flex items-center justify-center gap-2.5 rounded-xl sm:rounded-2xl px-7 py-3.5 sm:py-4 text-[12px] sm:text-sm font-extrabold uppercase tracking-[.12em] transition-transform active:scale-[.98]"
+                >
+                  Create Account
+                  <svg
+                    width="16"
+                    height="16"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2.6"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  >
+                    <line x1="4" y1="12" x2="19" y2="12" />
+                    <polyline points="13 6 19 12 13 18" />
+                  </svg>
+                </button>
+
+                <!-- Login Link -->
+                <p class="mt-6 text-center text-[13px] text-ink/60">
+                  Already have an account?
+                  <a
+                    href="./login.html"
+                    class="font-bold text-brand no-underline hover:text-accent transition ml-1"
+                  >
+                    Sign in
+                  </a>
+                </p>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <!-- ============================================================
+     SCRIPTS
+     ============================================================ -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+
+    <script>
+      (function () {
+        "use strict";
+
+        const reduceMotion = window.matchMedia(
+          "(prefers-reduced-motion: reduce)",
+        ).matches;
+
+        /* ---------------------------------------------------------
+     AOS (Scroll Reveals)
+     --------------------------------------------------------- */
+        if (window.AOS) {
+          AOS.init({
+            duration: 800,
+            easing: "ease-out-cubic",
+            once: true,
+            offset: 50,
+            disable: reduceMotion,
+          });
+        }
+
+        /* ---------------------------------------------------------
+     ROLE TOGGLE LOGIC
+     --------------------------------------------------------- */
+        const roleBtns = document.querySelectorAll(".role-btn");
+        const roleInput = document.getElementById("role");
+
+        roleBtns.forEach((btn) => {
+          btn.addEventListener("click", () => {
+            // Remove active class from all
+            roleBtns.forEach((b) => b.classList.remove("active"));
+            // Add active class to clicked
+            btn.classList.add("active");
+            // Update hidden input value
+            roleInput.value = btn.dataset.role;
+          });
+        });
+
+        /* ---------------------------------------------------------
+     SIGNUP FORM LOGIC
+     --------------------------------------------------------- */
+        const form = document.getElementById("signupForm");
+
+        if (form) {
+          const fullNameInput = document.getElementById("fullName");
+          const emailInput = document.getElementById("email");
+          const passwordInput = document.getElementById("password");
+          const confirmPasswordInput =
+            document.getElementById("confirmPassword");
+
+          const fullNameWrap = fullNameInput.closest(".field");
+          const emailWrap = emailInput.closest(".field");
+          const passwordWrap = passwordInput.closest(".field");
+          const confirmPasswordWrap = confirmPasswordInput.closest(".field");
+
+          const fullNameErr = document.getElementById("err-fullName");
+          const emailErr = document.getElementById("err-email");
+          const passwordErr = document.getElementById("err-password");
+          const confirmPasswordErr = document.getElementById(
+            "err-confirmPassword",
+          );
+
+          function validateField(input, wrap, errEl, message) {
+            if (!input.value.trim()) {
+              wrap.classList.add("has-error");
+              errEl.textContent = message;
+              input.setAttribute("aria-invalid", "true");
+              return false;
+            }
+            wrap.classList.remove("has-error");
+            errEl.textContent = "";
+            input.removeAttribute("aria-invalid");
+            return true;
+          }
+
+          // Live re-validation on input
+          fullNameInput.addEventListener("input", () => {
+            if (fullNameWrap.classList.contains("has-error"))
+              validateField(
+                fullNameInput,
+                fullNameWrap,
+                fullNameErr,
+                "Full name is required.",
+              );
+          });
+          emailInput.addEventListener("input", () => {
+            if (emailWrap.classList.contains("has-error"))
+              validateField(
+                emailInput,
+                emailWrap,
+                emailErr,
+                "Email is required.",
+              );
+          });
+          passwordInput.addEventListener("input", () => {
+            if (passwordWrap.classList.contains("has-error"))
+              validateField(
+                passwordInput,
+                passwordWrap,
+                passwordErr,
+                "Password is required.",
+              );
+          });
+          confirmPasswordInput.addEventListener("input", () => {
+            if (confirmPasswordWrap.classList.contains("has-error"))
+              validateField(
+                confirmPasswordInput,
+                confirmPasswordWrap,
+                confirmPasswordErr,
+                "Please confirm your password.",
+              );
+          });
+
+          form.addEventListener("submit", function (e) {
+            e.preventDefault();
+
+            // Validate all fields
+            const isNameValid = validateField(
+              fullNameInput,
+              fullNameWrap,
+              fullNameErr,
+              "Full name is required.",
+            );
+            const isEmailValid = validateField(
+              emailInput,
+              emailWrap,
+              emailErr,
+              "Email is required.",
+            );
+            const isPassValid = validateField(
+              passwordInput,
+              passwordWrap,
+              passwordErr,
+              "Password is required.",
+            );
+            const isConfirmValid = validateField(
+              confirmPasswordInput,
+              confirmPasswordWrap,
+              confirmPasswordErr,
+              "Please confirm your password.",
+            );
+
+            // Optional: Check if passwords match (good practice even in mockups)
+            let passwordsMatch = true;
+            if (
+              isPassValid &&
+              isConfirmValid &&
+              passwordInput.value !== confirmPasswordInput.value
+            ) {
+              passwordsMatch = false;
+              confirmPasswordWrap.classList.add("has-error");
+              confirmPasswordErr.textContent = "Passwords do not match.";
+            }
+
+            if (
+              !isNameValid ||
+              !isEmailValid ||
+              !isPassValid ||
+              !isConfirmValid ||
+              !passwordsMatch
+            ) {
+              // Focus the first invalid field
+              if (!isNameValid) fullNameInput.focus();
+              else if (!isEmailValid) emailInput.focus();
+              else if (!isPassValid) passwordInput.focus();
+              else if (!isConfirmValid || !passwordsMatch)
+                confirmPasswordInput.focus();
+              return;
+            }
+
+            // If valid, proceed with logic
+            const email = emailInput.value.trim();
+            const role = roleInput.value; // Get value from hidden input
+
+            // Store email in localStorage
+            localStorage.setItem("stackly_user_email", email);
+            localStorage.setItem("stackly_user_role", role);
+
+            // Add a small visual delay for UX (button loading state)
+            const btn = form.querySelector('button[type="submit"]');
+            btn.innerHTML = `
+        <svg class="animate-spin" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M21 12a9 9 0 1 1-6.219-8.56"/></svg>
+        Creating account...
+      `;
+            btn.disabled = true;
+
+            setTimeout(() => {
+              // Redirect based on role
+              if (role === "admin") {
+                window.location.href = "./admin.html";
+              } else {
+                window.location.href = "./user.html";
+              }
+            }, 800); // 800ms simulated loading
+          });
+        }
+      })();
+    </script>
+  </body>
+</html>

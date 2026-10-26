@@ -1,0 +1,582 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, viewport-fit=cover"
+    />
+    <title>404 · STACKLY — Travel &amp; Hospitality</title>
+    <meta
+      name="description"
+      content="Lost in transit? The page you are looking for doesn't exist. Head back to STACKLY."
+    />
+
+    <!-- ============ FONTS ============ -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800&family=Inter:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- ============ BOOTSTRAP 5 ============ -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+
+    <!-- ============ AOS ============ -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css"
+      rel="stylesheet"
+    />
+
+    <!-- ============ TAILWIND ============ -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              brand: "#39b6ab",
+              sand: "#e7b490",
+              accent: "#ff6f1a",
+              ink: "#000000",
+            },
+            fontFamily: {
+              display: ['"Plus Jakarta Sans"', "system-ui", "sans-serif"],
+              body: ["Inter", "system-ui", "sans-serif"],
+            },
+          },
+        },
+      };
+    </script>
+
+    <style>
+      /* ============================================================
+   STACKLY — DESIGN TOKENS
+   ============================================================ */
+      :root {
+        --brand: #39b6ab;
+        --sand: #e7b490;
+        --accent: #ff6f1a;
+        --ink: #000000;
+
+        --clay:
+          12px 12px 28px rgba(0, 0, 0, 0.1),
+          -12px -12px 28px rgba(255, 255, 255, 0.92);
+        --clay-sm:
+          6px 6px 16px rgba(0, 0, 0, 0.09),
+          -6px -6px 16px rgba(255, 255, 255, 0.95);
+        --clay-in:
+          inset 4px 4px 10px rgba(0, 0, 0, 0.07),
+          inset -4px -4px 10px rgba(255, 255, 255, 0.95);
+      }
+
+      html,
+      body {
+        overflow-x: hidden;
+        -webkit-text-size-adjust: 100%;
+        text-size-adjust: 100%;
+      }
+      * {
+        -webkit-tap-highlight-color: transparent;
+        touch-action: manipulation;
+      }
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        font-family: "Inter", system-ui, sans-serif;
+        color: var(--ink);
+        background-color: #ffffff;
+        background-image:
+          radial-gradient(
+            60vw 60vw at 6% 4%,
+            rgba(57, 182, 171, 0.14),
+            transparent 62%
+          ),
+          radial-gradient(
+            60vw 60vw at 96% 98%,
+            rgba(231, 180, 144, 0.3),
+            transparent 62%
+          ),
+          radial-gradient(
+            38vw 38vw at 92% 3%,
+            rgba(255, 111, 26, 0.08),
+            transparent 62%
+          );
+        max-width: 100%;
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+      }
+      @media (min-width: 768px) {
+        body {
+          background-attachment: fixed;
+        }
+      }
+
+      h1,
+      h2,
+      h3,
+      h4,
+      h5,
+      h6,
+      .font-display {
+        font-family: "Plus Jakarta Sans", system-ui, sans-serif;
+        letter-spacing: -0.02em;
+        overflow-wrap: break-word;
+        word-wrap: break-word;
+      }
+
+      img,
+      svg,
+      iframe {
+        max-width: 100%;
+      }
+
+      /* ============================================================
+   CLAYMORPHISM PRIMITIVES
+   ============================================================ */
+      .clay {
+        background: rgba(255, 255, 255, 0.86);
+        -webkit-backdrop-filter: blur(8px);
+        backdrop-filter: blur(8px);
+        border-radius: 1.5rem;
+        box-shadow: var(--clay);
+      }
+      @media (min-width: 640px) {
+        .clay {
+          border-radius: 1.75rem;
+        }
+      }
+      .clay-sm {
+        background: rgba(255, 255, 255, 0.9);
+        border-radius: 1rem;
+        box-shadow: var(--clay-sm);
+      }
+      .clay-accent {
+        background: linear-gradient(145deg, #ff8540, #ee5f05);
+        color: #fff;
+        box-shadow:
+          8px 8px 22px rgba(255, 111, 26, 0.35),
+          -6px -6px 18px rgba(255, 255, 255, 0.9),
+          inset 2px 2px 6px rgba(255, 255, 255, 0.4),
+          inset -3px -3px 8px rgba(0, 0, 0, 0.14);
+        transition:
+          transform 0.2s ease,
+          box-shadow 0.2s ease;
+      }
+      .clay-accent:hover {
+        transform: translateY(-2px);
+        box-shadow:
+          10px 10px 26px rgba(255, 111, 26, 0.45),
+          -6px -6px 18px rgba(255, 255, 255, 0.9),
+          inset 2px 2px 6px rgba(255, 255, 255, 0.4),
+          inset -3px -3px 8px rgba(0, 0, 0, 0.14);
+      }
+      .clay-ghost {
+        background: #fff;
+        color: rgba(0, 0, 0, 0.7);
+        box-shadow: var(--clay-sm);
+        transition:
+          transform 0.2s ease,
+          box-shadow 0.2s ease,
+          color 0.2s ease;
+      }
+      .clay-ghost:hover {
+        transform: translateY(-2px);
+        color: var(--ink);
+        box-shadow:
+          8px 8px 20px rgba(0, 0, 0, 0.1),
+          -6px -6px 18px rgba(255, 255, 255, 0.98);
+      }
+
+      /* ============================================================
+   404 SPECIFIC STYLES
+   ============================================================ */
+      .mega-404 {
+        font-family: "Plus Jakarta Sans", system-ui, sans-serif;
+        font-weight: 800;
+        font-size: clamp(7rem, 25vw, 16rem);
+        line-height: 0.8;
+        letter-spacing: -0.05em;
+        color: transparent;
+        background: linear-gradient(
+          135deg,
+          var(--brand) 0%,
+          var(--accent) 100%
+        );
+        -webkit-background-clip: text;
+        background-clip: text;
+        text-shadow: 0px 20px 40px rgba(57, 182, 171, 0.2);
+        position: relative;
+        z-index: 10;
+      }
+
+      .floating-img {
+        animation: float 6s ease-in-out infinite;
+      }
+      @keyframes float {
+        0%,
+        100% {
+          transform: translateY(0);
+        }
+        50% {
+          transform: translateY(-12px);
+        }
+      }
+
+      /* ============================================================
+   MARQUEE
+   ============================================================ */
+      .marquee-band {
+        overflow: hidden;
+        background: #000;
+        border-top: 5px solid var(--brand);
+        border-bottom: 5px solid var(--sand);
+        padding: 1.1rem 0;
+        width: 100%;
+        margin-top: auto; /* Pushes marquee to bottom of screen */
+      }
+      @media (min-width: 640px) {
+        .marquee-band {
+          border-width: 6px;
+          padding: 1.5rem 0;
+        }
+      }
+      .marquee-track {
+        display: flex;
+        width: max-content;
+        animation: marq 32s linear infinite;
+        will-change: transform;
+      }
+      .marquee-group {
+        display: flex;
+        align-items: center;
+        gap: clamp(1rem, 4vw, 3.25rem);
+        padding-right: clamp(1rem, 4vw, 3.25rem);
+        flex-shrink: 0;
+      }
+      .marquee-group > span {
+        white-space: nowrap;
+      }
+      @keyframes marq {
+        to {
+          transform: translateX(-50%);
+        }
+      }
+      .marquee-band:hover .marquee-track {
+        animation-play-state: paused;
+      }
+
+      /* ============================================================
+   REDUCED MOTION
+   ============================================================ */
+      @media (prefers-reduced-motion: reduce) {
+        html {
+          scroll-behavior: auto;
+        }
+        .marquee-track {
+          animation: none;
+        }
+        .floating-img {
+          animation: none;
+        }
+        * {
+          animation-duration: 0.001ms !important;
+          transition-duration: 0.001ms !important;
+        }
+      }
+    </style>
+  </head>
+
+  <body class="font-body antialiased">
+    <main
+      class="flex-1 flex items-center justify-center px-4 sm:px-6 lg:px-8 py-12 sm:py-20 relative overflow-hidden"
+    >
+      <!-- Decorative Glow Orbs -->
+      <div
+        class="pointer-events-none absolute top-10 left-10 w-64 h-64 sm:w-96 sm:h-96 rounded-full opacity-20 blur-3xl"
+        style="background: radial-gradient(circle, #39b6ab, transparent 70%)"
+      ></div>
+      <div
+        class="pointer-events-none absolute bottom-10 right-10 w-64 h-64 sm:w-96 sm:h-96 rounded-full opacity-20 blur-3xl"
+        style="background: radial-gradient(circle, #ff6f1a, transparent 70%)"
+      ></div>
+
+      <div class="max-w-4xl mx-auto w-full text-center relative z-10">
+        <!-- Image Frame -->
+        <div
+          class="relative inline-block w-full max-w-sm mx-auto mb-8 sm:mb-12 floating-img"
+          data-aos="zoom-in"
+          data-aos-duration="800"
+        >
+          <!-- Clay frame around the image -->
+          <div class="clay p-2 sm:p-3 bg-white">
+            <img
+              src="./assets/h2.webp"
+              alt="Lost traveler looking at a map"
+              class="w-full aspect-[4/3] object-cover rounded-xl sm:rounded-2xl"
+            />
+          </div>
+          <!-- Little floating compass icon -->
+          <div
+            class="absolute -bottom-5 -right-5 sm:-bottom-6 sm:-right-6 w-12 h-12 sm:w-16 sm:h-16 rounded-full flex items-center justify-center bg-white shadow-lg text-brand z-20"
+          >
+            <svg
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2.2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <circle cx="12" cy="12" r="10" />
+              <polygon
+                points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"
+              />
+            </svg>
+          </div>
+        </div>
+
+        <!-- 404 Text -->
+        <h1 class="mega-404" data-aos="fade-up" data-aos-delay="100">404</h1>
+
+        <!-- Message -->
+        <div class="mt-4 sm:mt-6" data-aos="fade-up" data-aos-delay="200">
+          <h2 class="font-display font-extrabold text-2xl sm:text-4xl text-ink">
+            Looks like you&rsquo;ve wandered off the map.
+          </h2>
+          <p
+            class="mt-3 text-[15px] sm:text-lg text-ink/60 max-w-md mx-auto leading-relaxed"
+          >
+            The page you&rsquo;re looking for doesn&rsquo;t exist, was moved, or
+            is temporarily out exploring. Let&rsquo;s get you back on track.
+          </p>
+        </div>
+
+        <!-- Buttons -->
+        <div
+          class="mt-8 sm:mt-10 flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4"
+          data-aos="fade-up"
+          data-aos-delay="300"
+        >
+          <!-- GO BACK -->
+          <a
+            href="javascript:history.back()"
+            class="clay-ghost w-full sm:w-auto inline-flex items-center justify-center gap-2 rounded-xl sm:rounded-2xl px-8 py-3.5 sm:py-4 text-[12px] sm:text-sm font-extrabold uppercase tracking-[.12em] no-underline"
+          >
+            <svg
+              width="16"
+              height="16"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2.6"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <line x1="19" y1="12" x2="5" y2="12" />
+              <polyline points="12 19 5 12 12 5" />
+            </svg>
+            Go Back
+          </a>
+
+          <!-- GO TO HOME -->
+          <a
+            href="./index.html"
+            class="clay-accent w-full sm:w-auto inline-flex items-center justify-center gap-2 rounded-xl sm:rounded-2xl px-8 py-3.5 sm:py-4 text-[12px] sm:text-sm font-extrabold uppercase tracking-[.12em] no-underline"
+          >
+            Go to Home
+            <svg
+              width="16"
+              height="16"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2.6"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
+              <polyline points="9 22 9 12 15 12 15 22" />
+            </svg>
+          </a>
+        </div>
+      </div>
+    </main>
+
+    <!-- ============================================================
+     BRAND MARQUEE
+     ============================================================ -->
+    <section class="marquee-band" aria-label="Partner brands">
+      <div class="marquee-track">
+        <div class="marquee-group">
+          <span
+            class="font-display font-extrabold uppercase tracking-tight text-[clamp(1.4rem,7vw,4.75rem)] leading-none text-white"
+            >AIRBNB</span
+          >
+          <span class="text-[clamp(.85rem,3vw,2rem)] text-brand">✦</span>
+          <span
+            class="font-display font-extrabold uppercase tracking-tight text-[clamp(1.4rem,7vw,4.75rem)] leading-none"
+            style="color: #39b6ab"
+            >BOOKING.COM</span
+          >
+          <span class="text-[clamp(.85rem,3vw,2rem)] text-sand">✦</span>
+          <span
+            class="font-display font-extrabold uppercase tracking-tight text-[clamp(1.4rem,7vw,4.75rem)] leading-none text-white"
+            >EXPEDIA</span
+          >
+          <span class="text-[clamp(.85rem,3vw,2rem)] text-accent">✦</span>
+          <span
+            class="font-display font-extrabold uppercase tracking-tight text-[clamp(1.4rem,7vw,4.75rem)] leading-none"
+            style="color: #e7b490"
+            >AGODA</span
+          >
+          <span class="text-[clamp(.85rem,3vw,2rem)] text-brand">✦</span>
+          <span
+            class="font-display font-extrabold uppercase tracking-tight text-[clamp(1.4rem,7vw,4.75rem)] leading-none text-white"
+            >TRIVAGO</span
+          >
+          <span class="text-[clamp(.85rem,3vw,2rem)] text-accent">✦</span>
+          <span
+            class="font-display font-extrabold uppercase tracking-tight text-[clamp(1.4rem,7vw,4.75rem)] leading-none"
+            style="color: #ff6f1a"
+            >KAYAK</span
+          >
+          <span class="text-[clamp(.85rem,3vw,2rem)] text-brand">✦</span>
+          <span
+            class="font-display font-extrabold uppercase tracking-tight text-[clamp(1.4rem,7vw,4.75rem)] leading-none text-white"
+            >SKYSCANNER</span
+          >
+          <span class="text-[clamp(.85rem,3vw,2rem)] text-sand">✦</span>
+          <span
+            class="font-display font-extrabold uppercase tracking-tight text-[clamp(1.4rem,7vw,4.75rem)] leading-none"
+            style="color: #39b6ab"
+            >TRIPADVISOR</span
+          >
+          <span class="text-[clamp(.85rem,3vw,2rem)] text-accent">✦</span>
+          <span
+            class="font-display font-extrabold uppercase tracking-tight text-[clamp(1.4rem,7vw,4.75rem)] leading-none text-white"
+            >MAKEMYTRIP</span
+          >
+          <span class="text-[clamp(.85rem,3vw,2rem)] text-brand">✦</span>
+          <span
+            class="font-display font-extrabold uppercase tracking-tight text-[clamp(1.4rem,7vw,4.75rem)] leading-none"
+            style="color: #e7b490"
+            >VIATOR</span
+          >
+          <span class="text-[clamp(.85rem,3vw,2rem)] text-accent">✦</span>
+        </div>
+
+        <div class="marquee-group" aria-hidden="true">
+          <span
+            class="font-display font-extrabold uppercase tracking-tight text-[clamp(1.4rem,7vw,4.75rem)] leading-none text-white"
+            >AIRBNB</span
+          >
+          <span class="text-[clamp(.85rem,3vw,2rem)] text-brand">✦</span>
+          <span
+            class="font-display font-extrabold uppercase tracking-tight text-[clamp(1.4rem,7vw,4.75rem)] leading-none"
+            style="color: #39b6ab"
+            >BOOKING.COM</span
+          >
+          <span class="text-[clamp(.85rem,3vw,2rem)] text-sand">✦</span>
+          <span
+            class="font-display font-extrabold uppercase tracking-tight text-[clamp(1.4rem,7vw,4.75rem)] leading-none text-white"
+            >EXPEDIA</span
+          >
+          <span class="text-[clamp(.85rem,3vw,2rem)] text-accent">✦</span>
+          <span
+            class="font-display font-extrabold uppercase tracking-tight text-[clamp(1.4rem,7vw,4.75rem)] leading-none"
+            style="color: #e7b490"
+            >AGODA</span
+          >
+          <span class="text-[clamp(.85rem,3vw,2rem)] text-brand">✦</span>
+          <span
+            class="font-display font-extrabold uppercase tracking-tight text-[clamp(1.4rem,7vw,4.75rem)] leading-none text-white"
+            >TRIVAGO</span
+          >
+          <span class="text-[clamp(.85rem,3vw,2rem)] text-accent">✦</span>
+          <span
+            class="font-display font-extrabold uppercase tracking-tight text-[clamp(1.4rem,7vw,4.75rem)] leading-none"
+            style="color: #ff6f1a"
+            >KAYAK</span
+          >
+          <span class="text-[clamp(.85rem,3vw,2rem)] text-brand">✦</span>
+          <span
+            class="font-display font-extrabold uppercase tracking-tight text-[clamp(1.4rem,7vw,4.75rem)] leading-none text-white"
+            >SKYSCANNER</span
+          >
+          <span class="text-[clamp(.85rem,3vw,2rem)] text-sand">✦</span>
+          <span
+            class="font-display font-extrabold uppercase tracking-tight text-[clamp(1.4rem,7vw,4.75rem)] leading-none"
+            style="color: #39b6ab"
+            >TRIPADVISOR</span
+          >
+          <span class="text-[clamp(.85rem,3vw,2rem)] text-accent">✦</span>
+          <span
+            class="font-display font-extrabold uppercase tracking-tight text-[clamp(1.4rem,7vw,4.75rem)] leading-none text-white"
+            >MAKEMYTRIP</span
+          >
+          <span class="text-[clamp(.85rem,3vw,2rem)] text-brand">✦</span>
+          <span
+            class="font-display font-extrabold uppercase tracking-tight text-[clamp(1.4rem,7vw,4.75rem)] leading-none"
+            style="color: #e7b490"
+            >VIATOR</span
+          >
+          <span class="text-[clamp(.85rem,3vw,2rem)] text-accent">✦</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+     SCRIPTS
+     ============================================================ -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+
+    <script>
+      (function () {
+        "use strict";
+
+        const reduceMotion = window.matchMedia(
+          "(prefers-reduced-motion: reduce)",
+        ).matches;
+
+        /* ---------------------------------------------------------
+     AOS
+     --------------------------------------------------------- */
+        if (window.AOS) {
+          AOS.init({
+            duration: 800,
+            easing: "ease-out-cubic",
+            once: true,
+            offset: 50,
+            disable: reduceMotion,
+          });
+        }
+
+        /* ---------------------------------------------------------
+     GSAP — Floating Element Enhancement
+     --------------------------------------------------------- */
+        if (window.gsap && !reduceMotion) {
+          // Add a subtle rotation to the compass icon
+          gsap.to(".floating-img svg", {
+            rotation: 360,
+            duration: 15,
+            repeat: -1,
+            ease: "none",
+            transformOrigin: "50% 50%",
+          });
+        }
+      })();
+    </script>
+  </body>
+</html>

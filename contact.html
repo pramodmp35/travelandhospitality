@@ -1,0 +1,2374 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Contact · STACKLY — Travel &amp; Hospitality</title>
+    <meta
+      name="description"
+      content="Get in touch with STACKLY — bespoke stays, tours and hospitality experiences. Our concierge replies within 24 hours."
+    />
+
+    <!-- ============ FONTS ============ -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800&family=Inter:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- ============ BOOTSTRAP 5 ============ -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+
+    <!-- ============ AOS ============ -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css"
+      rel="stylesheet"
+    />
+
+    <!-- ============ TAILWIND ============ -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              brand: "#39b6ab",
+              sand: "#e7b490",
+              accent: "#ff6f1a",
+              ink: "#000000",
+            },
+            fontFamily: {
+              display: ['"Plus Jakarta Sans"', "system-ui", "sans-serif"],
+              body: ["Inter", "system-ui", "sans-serif"],
+            },
+          },
+        },
+      };
+    </script>
+
+    <style>
+      /* ============================================================
+   STACKLY — DESIGN TOKENS
+   ============================================================ */
+      :root {
+        --brand: #39b6ab;
+        --sand: #e7b490;
+        --accent: #ff6f1a;
+        --ink: #000000;
+
+        /* claymorphism shadows */
+        --clay:
+          12px 12px 28px rgba(0, 0, 0, 0.1),
+          -12px -12px 28px rgba(255, 255, 255, 0.92);
+        --clay-sm:
+          6px 6px 16px rgba(0, 0, 0, 0.09),
+          -6px -6px 16px rgba(255, 255, 255, 0.95);
+        --clay-in:
+          inset 4px 4px 10px rgba(0, 0, 0, 0.07),
+          inset -4px -4px 10px rgba(255, 255, 255, 0.95);
+      }
+
+      * {
+        -webkit-tap-highlight-color: transparent;
+      }
+
+      html {
+        scroll-behavior: smooth;
+        width: 100%;
+        max-width: 100%;
+        overflow-x: hidden;
+        -webkit-text-size-adjust: 100%;
+      }
+
+      body {
+        font-family: "Inter", system-ui, sans-serif;
+        color: var(--ink);
+        background-color: #ffffff;
+        background-image:
+          radial-gradient(
+            60vw 60vw at 6% 4%,
+            rgba(57, 182, 171, 0.14),
+            transparent 62%
+          ),
+          radial-gradient(
+            60vw 60vw at 96% 98%,
+            rgba(231, 180, 144, 0.3),
+            transparent 62%
+          ),
+          radial-gradient(
+            38vw 38vw at 92% 3%,
+            rgba(255, 111, 26, 0.08),
+            transparent 62%
+          );
+        width: 100%;
+        max-width: 100%;
+        overflow-x: hidden;
+        /* NEW — sticky footer layout */
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+      }
+      @media (min-width: 768px) {
+        body {
+          background-attachment: fixed;
+        }
+      }
+
+      /* NEW — leave room for the fixed navbar */
+      main {
+        flex: 1;
+        padding-top: 108px;
+      }
+      @media (min-width: 1024px) {
+        main {
+          padding-top: 136px;
+        }
+      }
+
+      /* guards against any accidental horizontal overflow on mobile */
+      img,
+      svg,
+      video,
+      canvas,
+      iframe {
+        max-width: 100%;
+      }
+
+      h1,
+      h2,
+      h3,
+      h4,
+      h5,
+      h6,
+      .font-display {
+        font-family: "Plus Jakarta Sans", system-ui, sans-serif;
+        letter-spacing: -0.02em;
+      }
+
+      /* ============================================================
+   CLAYMORPHISM PRIMITIVES
+   ============================================================ */
+      .clay {
+        background: rgba(255, 255, 255, 0.86);
+        -webkit-backdrop-filter: blur(8px);
+        backdrop-filter: blur(8px);
+        border-radius: 1.75rem;
+        box-shadow: var(--clay);
+      }
+      .clay-sm {
+        background: rgba(255, 255, 255, 0.9);
+        border-radius: 1.15rem;
+        box-shadow: var(--clay-sm);
+      }
+      .clay-brand {
+        background: linear-gradient(145deg, #46c4b8, #2ba49b);
+        color: #fff;
+        box-shadow:
+          10px 10px 26px rgba(57, 182, 171, 0.38),
+          -8px -8px 22px rgba(255, 255, 255, 0.9),
+          inset 2px 2px 6px rgba(255, 255, 255, 0.38),
+          inset -3px -3px 8px rgba(0, 0, 0, 0.14);
+      }
+      .clay-accent {
+        background: linear-gradient(145deg, #ff8540, #ee5f05);
+        color: #fff;
+        box-shadow:
+          10px 10px 26px rgba(255, 111, 26, 0.38),
+          -8px -8px 22px rgba(255, 255, 255, 0.9),
+          inset 2px 2px 6px rgba(255, 255, 255, 0.4),
+          inset -3px -3px 8px rgba(0, 0, 0, 0.14);
+        /* NEW — footer button hover/transition behavior */
+        transition:
+          transform 0.2s ease,
+          box-shadow 0.2s ease;
+      }
+      .clay-accent:hover {
+        transform: translateY(-2px);
+        box-shadow:
+          12px 12px 30px rgba(255, 111, 26, 0.45),
+          -8px -8px 22px rgba(255, 255, 255, 0.9),
+          inset 2px 2px 6px rgba(255, 255, 255, 0.4),
+          inset -3px -3px 8px rgba(0, 0, 0, 0.14);
+      }
+
+      /* ============================================================
+   HERO — COMPACT FULL-WIDTH BANNER
+   ============================================================ */
+      .hero-bg {
+        will-change: transform;
+      }
+
+      .hero-title span {
+        display: block;
+      }
+
+      .scroll-cue {
+        width: 22px;
+        height: 36px;
+        border-radius: 999px;
+        border: 2px solid rgba(255, 255, 255, 0.55);
+        position: relative;
+      }
+      .scroll-cue::after {
+        content: "";
+        position: absolute;
+        left: 50%;
+        top: 7px;
+        width: 4px;
+        height: 8px;
+        border-radius: 99px;
+        background: var(--sand);
+        transform: translateX(-50%);
+        animation: cue 1.8s ease-in-out infinite;
+      }
+      @keyframes cue {
+        0%,
+        100% {
+          transform: translate(-50%, 0);
+          opacity: 1;
+        }
+        50% {
+          transform: translate(-50%, 12px);
+          opacity: 0.25;
+        }
+      }
+
+      /* ============================================================
+   CONTACT — TRIANGULAR PANEL
+   ============================================================ */
+      .tri-panel {
+        position: relative;
+      }
+
+      @media (min-width: 1024px) {
+        .tri-panel {
+          clip-path: polygon(0 0, 100% 0, 86% 100%, 0 100%);
+        }
+        .tri-panel::after {
+          content: "";
+          position: absolute;
+          right: 0;
+          bottom: 0;
+          width: 66%;
+          height: 52%;
+          background: linear-gradient(
+            135deg,
+            rgba(231, 180, 144, 0.55),
+            rgba(255, 111, 26, 0.45)
+          );
+          clip-path: polygon(100% 0, 100% 100%, 0 100%);
+          pointer-events: none;
+          z-index: 0;
+        }
+      }
+
+      .clay-glass {
+        background: rgba(255, 255, 255, 0.14);
+        border: 1px solid rgba(255, 255, 255, 0.28);
+        border-radius: 1.15rem;
+        box-shadow:
+          inset 3px 3px 8px rgba(255, 255, 255, 0.22),
+          inset -3px -3px 8px rgba(0, 0, 0, 0.16),
+          0 10px 24px rgba(0, 0, 0, 0.18);
+        -webkit-backdrop-filter: blur(6px);
+        backdrop-filter: blur(6px);
+      }
+
+      /* ============================================================
+   FORM — CLAY INPUTS + INLINE ERRORS
+   ============================================================ */
+      .field {
+        position: relative;
+      }
+
+      .clay-input {
+        width: 100%;
+        font-size: 16px;
+        line-height: 1.4;
+        color: var(--ink);
+        background: #fff;
+        border: 0;
+        border-radius: 1rem;
+        padding: 0.9rem 1.05rem;
+        box-shadow: var(--clay-in);
+        outline: none;
+        transition:
+          box-shadow 0.25s ease,
+          transform 0.2s ease;
+        -webkit-appearance: none;
+        appearance: none;
+      }
+      @media (min-width: 640px) {
+        .clay-input {
+          font-size: 0.95rem;
+        }
+      }
+      .clay-input::placeholder {
+        color: rgba(0, 0, 0, 0.36);
+      }
+      .clay-input:focus {
+        box-shadow:
+          inset 4px 4px 10px rgba(0, 0, 0, 0.06),
+          inset -4px -4px 10px rgba(255, 255, 255, 1),
+          0 0 0 3px rgba(57, 182, 171, 0.42);
+      }
+      textarea.clay-input {
+        min-height: 132px;
+        resize: vertical;
+      }
+
+      select.clay-input {
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%2339b6ab' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E");
+        background-repeat: no-repeat;
+        background-position: right 1rem center;
+        background-size: 16px;
+        padding-right: 2.6rem;
+      }
+
+      .field.has-error .clay-input {
+        box-shadow:
+          inset 4px 4px 10px rgba(255, 111, 26, 0.2),
+          inset -4px -4px 10px rgba(255, 255, 255, 1),
+          0 0 0 3px rgba(255, 111, 26, 0.36);
+      }
+      .err-msg {
+        display: none;
+        margin: 0.5rem 0 0 0.3rem;
+        font-size: 0.78rem;
+        font-weight: 600;
+        line-height: 1.35;
+        color: #c94f00;
+      }
+      .field.has-error .err-msg {
+        display: block;
+        animation: errIn 0.26s ease both;
+      }
+      @keyframes errIn {
+        from {
+          opacity: 0;
+          transform: translateY(-4px);
+        }
+        to {
+          opacity: 1;
+          transform: none;
+        }
+      }
+
+      .clay-check {
+        -webkit-appearance: none;
+        appearance: none;
+        width: 22px;
+        height: 22px;
+        flex: 0 0 22px;
+        border-radius: 0.55rem;
+        background: #fff;
+        box-shadow: var(--clay-in);
+        cursor: pointer;
+        position: relative;
+        transition: box-shadow 0.2s ease;
+      }
+      .clay-check:checked {
+        background: linear-gradient(145deg, #46c4b8, #2ba49b);
+        box-shadow:
+          inset 2px 2px 5px rgba(255, 255, 255, 0.45),
+          inset -2px -2px 5px rgba(0, 0, 0, 0.16),
+          0 0 0 3px rgba(57, 182, 171, 0.22);
+      }
+      .clay-check:checked::after {
+        content: "";
+        position: absolute;
+        left: 7px;
+        top: 3px;
+        width: 6px;
+        height: 11px;
+        border: solid #fff;
+        border-width: 0 2.5px 2.5px 0;
+        transform: rotate(45deg);
+      }
+      .field.has-error .clay-check {
+        box-shadow:
+          var(--clay-in),
+          0 0 0 3px rgba(255, 111, 26, 0.36);
+      }
+
+      /* ============================================================
+   MARQUEE
+   ============================================================ */
+      .marquee-band {
+        overflow: hidden;
+        background: #000;
+        border-top: 6px solid var(--brand);
+        border-bottom: 6px solid var(--sand);
+        padding: 1.25rem 0;
+      }
+      .marquee-track {
+        display: flex;
+        width: max-content;
+        animation: marq 30s linear infinite;
+        will-change: transform;
+      }
+      .marquee-group {
+        display: flex;
+        align-items: center;
+        gap: clamp(1rem, 4vw, 3.25rem);
+        padding-right: clamp(1rem, 4vw, 3.25rem);
+      }
+      @keyframes marq {
+        to {
+          transform: translateX(-50%);
+        }
+      }
+      .marquee-band:hover .marquee-track {
+        animation-play-state: paused;
+      }
+
+      /* ============================================================
+   NAVBAR BASE (added from navbar file)
+   ============================================================ */
+      .navbar-container {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 100;
+        padding: 1rem;
+        transition: all 0.3s ease;
+      }
+
+      .navbar-inner {
+        max-width: 1280px;
+        margin: 0 auto;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0.75rem 1.25rem;
+        background: rgba(255, 255, 255, 0.92);
+        -webkit-backdrop-filter: blur(12px);
+        backdrop-filter: blur(12px);
+        border-radius: 1.25rem;
+        box-shadow: var(--clay-sm);
+        transition: box-shadow 0.3s ease;
+      }
+
+      .desktop-nav {
+        display: none;
+        align-items: center;
+        gap: 2rem;
+      }
+
+      .nav-link {
+        position: relative;
+        font-size: 0.85rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        color: rgba(0, 0, 0, 0.65);
+        text-decoration: none;
+        transition: color 0.2s ease;
+      }
+      .nav-link:hover {
+        color: var(--brand);
+      }
+      .nav-link::after {
+        content: "";
+        position: absolute;
+        bottom: -4px;
+        left: 0;
+        width: 0;
+        height: 2px;
+        background: var(--brand);
+        transition: width 0.3s ease;
+        border-radius: 99px;
+      }
+      .nav-link:hover::after {
+        width: 100%;
+      }
+
+      .btn-login {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        padding: 0.6rem 1.5rem;
+        border-radius: 12px;
+        font-family: "Plus Jakarta Sans", system-ui, sans-serif;
+        font-size: 0.75rem;
+        font-weight: 800;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: #fff;
+        text-decoration: none;
+        background: linear-gradient(145deg, #46c4b8, #2ba49b);
+        box-shadow:
+          4px 4px 12px rgba(57, 182, 171, 0.35),
+          -2px -2px 8px rgba(255, 255, 255, 0.9),
+          inset 1px 1px 3px rgba(255, 255, 255, 0.4);
+        transition: all 0.2s ease;
+      }
+      .btn-login:hover {
+        transform: translateY(-1px);
+        box-shadow:
+          6px 6px 16px rgba(57, 182, 171, 0.45),
+          -2px -2px 8px rgba(255, 255, 255, 0.9),
+          inset 1px 1px 3px rgba(255, 255, 255, 0.4);
+      }
+
+      .btn-hamburger {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 44px;
+        height: 44px;
+        border-radius: 12px;
+        background: #fff;
+        color: var(--ink);
+        border: none;
+        cursor: pointer;
+        box-shadow: var(--clay-sm);
+        transition: transform 0.2s ease;
+      }
+      .btn-hamburger:active {
+        transform: scale(0.95);
+      }
+
+      @media (min-width: 1024px) {
+        .navbar-container {
+          padding: 1.5rem 2rem;
+        }
+        .navbar-inner {
+          padding: 1rem 2rem;
+          border-radius: 1.5rem;
+        }
+        .desktop-nav {
+          display: flex;
+        }
+        .btn-hamburger {
+          display: none;
+        }
+      }
+
+      /* ============================================================
+   MOBILE FULL-SCREEN MENU (added from navbar file)
+   ============================================================ */
+      .mobile-menu-overlay {
+        position: fixed;
+        inset: 0;
+        background: #ffffff;
+        z-index: 9999;
+        display: flex;
+        flex-direction: column;
+        padding: 1.5rem;
+        opacity: 0;
+        pointer-events: none;
+        transform: translateY(-20px);
+        transition:
+          opacity 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+          transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        overflow-y: auto;
+      }
+      .mobile-menu-overlay.is-active {
+        opacity: 1;
+        pointer-events: auto;
+        transform: translateY(0);
+      }
+      .mobile-menu-overlay::before {
+        content: "";
+        position: absolute;
+        top: -10%;
+        right: -20%;
+        width: 70vw;
+        height: 70vw;
+        border-radius: 50%;
+        background: radial-gradient(
+          circle,
+          rgba(57, 182, 171, 0.12) 0%,
+          transparent 70%
+        );
+        z-index: -1;
+        pointer-events: none;
+      }
+
+      .mobile-menu-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        width: 100%;
+        margin-bottom: 3rem;
+      }
+
+      .btn-close-menu {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 44px;
+        height: 44px;
+        border-radius: 12px;
+        background: #f4f7f6;
+        color: var(--ink);
+        border: none;
+        cursor: pointer;
+        box-shadow: var(--clay-sm);
+        transition: transform 0.2s ease;
+      }
+      .btn-close-menu:active {
+        transform: scale(0.95);
+      }
+
+      .mobile-nav {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+        width: 100%;
+      }
+
+      .mobile-nav-link {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 1rem 0;
+        font-family: "Plus Jakarta Sans", system-ui, sans-serif;
+        font-size: clamp(1.75rem, 6vw, 2.5rem);
+        font-weight: 800;
+        text-transform: uppercase;
+        letter-spacing: -0.02em;
+        color: var(--ink);
+        text-decoration: none;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+        transition:
+          color 0.2s ease,
+          padding-left 0.2s ease;
+        opacity: 0;
+        transform: translateX(-20px);
+      }
+      .mobile-menu-overlay.is-active .mobile-nav-link {
+        opacity: 1;
+        transform: translateX(0);
+      }
+      .mobile-menu-overlay.is-active .mobile-nav-link:nth-child(1) {
+        transition-delay: 0.05s;
+      }
+      .mobile-menu-overlay.is-active .mobile-nav-link:nth-child(2) {
+        transition-delay: 0.1s;
+      }
+      .mobile-menu-overlay.is-active .mobile-nav-link:nth-child(3) {
+        transition-delay: 0.15s;
+      }
+      .mobile-menu-overlay.is-active .mobile-nav-link:nth-child(4) {
+        transition-delay: 0.2s;
+      }
+      .mobile-menu-overlay.is-active .mobile-nav-link:nth-child(5) {
+        transition-delay: 0.25s;
+      }
+
+      .mobile-nav-link:hover,
+      .mobile-nav-link:active {
+        color: var(--brand);
+        padding-left: 0.5rem;
+      }
+
+      .mobile-nav-link svg {
+        width: 24px;
+        height: 24px;
+        color: var(--brand);
+        opacity: 0.5;
+      }
+
+      .mobile-menu-footer {
+        margin-top: auto;
+        padding-top: 3rem;
+        padding-bottom: 2rem;
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+        opacity: 0;
+        transform: translateY(20px);
+        transition:
+          opacity 0.4s ease,
+          transform 0.4s ease;
+      }
+      .mobile-menu-overlay.is-active .mobile-menu-footer {
+        opacity: 1;
+        transform: translateY(0);
+        transition-delay: 0.3s;
+      }
+
+      .btn-mobile-login {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        padding: 1.25rem;
+        border-radius: 16px;
+        font-family: "Plus Jakarta Sans", system-ui, sans-serif;
+        font-size: 1rem;
+        font-weight: 800;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        color: #fff;
+        text-decoration: none;
+        background: linear-gradient(145deg, #ff8540, #ee5f05);
+        box-shadow:
+          8px 8px 22px rgba(255, 111, 26, 0.35),
+          -6px -6px 18px rgba(255, 255, 255, 0.9),
+          inset 1px 1px 3px rgba(255, 255, 255, 0.4);
+      }
+
+      body.menu-open {
+        overflow: hidden;
+      }
+
+      /* ============================================================
+   FOOTER LINKS & SOCIALS (added from footer file)
+   ============================================================ */
+      .footer-heading {
+        font-family: "Plus Jakarta Sans", system-ui, sans-serif;
+        font-size: 0.75rem;
+        font-weight: 800;
+        text-transform: uppercase;
+        letter-spacing: 0.15em;
+        color: rgba(0, 0, 0, 0.4);
+        margin-bottom: 1.25rem;
+      }
+
+      .footer-link {
+        display: inline-block;
+        font-size: 0.9rem;
+        font-weight: 600;
+        color: rgba(0, 0, 0, 0.65);
+        text-decoration: none;
+        margin-bottom: 0.85rem;
+        transition:
+          color 0.2s ease,
+          transform 0.2s ease;
+      }
+      .footer-link:hover {
+        color: var(--brand);
+        transform: translateX(4px);
+      }
+
+      .social-icon {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 36px;
+        height: 36px;
+        border-radius: 10px;
+        color: rgba(0, 0, 0, 0.6);
+        background: #fff;
+        box-shadow: var(--clay-sm);
+        transition: all 0.2s ease;
+      }
+      .social-icon:hover {
+        color: #fff;
+        background: var(--brand);
+        transform: translateY(-2px);
+        box-shadow: 4px 4px 12px rgba(57, 182, 171, 0.35);
+      }
+
+      /* ============================================================
+   REDUCED MOTION
+   ============================================================ */
+      @media (prefers-reduced-motion: reduce) {
+        html {
+          scroll-behavior: auto;
+        }
+        .marquee-track {
+          animation: none;
+        }
+        .scroll-cue::after {
+          animation: none;
+        }
+        * {
+          animation-duration: 0.001ms !important;
+          transition-duration: 0.001ms !important;
+        }
+      }
+    </style>
+  </head>
+
+  <body class="font-body antialiased">
+    <!-- ============================================================
+     NAVBAR (fixed to top)
+     ============================================================ -->
+    <header class="navbar-container">
+      <div class="navbar-inner">
+        <a href="./index.html" class="flex items-center gap-2 no-underline">
+          <img
+            src="./assets/logo.webp"
+            alt="STACKLY Logo"
+            class="h-8 sm:h-12 w-auto object-contain"
+          />
+        </a>
+
+        <nav class="desktop-nav">
+          <a href="./index.html" class="nav-link">Home</a>
+          <a href="./services.html" class="nav-link">Services</a>
+          <a href="./about.html" class="nav-link">About</a>
+          <a href="./blog.html" class="nav-link">Blog</a>
+          <a href="./contact.html" class="nav-link">Contact</a>
+        </nav>
+
+        <div class="flex items-center gap-3">
+          <a href="./login.html" class="btn-login hidden lg:inline-flex"
+            >Login</a
+          >
+
+          <button id="openMenuBtn" class="btn-hamburger" aria-label="Open Menu">
+            <svg
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2.5"
+              stroke-linecap="round"
+            >
+              <line x1="3" y1="7" x2="21" y2="7"></line>
+              <line x1="3" y1="12" x2="21" y2="12"></line>
+              <line x1="3" y1="17" x2="21" y2="17"></line>
+            </svg>
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <!-- ============================================================
+     FULL-SCREEN MOBILE MENU
+     ============================================================ -->
+    <div id="mobileMenu" class="mobile-menu-overlay">
+      <div class="mobile-menu-header">
+        <button
+          id="closeMenuBtn"
+          class="btn-close-menu"
+          aria-label="Close Menu"
+        >
+          <svg
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2.5"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <line x1="18" y1="6" x2="6" y2="18"></line>
+            <line x1="6" y1="6" x2="18" y2="18"></line>
+          </svg>
+        </button>
+      </div>
+
+      <nav class="mobile-nav">
+        <a href="./index.html" class="mobile-nav-link">
+          Home
+          <svg
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2.5"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <line x1="5" y1="12" x2="19" y2="12" />
+            <polyline points="12 5 19 12 12 19" />
+          </svg>
+        </a>
+        <a href="./services.html" class="mobile-nav-link">
+          Services
+          <svg
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2.5"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <line x1="5" y1="12" x2="19" y2="12" />
+            <polyline points="12 5 19 12 12 19" />
+          </svg>
+        </a>
+        <a href="./about.html" class="mobile-nav-link">
+          About
+          <svg
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2.5"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <line x1="5" y1="12" x2="19" y2="12" />
+            <polyline points="12 5 19 12 12 19" />
+          </svg>
+        </a>
+        <a href="./blog.html" class="mobile-nav-link">
+          Blog
+          <svg
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2.5"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <line x1="5" y1="12" x2="19" y2="12" />
+            <polyline points="12 5 19 12 12 19" />
+          </svg>
+        </a>
+        <a href="./contact.html" class="mobile-nav-link">
+          Contact
+          <svg
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2.5"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <line x1="5" y1="12" x2="19" y2="12" />
+            <polyline points="12 5 19 12 12 19" />
+          </svg>
+        </a>
+      </nav>
+
+      <div class="mobile-menu-footer">
+        <a href="./login.html" class="btn-mobile-login">Login</a>
+      </div>
+    </div>
+
+    <main>
+      <!-- ============================================================
+     1 · HERO BANNER — full width, compact height
+     ============================================================ -->
+      <section class="hero relative isolate w-full overflow-hidden">
+        <div
+          class="hero-bg absolute inset-0 -z-10 bg-cover bg-center"
+          style="background-image: url(&quot;./assets/h1.webp&quot;)"
+        ></div>
+
+        <div
+          class="absolute inset-0 -z-10"
+          style="
+            background: linear-gradient(
+              155deg,
+              rgba(0, 0, 0, 0.82) 0%,
+              rgba(0, 0, 0, 0.5) 45%,
+              rgba(57, 182, 171, 0.62) 100%
+            );
+          "
+        ></div>
+
+        <div
+          class="pointer-events-none absolute -z-10 -right-16 -top-16 w-48 h-48 sm:w-72 sm:h-72 rounded-full opacity-40 blur-2xl"
+          style="
+            background: radial-gradient(
+              circle at 30% 30%,
+              #ff6f1a,
+              transparent 70%
+            );
+          "
+        ></div>
+        <div
+          class="pointer-events-none absolute -z-10 -left-20 bottom-0 w-56 h-56 sm:w-80 sm:h-80 rounded-full opacity-30 blur-3xl"
+          style="
+            background: radial-gradient(
+              circle at 60% 40%,
+              #39b6ab,
+              transparent 70%
+            );
+          "
+        ></div>
+
+        <div
+          class="relative z-10 mx-auto w-full max-w-7xl px-4 sm:px-8 lg:px-12 py-10 sm:py-14 lg:py-20"
+        >
+          <p
+            class="hero-eyebrow inline-flex items-center gap-2 rounded-full bg-white/12 border border-white/25 px-3 py-1 sm:px-4 sm:py-1.5 text-[9px] sm:text-[10px] font-bold uppercase tracking-[.16em] sm:tracking-[.18em] text-white"
+          >
+            <span class="w-1.5 h-1.5 rounded-full bg-accent"></span>
+            Contact · Stackly
+          </p>
+
+          <h1
+            class="hero-title mt-4 sm:mt-5 font-display font-extrabold text-white leading-[1.02] text-[clamp(1.75rem,7.5vw,3.75rem)] max-w-4xl"
+          >
+            <span>Let&rsquo;s plan</span>
+            <span class="text-sand">something</span>
+            <span>unforgettable.</span>
+          </h1>
+
+          <p
+            class="hero-sub mt-3 sm:mt-4 max-w-xl text-[13px] sm:text-base leading-relaxed text-white/85"
+          >
+            One conversation is all it takes. Tell us where you dream of waking
+            up — our concierge turns it into a stay, a route and a story.
+          </p>
+
+          <div class="mt-5 sm:mt-7 flex flex-wrap gap-2 sm:gap-3">
+            <span
+              class="hero-chip inline-flex items-center gap-1.5 sm:gap-2 rounded-xl sm:rounded-2xl bg-white/12 border border-white/25 px-3 py-2 sm:px-4 sm:py-2.5 text-[10px] sm:text-xs font-bold uppercase tracking-wide sm:tracking-wider text-white"
+            >
+              <svg
+                width="13"
+                height="13"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="#39b6ab"
+                stroke-width="2.6"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <circle cx="12" cy="12" r="9" />
+                <polyline points="12 7 12 12 15.5 14" />
+              </svg>
+              Reply in 3 hrs
+            </span>
+            <span
+              class="hero-chip inline-flex items-center gap-1.5 sm:gap-2 rounded-xl sm:rounded-2xl bg-white/12 border border-white/25 px-3 py-2 sm:px-4 sm:py-2.5 text-[10px] sm:text-xs font-bold uppercase tracking-wide sm:tracking-wider text-white"
+            >
+              <svg
+                width="13"
+                height="13"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="#e7b490"
+                stroke-width="2.6"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
+                <circle cx="12" cy="7" r="4" />
+              </svg>
+              12k+ travellers
+            </span>
+            <span
+              class="hero-chip inline-flex items-center gap-1.5 sm:gap-2 rounded-xl sm:rounded-2xl bg-white/12 border border-white/25 px-3 py-2 sm:px-4 sm:py-2.5 text-[10px] sm:text-xs font-bold uppercase tracking-wide sm:tracking-wider text-white"
+            >
+              <svg
+                width="13"
+                height="13"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="#ff6f1a"
+                stroke-width="2.6"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path
+                  d="M12 2 15 9l7 .6-5.4 4.6L18.2 21 12 17.3 5.8 21l1.6-6.8L2 9.6 9 9z"
+                />
+              </svg>
+              24/7 concierge
+            </span>
+          </div>
+
+          <div
+            class="hero-cue mt-6 sm:mt-8 hidden sm:flex items-center gap-3 text-white/60"
+          >
+            <span class="scroll-cue"></span>
+            <span class="text-[10px] font-bold uppercase tracking-[.22em]"
+              >Scroll to reach us</span
+            >
+          </div>
+        </div>
+      </section>
+
+      <!-- ============================================================
+     2 · CONTACT — TRIANGULAR PANEL + FORM
+     ============================================================ -->
+      <section
+        class="px-3 sm:px-5 lg:px-8 pt-12 sm:pt-20 pb-14 sm:pb-24"
+        id="contact"
+      >
+        <div class="mx-auto max-w-7xl">
+          <div class="text-center mb-8 sm:mb-12" data-aos="fade-up">
+            <p
+              class="text-[10px] sm:text-[11px] font-bold uppercase tracking-[.24em] text-brand"
+            >
+              Say hello
+            </p>
+            <h2
+              class="mt-3 font-display font-extrabold text-[clamp(1.7rem,6.5vw,3.6rem)] leading-[1.05] text-ink px-2"
+            >
+              Start your <span class="text-accent">journey</span> here
+            </h2>
+          </div>
+
+          <div
+            class="clay overflow-hidden rounded-[1.5rem] sm:rounded-[2.5rem] lg:rounded-[3rem]"
+            data-aos="fade-up"
+            data-aos-delay="80"
+          >
+            <div class="grid lg:grid-cols-2">
+              <!-- ---------- LEFT : COMPANY DETAILS ---------- -->
+              <div
+                class="tri-panel min-h-[380px] sm:min-h-[420px] lg:min-h-full"
+              >
+                <div
+                  class="absolute inset-0 bg-cover bg-center"
+                  style="
+                    background-image: url(&quot;https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=1400&q=80&quot;);
+                  "
+                ></div>
+                <div
+                  class="absolute inset-0"
+                  style="
+                    background: linear-gradient(
+                      160deg,
+                      rgba(0, 0, 0, 0.86) 0%,
+                      rgba(0, 0, 0, 0.62) 45%,
+                      rgba(57, 182, 171, 0.88) 100%
+                    );
+                  "
+                ></div>
+
+                <div class="relative z-10 p-5 sm:p-9 lg:p-12 lg:pr-24 xl:pr-28">
+                  <p
+                    class="inline-flex items-center gap-2 rounded-full bg-white/15 border border-white/25 px-3 py-1.5 text-[10px] font-bold uppercase tracking-[.18em] text-white"
+                  >
+                    <span class="w-1.5 h-1.5 rounded-full bg-sand"></span> Our
+                    studio
+                  </p>
+
+                  <h3
+                    class="mt-4 sm:mt-5 font-display font-extrabold text-white text-[clamp(1.5rem,5.5vw,2.5rem)] leading-[1.08]"
+                  >
+                    Talk to a<br class="hidden sm:block" />
+                    real human.
+                  </h3>
+                  <p
+                    class="mt-3 max-w-sm text-[13px] sm:text-[15px] leading-relaxed text-white/75"
+                  >
+                    No bots, no call queues. A dedicated travel designer picks
+                    up your brief and answers within one business day.
+                  </p>
+
+                  <div class="mt-6 sm:mt-7 space-y-3">
+                    <div class="clay-glass flex items-start gap-3 p-3.5 sm:p-4">
+                      <span
+                        class="grid place-items-center w-8 h-8 sm:w-9 sm:h-9 shrink-0 rounded-xl bg-white/20 text-white"
+                      >
+                        <svg
+                          width="14"
+                          height="14"
+                          viewBox="0 0 24 24"
+                          fill="none"
+                          stroke="currentColor"
+                          stroke-width="2.4"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                        >
+                          <path
+                            d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 0 1 18 0z"
+                          />
+                          <circle cx="12" cy="10" r="3" />
+                        </svg>
+                      </span>
+                      <div class="min-w-0">
+                        <p
+                          class="text-[10px] font-bold uppercase tracking-[.16em] text-white/55"
+                        >
+                          Head office
+                        </p>
+                        <p
+                          class="mt-1 text-[13px] sm:text-sm font-semibold leading-snug text-white"
+                        >
+                          14 Marine Drive, Panaji<br />Goa 403001, India
+                        </p>
+                      </div>
+                    </div>
+
+                    <div class="clay-glass flex items-start gap-3 p-3.5 sm:p-4">
+                      <span
+                        class="grid place-items-center w-8 h-8 sm:w-9 sm:h-9 shrink-0 rounded-xl bg-white/20 text-white"
+                      >
+                        <svg
+                          width="14"
+                          height="14"
+                          viewBox="0 0 24 24"
+                          fill="none"
+                          stroke="currentColor"
+                          stroke-width="2.4"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                        >
+                          <path
+                            d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8.1 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2z"
+                          />
+                        </svg>
+                      </span>
+                      <div class="min-w-0">
+                        <p
+                          class="text-[10px] font-bold uppercase tracking-[.16em] text-white/55"
+                        >
+                          Call us
+                        </p>
+                        <a
+                          href="tel:+919876543210"
+                          class="mt-1 block text-[13px] sm:text-sm font-semibold text-white no-underline hover:text-sand transition"
+                          >+91 98765 43210</a
+                        >
+                      </div>
+                    </div>
+
+                    <div class="clay-glass flex items-start gap-3 p-3.5 sm:p-4">
+                      <span
+                        class="grid place-items-center w-8 h-8 sm:w-9 sm:h-9 shrink-0 rounded-xl bg-white/20 text-white"
+                      >
+                        <svg
+                          width="14"
+                          height="14"
+                          viewBox="0 0 24 24"
+                          fill="none"
+                          stroke="currentColor"
+                          stroke-width="2.4"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                        >
+                          <rect x="2" y="4" width="20" height="16" rx="3" />
+                          <polyline points="2.5 6.5 12 13 21.5 6.5" />
+                        </svg>
+                      </span>
+                      <div class="min-w-0">
+                        <p
+                          class="text-[10px] font-bold uppercase tracking-[.16em] text-white/55"
+                        >
+                          Email
+                        </p>
+                        <a
+                          href="mailto:hello@stackly.travel"
+                          class="mt-1 block text-[13px] sm:text-sm font-semibold text-white no-underline hover:text-sand transition break-all"
+                          >hello@stackly.travel</a
+                        >
+                      </div>
+                    </div>
+
+                    <div class="clay-glass flex items-start gap-3 p-3.5 sm:p-4">
+                      <span
+                        class="grid place-items-center w-8 h-8 sm:w-9 sm:h-9 shrink-0 rounded-xl bg-white/20 text-white"
+                      >
+                        <svg
+                          width="14"
+                          height="14"
+                          viewBox="0 0 24 24"
+                          fill="none"
+                          stroke="currentColor"
+                          stroke-width="2.4"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                        >
+                          <circle cx="12" cy="12" r="9" />
+                          <polyline points="12 7 12 12 15.5 14" />
+                        </svg>
+                      </span>
+                      <div class="min-w-0">
+                        <p
+                          class="text-[10px] font-bold uppercase tracking-[.16em] text-white/55"
+                        >
+                          Hours
+                        </p>
+                        <p
+                          class="mt-1 text-[13px] sm:text-sm font-semibold leading-snug text-white"
+                        >
+                          Mon – Sat · 9:00 – 19:00 IST
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="mt-5 sm:mt-6 flex items-center gap-2.5">
+                    <a
+                      href="./404.html"
+                      aria-label="Instagram"
+                      class="clay-glass grid place-items-center w-9 h-9 sm:w-10 sm:h-10 text-white no-underline hover:bg-white/25 transition"
+                    >
+                      <svg
+                        width="15"
+                        height="15"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2.2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      >
+                        <rect x="3" y="3" width="18" height="18" rx="5" />
+                        <circle cx="12" cy="12" r="4" />
+                        <circle
+                          cx="17.2"
+                          cy="6.8"
+                          r="1"
+                          fill="currentColor"
+                          stroke="none"
+                        />
+                      </svg>
+                    </a>
+                    <a
+                      href="./404.html"
+                      aria-label="X"
+                      class="clay-glass grid place-items-center w-9 h-9 sm:w-10 sm:h-10 text-white no-underline hover:bg-white/25 transition"
+                    >
+                      <svg
+                        width="15"
+                        height="15"
+                        viewBox="0 0 24 24"
+                        fill="currentColor"
+                      >
+                        <path
+                          d="M17.5 3h3.2l-7 8 8.3 10h-6.5l-5-6.1L4.7 21H1.5l7.5-8.6L1 3h6.7l4.5 5.6L17.5 3zm-1.1 16h1.8L7.7 4.9H5.8L16.4 19z"
+                        />
+                      </svg>
+                    </a>
+                    <a
+                      href="./404.html"
+                      aria-label="LinkedIn"
+                      class="clay-glass grid place-items-center w-9 h-9 sm:w-10 sm:h-10 text-white no-underline hover:bg-white/25 transition"
+                    >
+                      <svg
+                        width="15"
+                        height="15"
+                        viewBox="0 0 24 24"
+                        fill="currentColor"
+                      >
+                        <path
+                          d="M4.98 3.5A2.5 2.5 0 1 1 0 3.5a2.5 2.5 0 0 1 4.98 0zM.3 8.2h4.4V24H.3V8.2zM8.3 8.2h4.2v2.2h.06c.6-1.1 2-2.3 4.2-2.3 4.5 0 5.3 2.9 5.3 6.7V24h-4.4v-7.9c0-1.9 0-4.3-2.6-4.3s-3 2-3 4.1V24H8.3V8.2z"
+                        />
+                      </svg>
+                    </a>
+                  </div>
+                </div>
+              </div>
+
+              <!-- ---------- RIGHT : FORM ---------- -->
+              <div class="p-5 sm:p-9 lg:p-12 lg:pl-16 xl:pl-20">
+                <h3
+                  class="font-display font-extrabold text-ink text-[clamp(1.35rem,5vw,2rem)] leading-tight"
+                >
+                  Send us a line
+                </h3>
+                <p class="mt-2 text-[13px] sm:text-sm text-ink/60">
+                  All fields are required. We&rsquo;ll get back within 24 hours.
+                </p>
+
+                <form
+                  id="contactForm"
+                  action="./404.html"
+                  method="get"
+                  novalidate
+                  class="mt-6 sm:mt-8"
+                >
+                  <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-5">
+                    <div class="field sm:col-span-1">
+                      <label
+                        for="fullName"
+                        class="block mb-2 text-[10px] font-bold uppercase tracking-[.14em] text-ink/55"
+                      >
+                        Full name <span class="text-accent">*</span>
+                      </label>
+                      <input
+                        id="fullName"
+                        name="fullName"
+                        type="text"
+                        class="clay-input"
+                        placeholder="Aarav Sharma"
+                        autocomplete="name"
+                        aria-describedby="err-fullName"
+                      />
+                      <p class="err-msg" id="err-fullName"></p>
+                    </div>
+
+                    <div class="field sm:col-span-1">
+                      <label
+                        for="email"
+                        class="block mb-2 text-[10px] font-bold uppercase tracking-[.14em] text-ink/55"
+                      >
+                        Email <span class="text-accent">*</span>
+                      </label>
+                      <input
+                        id="email"
+                        name="email"
+                        type="email"
+                        class="clay-input"
+                        placeholder="you@example.com"
+                        autocomplete="email"
+                        inputmode="email"
+                        aria-describedby="err-email"
+                      />
+                      <p class="err-msg" id="err-email"></p>
+                    </div>
+
+                    <div class="field sm:col-span-1">
+                      <label
+                        for="phone"
+                        class="block mb-2 text-[10px] font-bold uppercase tracking-[.14em] text-ink/55"
+                      >
+                        Phone <span class="text-accent">*</span>
+                      </label>
+                      <input
+                        id="phone"
+                        name="phone"
+                        type="tel"
+                        class="clay-input"
+                        placeholder="+91 98765 43210"
+                        autocomplete="tel"
+                        inputmode="tel"
+                        aria-describedby="err-phone"
+                      />
+                      <p class="err-msg" id="err-phone"></p>
+                    </div>
+
+                    <div class="field sm:col-span-1">
+                      <label
+                        for="service"
+                        class="block mb-2 text-[10px] font-bold uppercase tracking-[.14em] text-ink/55"
+                      >
+                        Service <span class="text-accent">*</span>
+                      </label>
+                      <select
+                        id="service"
+                        name="service"
+                        class="clay-input"
+                        aria-describedby="err-service"
+                      >
+                        <option value="">Choose a service</option>
+                        <option value="hotel-booking">Hotel Booking</option>
+                        <option value="resort-stay">Resort Stay</option>
+                        <option value="tour-package">Tour Package</option>
+                        <option value="airport-transfer">
+                          Airport Transfer
+                        </option>
+                        <option value="corporate-travel">
+                          Corporate Travel
+                        </option>
+                        <option value="other">Something else</option>
+                      </select>
+                      <p class="err-msg" id="err-service"></p>
+                    </div>
+
+                    <div class="field sm:col-span-2">
+                      <label
+                        for="travelDate"
+                        class="block mb-2 text-[10px] font-bold uppercase tracking-[.14em] text-ink/55"
+                      >
+                        Preferred travel date <span class="text-accent">*</span>
+                      </label>
+                      <input
+                        id="travelDate"
+                        name="travelDate"
+                        type="date"
+                        class="clay-input"
+                        aria-describedby="err-travelDate"
+                      />
+                      <p class="err-msg" id="err-travelDate"></p>
+                    </div>
+
+                    <div class="field sm:col-span-2">
+                      <label
+                        for="message"
+                        class="block mb-2 text-[10px] font-bold uppercase tracking-[.14em] text-ink/55"
+                      >
+                        Your message <span class="text-accent">*</span>
+                      </label>
+                      <textarea
+                        id="message"
+                        name="message"
+                        class="clay-input"
+                        placeholder="Tell us about the trip you're imagining…"
+                        aria-describedby="err-message"
+                      ></textarea>
+                      <p class="err-msg" id="err-message"></p>
+                    </div>
+
+                    <div class="field sm:col-span-2">
+                      <label
+                        for="consent"
+                        class="flex items-start gap-3 cursor-pointer select-none"
+                      >
+                        <input
+                          id="consent"
+                          name="consent"
+                          type="checkbox"
+                          class="clay-check mt-0.5"
+                          aria-describedby="err-consent"
+                        />
+                        <span
+                          class="text-[12.5px] sm:text-[13px] leading-relaxed text-ink/65"
+                        >
+                          I agree to STACKLY&rsquo;s privacy policy and consent
+                          to being contacted about my enquiry.
+                          <span class="text-accent">*</span>
+                        </span>
+                      </label>
+                      <p class="err-msg" id="err-consent"></p>
+                    </div>
+                  </div>
+
+                  <button
+                    type="submit"
+                    id="submitBtn"
+                    class="clay-accent mt-6 sm:mt-7 w-full sm:w-auto inline-flex items-center justify-center gap-2.5 rounded-2xl px-6 sm:px-8 py-3.5 sm:py-4 text-[13px] sm:text-sm font-extrabold uppercase tracking-[.1em] sm:tracking-[.12em] transition-transform active:scale-[.98]"
+                  >
+                    Send enquiry
+                    <svg
+                      width="16"
+                      height="16"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2.6"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    >
+                      <line x1="4" y1="12" x2="19" y2="12" />
+                      <polyline points="13 6 19 12 13 18" />
+                    </svg>
+                  </button>
+
+                  <p class="mt-4 text-[11px] text-ink/45">
+                    🔒 Your details stay private. No spam, ever.
+                  </p>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============================================================
+     3 · GOOGLE MAP
+     ============================================================ -->
+      <section class="px-3 sm:px-5 lg:px-8 pb-14 sm:pb-24">
+        <div class="mx-auto max-w-7xl">
+          <div
+            class="mb-6 sm:mb-9 flex flex-col sm:flex-row sm:items-end sm:justify-between gap-3"
+            data-aos="fade-up"
+          >
+            <div>
+              <p
+                class="text-[10px] sm:text-[11px] font-bold uppercase tracking-[.24em] text-brand"
+              >
+                Find us
+              </p>
+              <h2
+                class="mt-2 font-display font-extrabold text-[clamp(1.5rem,6vw,3rem)] leading-[1.08] text-ink"
+              >
+                Drop by the <span class="text-accent">studio</span>
+              </h2>
+            </div>
+            <a
+              href="https://maps.google.com/?q=Panaji,Goa,India"
+              target="_blank"
+              rel="noopener"
+              class="clay-sm self-start sm:self-auto inline-flex items-center gap-2 px-4 py-2.5 sm:px-5 sm:py-3 text-[10px] sm:text-[11px] font-extrabold uppercase tracking-[.14em] text-ink no-underline hover:text-brand transition"
+            >
+              Get directions
+              <svg
+                width="14"
+                height="14"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2.6"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <line x1="7" y1="17" x2="17" y2="7" />
+                <polyline points="9 7 17 7 17 15" />
+              </svg>
+            </a>
+          </div>
+
+          <div class="clay p-2 sm:p-4" data-aos="fade-up" data-aos-delay="60">
+            <div
+              class="relative overflow-hidden rounded-[1.2rem] sm:rounded-[1.8rem]"
+            >
+              <iframe
+                title="STACKLY head office location on Google Maps"
+                src="https://www.google.com/maps?q=Panaji,Goa,India&output=embed"
+                class="block w-full h-[260px] sm:h-[400px] lg:h-[480px]"
+                style="border: 0"
+                loading="lazy"
+                referrerpolicy="no-referrer-when-downgrade"
+                allowfullscreen
+              ></iframe>
+
+              <div
+                class="clay-sm absolute left-2.5 bottom-2.5 sm:left-5 sm:bottom-5 px-3 py-2.5 sm:px-4 sm:py-3 max-w-[190px] sm:max-w-[220px]"
+              >
+                <p
+                  class="text-[9px] font-bold uppercase tracking-[.18em] text-brand"
+                >
+                  Stackly HQ
+                </p>
+                <p
+                  class="mt-1 text-[11px] sm:text-[12px] font-semibold leading-snug text-ink"
+                >
+                  14 Marine Drive, Panaji, Goa 403001
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============================================================
+     4 · BRAND MARQUEE
+     ============================================================ -->
+      <section class="marquee-band" aria-label="Partner brands">
+        <div class="marquee-track">
+          <div class="marquee-group">
+            <span
+              class="font-display font-extrabold uppercase tracking-tight text-[clamp(1.25rem,5.5vw,4.25rem)] leading-none text-white"
+              >AIRBNB</span
+            >
+            <span class="text-[clamp(0.85rem,2.5vw,1.75rem)] text-brand"
+              >✦</span
+            >
+            <span
+              class="font-display font-extrabold uppercase tracking-tight text-[clamp(1.25rem,5.5vw,4.25rem)] leading-none"
+              style="color: #39b6ab"
+              >BOOKING.COM</span
+            >
+            <span class="text-[clamp(0.85rem,2.5vw,1.75rem)] text-sand">✦</span>
+            <span
+              class="font-display font-extrabold uppercase tracking-tight text-[clamp(1.25rem,5.5vw,4.25rem)] leading-none text-white"
+              >EXPEDIA</span
+            >
+            <span class="text-[clamp(0.85rem,2.5vw,1.75rem)] text-accent"
+              >✦</span
+            >
+            <span
+              class="font-display font-extrabold uppercase tracking-tight text-[clamp(1.25rem,5.5vw,4.25rem)] leading-none"
+              style="color: #e7b490"
+              >AGODA</span
+            >
+            <span class="text-[clamp(0.85rem,2.5vw,1.75rem)] text-brand"
+              >✦</span
+            >
+            <span
+              class="font-display font-extrabold uppercase tracking-tight text-[clamp(1.25rem,5.5vw,4.25rem)] leading-none text-white"
+              >TRIVAGO</span
+            >
+            <span class="text-[clamp(0.85rem,2.5vw,1.75rem)] text-accent"
+              >✦</span
+            >
+            <span
+              class="font-display font-extrabold uppercase tracking-tight text-[clamp(1.25rem,5.5vw,4.25rem)] leading-none"
+              style="color: #ff6f1a"
+              >KAYAK</span
+            >
+            <span class="text-[clamp(0.85rem,2.5vw,1.75rem)] text-brand"
+              >✦</span
+            >
+            <span
+              class="font-display font-extrabold uppercase tracking-tight text-[clamp(1.25rem,5.5vw,4.25rem)] leading-none text-white"
+              >SKYSCANNER</span
+            >
+            <span class="text-[clamp(0.85rem,2.5vw,1.75rem)] text-sand">✦</span>
+            <span
+              class="font-display font-extrabold uppercase tracking-tight text-[clamp(1.25rem,5.5vw,4.25rem)] leading-none"
+              style="color: #39b6ab"
+              >TRIPADVISOR</span
+            >
+            <span class="text-[clamp(0.85rem,2.5vw,1.75rem)] text-accent"
+              >✦</span
+            >
+            <span
+              class="font-display font-extrabold uppercase tracking-tight text-[clamp(1.25rem,5.5vw,4.25rem)] leading-none text-white"
+              >MAKEMYTRIP</span
+            >
+            <span class="text-[clamp(0.85rem,2.5vw,1.75rem)] text-brand"
+              >✦</span
+            >
+            <span
+              class="font-display font-extrabold uppercase tracking-tight text-[clamp(1.25rem,5.5vw,4.25rem)] leading-none"
+              style="color: #e7b490"
+              >VIATOR</span
+            >
+            <span class="text-[clamp(0.85rem,2.5vw,1.75rem)] text-accent"
+              >✦</span
+            >
+          </div>
+
+          <div class="marquee-group" aria-hidden="true">
+            <span
+              class="font-display font-extrabold uppercase tracking-tight text-[clamp(1.25rem,5.5vw,4.25rem)] leading-none text-white"
+              >AIRBNB</span
+            >
+            <span class="text-[clamp(0.85rem,2.5vw,1.75rem)] text-brand"
+              >✦</span
+            >
+            <span
+              class="font-display font-extrabold uppercase tracking-tight text-[clamp(1.25rem,5.5vw,4.25rem)] leading-none"
+              style="color: #39b6ab"
+              >BOOKING.COM</span
+            >
+            <span class="text-[clamp(0.85rem,2.5vw,1.75rem)] text-sand">✦</span>
+            <span
+              class="font-display font-extrabold uppercase tracking-tight text-[clamp(1.25rem,5.5vw,4.25rem)] leading-none text-white"
+              >EXPEDIA</span
+            >
+            <span class="text-[clamp(0.85rem,2.5vw,1.75rem)] text-accent"
+              >✦</span
+            >
+            <span
+              class="font-display font-extrabold uppercase tracking-tight text-[clamp(1.25rem,5.5vw,4.25rem)] leading-none"
+              style="color: #e7b490"
+              >AGODA</span
+            >
+            <span class="text-[clamp(0.85rem,2.5vw,1.75rem)] text-brand"
+              >✦</span
+            >
+            <span
+              class="font-display font-extrabold uppercase tracking-tight text-[clamp(1.25rem,5.5vw,4.25rem)] leading-none text-white"
+              >TRIVAGO</span
+            >
+            <span class="text-[clamp(0.85rem,2.5vw,1.75rem)] text-accent"
+              >✦</span
+            >
+            <span
+              class="font-display font-extrabold uppercase tracking-tight text-[clamp(1.25rem,5.5vw,4.25rem)] leading-none"
+              style="color: #ff6f1a"
+              >KAYAK</span
+            >
+            <span class="text-[clamp(0.85rem,2.5vw,1.75rem)] text-brand"
+              >✦</span
+            >
+            <span
+              class="font-display font-extrabold uppercase tracking-tight text-[clamp(1.25rem,5.5vw,4.25rem)] leading-none text-white"
+              >SKYSCANNER</span
+            >
+            <span class="text-[clamp(0.85rem,2.5vw,1.75rem)] text-sand">✦</span>
+            <span
+              class="font-display font-extrabold uppercase tracking-tight text-[clamp(1.25rem,5.5vw,4.25rem)] leading-none"
+              style="color: #39b6ab"
+              >TRIPADVISOR</span
+            >
+            <span class="text-[clamp(0.85rem,2.5vw,1.75rem)] text-accent"
+              >✦</span
+            >
+            <span
+              class="font-display font-extrabold uppercase tracking-tight text-[clamp(1.25rem,5.5vw,4.25rem)] leading-none text-white"
+              >MAKEMYTRIP</span
+            >
+            <span class="text-[clamp(0.85rem,2.5vw,1.75rem)] text-brand"
+              >✦</span
+            >
+            <span
+              class="font-display font-extrabold uppercase tracking-tight text-[clamp(1.25rem,5.5vw,4.25rem)] leading-none"
+              style="color: #e7b490"
+              >VIATOR</span
+            >
+            <span class="text-[clamp(0.85rem,2.5vw,1.75rem)] text-accent"
+              >✦</span
+            >
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- ============================================================
+     FOOTER
+     ============================================================ -->
+    <footer class="px-4 sm:px-6 lg:px-8 pb-6 sm:pb-8 w-full mt-auto">
+      <div
+        class="max-w-7xl mx-auto clay p-6 sm:p-10 lg:p-14 relative overflow-hidden"
+      >
+        <div
+          class="pointer-events-none absolute -right-20 -top-20 w-64 h-64 rounded-full opacity-20 blur-3xl"
+          style="background: radial-gradient(circle, #39b6ab, transparent 70%)"
+        ></div>
+        <div
+          class="pointer-events-none absolute -left-20 -bottom-20 w-64 h-64 rounded-full opacity-20 blur-3xl"
+          style="background: radial-gradient(circle, #ff6f1a, transparent 70%)"
+        ></div>
+
+        <div
+          class="relative z-10 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-10 lg:gap-8"
+        >
+          <!-- Brand -->
+          <div class="flex flex-col lg:col-span-3">
+            <a href="./index.html" class="mb-4 inline-block no-underline">
+              <img
+                src="./assets/logo.webp"
+                alt="STACKLY Logo"
+                class="h-14 w-auto object-contain"
+              />
+            </a>
+
+            <p class="text-[13px] leading-relaxed text-ink/60 mb-6 max-w-xs">
+              We design slow, human-made trips. No templates, no algorithms —
+              just a dedicated designer turning your dream trip into a story.
+            </p>
+
+            <div class="flex items-center gap-2">
+              <a href="./404.html" aria-label="Instagram" class="social-icon">
+                <svg
+                  width="16"
+                  height="16"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2.2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <rect x="3" y="3" width="18" height="18" rx="5" />
+                  <circle cx="12" cy="12" r="4" />
+                  <circle
+                    cx="17.2"
+                    cy="6.8"
+                    r="1"
+                    fill="currentColor"
+                    stroke="none"
+                  />
+                </svg>
+              </a>
+              <a href="./404.html" aria-label="X" class="social-icon">
+                <svg
+                  width="14"
+                  height="14"
+                  viewBox="0 0 24 24"
+                  fill="currentColor"
+                >
+                  <path
+                    d="M17.5 3h3.2l-7 8 8.3 10h-6.5l-5-6.1L4.7 21H1.5l7.5-8.6L1 3h6.7l4.5 5.6L17.5 3zm-1.1 16h1.8L7.7 4.9H5.8L16.4 19z"
+                  />
+                </svg>
+              </a>
+              <a href="./404.html" aria-label="LinkedIn" class="social-icon">
+                <svg
+                  width="16"
+                  height="16"
+                  viewBox="0 0 24 24"
+                  fill="currentColor"
+                >
+                  <path
+                    d="M4.98 3.5A2.5 2.5 0 1 1 0 3.5a2.5 2.5 0 0 1 4.98 0zM.3 8.2h4.4V24H.3V8.2zM8.3 8.2h4.2v2.2h.06c.6-1.1 2-2.3 4.2-2.3 4.5 0 5.3 2.9 5.3 6.7V24h-4.4v-7.9c0-1.9 0-4.3-2.6-4.3s-3 2-3 4.1V24H8.3V8.2z"
+                  />
+                </svg>
+              </a>
+            </div>
+          </div>
+
+          <!-- Quick Links -->
+          <div class="lg:col-span-2">
+            <h4 class="footer-heading">Quick Links</h4>
+            <ul class="list-none p-0 m-0 flex flex-col">
+              <li><a href="./index.html" class="footer-link">Home</a></li>
+              <li>
+                <a href="./services.html" class="footer-link">Products</a>
+              </li>
+              <li><a href="./about.html" class="footer-link">About Us</a></li>
+              <li><a href="./blog.html" class="footer-link">Journal</a></li>
+              <li><a href="./contact.html" class="footer-link">Contact</a></li>
+            </ul>
+          </div>
+
+          <!-- Contact -->
+          <div class="lg:col-span-3">
+            <h4 class="footer-heading">Get in Touch</h4>
+            <ul class="list-none p-0 m-0 flex flex-col gap-4">
+              <li class="flex items-start gap-3">
+                <span
+                  class="grid place-items-center w-8 h-8 shrink-0 rounded-lg bg-brand/10 text-brand mt-0.5"
+                >
+                  <svg
+                    width="14"
+                    height="14"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2.5"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  >
+                    <path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 0 1 18 0z" />
+                    <circle cx="12" cy="10" r="3" />
+                  </svg>
+                </span>
+                <div>
+                  <p
+                    class="text-[10px] font-bold uppercase tracking-wider text-ink/40 mb-0.5"
+                  >
+                    Head Office
+                  </p>
+                  <p class="text-[13px] font-semibold text-ink/70 leading-snug">
+                    14 Marine Drive, Panaji<br />Goa 403001, India
+                  </p>
+                </div>
+              </li>
+
+              <li class="flex items-start gap-3">
+                <span
+                  class="grid place-items-center w-8 h-8 shrink-0 rounded-lg bg-accent/10 text-accent mt-0.5"
+                >
+                  <svg
+                    width="14"
+                    height="14"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2.5"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  >
+                    <path
+                      d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8.1 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2z"
+                    />
+                  </svg>
+                </span>
+                <div>
+                  <p
+                    class="text-[10px] font-bold uppercase tracking-wider text-ink/40 mb-0.5"
+                  >
+                    Call Us
+                  </p>
+                  <a
+                    href="./404.html"
+                    class="text-[13px] font-semibold text-ink/70 hover:text-brand transition no-underline"
+                    >+91 98765 43210</a
+                  >
+                </div>
+              </li>
+
+              <li class="flex items-start gap-3">
+                <span
+                  class="grid place-items-center w-8 h-8 shrink-0 rounded-lg bg-sand/20 text-[#a65d2b] mt-0.5"
+                >
+                  <svg
+                    width="14"
+                    height="14"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2.5"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  >
+                    <rect x="2" y="4" width="20" height="16" rx="3" />
+                    <polyline points="2.5 6.5 12 13 21.5 6.5" />
+                  </svg>
+                </span>
+                <div>
+                  <p
+                    class="text-[10px] font-bold uppercase tracking-wider text-ink/40 mb-0.5"
+                  >
+                    Email
+                  </p>
+                  <a
+                    href="./404.html"
+                    class="text-[13px] font-semibold text-ink/70 hover:text-brand transition no-underline break-all"
+                    >hello@stackly.travel</a
+                  >
+                </div>
+              </li>
+            </ul>
+          </div>
+
+          <!-- Newsletter (footer) -->
+          <div class="lg:col-span-4">
+            <h4 class="footer-heading">Newsletter</h4>
+            <p class="text-[13px] leading-relaxed text-ink/60 mb-4">
+              Subscribe to get special offers, free giveaways, and
+              once-in-a-lifetime deals.
+            </p>
+
+            <form
+              id="footerNewsletterForm"
+              action="./404.html"
+              method="get"
+              novalidate
+            >
+              <div class="field">
+                <label for="footerEmail" class="sr-only">Email address</label>
+
+                <div class="flex flex-col gap-2.5">
+                  <input
+                    id="footerEmail"
+                    name="email"
+                    type="email"
+                    class="clay-input w-full"
+                    placeholder="you@example.com"
+                    autocomplete="email"
+                    inputmode="email"
+                    aria-describedby="err-footerEmail"
+                  />
+
+                  <button
+                    type="submit"
+                    class="clay-accent inline-flex items-center justify-center gap-2 rounded-xl px-5 py-3 text-[11px] font-extrabold uppercase tracking-[.12em] transition-transform active:scale-[.98] whitespace-nowrap w-full"
+                  >
+                    Subscribe
+                    <svg
+                      width="14"
+                      height="14"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2.6"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    >
+                      <line x1="4" y1="12" x2="19" y2="12" />
+                      <polyline points="13 6 19 12 13 18" />
+                    </svg>
+                  </button>
+                </div>
+
+                <p class="err-msg" id="err-footerEmail"></p>
+              </div>
+            </form>
+          </div>
+        </div>
+
+        <div
+          class="relative z-10 mt-10 sm:mt-14 pt-6 border-t border-black/5 flex flex-col md:flex-row items-center justify-between gap-4"
+        >
+          <p class="text-[11px] text-ink/45 text-center md:text-left">
+            © <span id="year">2025</span> STACKLY. All rights reserved.
+          </p>
+
+          <div class="flex items-center gap-4">
+            <a
+              href="./404.html"
+              class="text-[11px] font-semibold text-ink/45 hover:text-brand transition no-underline"
+              >Privacy Policy</a
+            >
+            <a
+              href="./404.html"
+              class="text-[11px] font-semibold text-ink/45 hover:text-brand transition no-underline"
+              >Terms of Service</a
+            >
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <!-- ============================================================
+     SCRIPTS
+     ============================================================ -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+
+    <script>
+      (function () {
+        "use strict";
+
+        const reduceMotion = window.matchMedia(
+          "(prefers-reduced-motion: reduce)",
+        ).matches;
+
+        /* AOS */
+        if (window.AOS) {
+          AOS.init({
+            duration: 700,
+            easing: "ease-out-cubic",
+            once: true,
+            offset: 60,
+            disable: reduceMotion,
+          });
+        }
+
+        /* GSAP — hero timeline + parallax */
+        if (window.gsap && !reduceMotion) {
+          gsap.registerPlugin(ScrollTrigger);
+
+          gsap
+            .timeline({ defaults: { ease: "power3.out" } })
+            .from(".hero-eyebrow", { y: 16, opacity: 0, duration: 0.5 })
+            .from(
+              ".hero-title span",
+              { y: 50, opacity: 0, duration: 0.85, stagger: 0.09 },
+              "-=.2",
+            )
+            .from(".hero-sub", { y: 22, opacity: 0, duration: 0.65 }, "-=.5")
+            .from(
+              ".hero-chip",
+              { y: 18, opacity: 0, duration: 0.45, stagger: 0.08 },
+              "-=.4",
+            )
+            .from(".hero-cue", { opacity: 0, duration: 0.5 }, "-=.2");
+
+          gsap.to(".hero-bg", {
+            yPercent: 12,
+            ease: "none",
+            scrollTrigger: {
+              trigger: ".hero",
+              start: "top top",
+              end: "bottom top",
+              scrub: true,
+            },
+          });
+
+          gsap.to(".hero-title", {
+            y: -30,
+            opacity: 0.35,
+            ease: "none",
+            scrollTrigger: {
+              trigger: ".hero",
+              start: "top top",
+              end: "bottom top",
+              scrub: true,
+            },
+          });
+        }
+
+        /* CONTACT FORM — validation → ./404.html */
+        const form = document.getElementById("contactForm");
+        if (!form) return;
+
+        const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[a-zA-Z]{2,}$/;
+        const PHONE_RE = /^[0-9+\-()\s]{7,18}$/;
+
+        const dateEl = document.getElementById("travelDate");
+        if (dateEl) {
+          const today = new Date();
+          const iso = new Date(
+            today.getTime() - today.getTimezoneOffset() * 60000,
+          )
+            .toISOString()
+            .split("T")[0];
+          dateEl.min = iso;
+        }
+
+        const rules = [
+          {
+            id: "fullName",
+            validate: function (v) {
+              if (!v.trim()) return "Full name is required.";
+              if (v.trim().length < 2)
+                return "Please enter at least 2 characters.";
+              if (v.trim().length > 60) return "That name looks a little long.";
+              return "";
+            },
+          },
+          {
+            id: "email",
+            validate: function (v) {
+              if (!v.trim()) return "Email address is required.";
+              if (!EMAIL_RE.test(v.trim()))
+                return "Enter a valid email, e.g. you@example.com";
+              return "";
+            },
+          },
+          {
+            id: "phone",
+            validate: function (v) {
+              if (!v.trim()) return "Phone number is required.";
+              if (!PHONE_RE.test(v.trim()))
+                return "Enter a valid phone number (7–18 digits).";
+              return "";
+            },
+          },
+          {
+            id: "service",
+            validate: function (v) {
+              if (!v) return "Please choose a service.";
+              return "";
+            },
+          },
+          {
+            id: "travelDate",
+            validate: function (v) {
+              if (!v) return "Please pick your preferred travel date.";
+              const picked = new Date(v + "T00:00:00");
+              if (isNaN(picked.getTime())) return "Enter a valid date.";
+              const today = new Date();
+              today.setHours(0, 0, 0, 0);
+              if (picked < today) return "Travel date cannot be in the past.";
+              return "";
+            },
+          },
+          {
+            id: "message",
+            validate: function (v) {
+              if (!v.trim()) return "Please tell us about your trip.";
+              if (v.trim().length < 10)
+                return "A little more detail please (min 10 characters).";
+              if (v.trim().length > 1200)
+                return "Please keep it under 1200 characters.";
+              return "";
+            },
+          },
+          {
+            id: "consent",
+            validate: function (v, el) {
+              if (!el.checked)
+                return "Please accept the privacy policy to continue.";
+              return "";
+            },
+          },
+        ];
+
+        function validateField(rule) {
+          const el = document.getElementById(rule.id);
+          if (!el) return true;
+
+          const wrap = el.closest(".field");
+          const err = wrap ? wrap.querySelector(".err-msg") : null;
+          const msg = rule.validate(el.value, el);
+
+          if (msg) {
+            if (wrap) wrap.classList.add("has-error");
+            if (err) err.textContent = msg;
+            el.setAttribute("aria-invalid", "true");
+            return false;
+          }
+
+          if (wrap) wrap.classList.remove("has-error");
+          if (err) err.textContent = "";
+          el.removeAttribute("aria-invalid");
+          return true;
+        }
+
+        rules.forEach(function (rule) {
+          const el = document.getElementById(rule.id);
+          if (!el) return;
+          const wrap = el.closest(".field");
+
+          el.addEventListener("blur", function () {
+            validateField(rule);
+          });
+          el.addEventListener("input", function () {
+            if (wrap && wrap.classList.contains("has-error"))
+              validateField(rule);
+          });
+          el.addEventListener("change", function () {
+            if (wrap && wrap.classList.contains("has-error"))
+              validateField(rule);
+          });
+        });
+
+        form.addEventListener("submit", function (e) {
+          e.preventDefault();
+
+          let firstInvalid = null;
+
+          rules.forEach(function (rule) {
+            const ok = validateField(rule);
+            if (!ok && !firstInvalid)
+              firstInvalid = document.getElementById(rule.id);
+          });
+
+          if (firstInvalid) {
+            firstInvalid.focus({ preventScroll: true });
+            firstInvalid.scrollIntoView({
+              behavior: "smooth",
+              block: "center",
+            });
+            return;
+          }
+
+          form.setAttribute("action", "./404.html");
+          form.setAttribute("method", "get");
+          HTMLFormElement.prototype.submit.call(form);
+        });
+      })();
+    </script>
+
+    <!-- ============================================================
+     NAVBAR + FOOTER SCRIPTS
+     ============================================================ -->
+    <script>
+      (function () {
+        "use strict";
+
+        /* ---------- Navbar mobile menu ---------- */
+        const openMenuBtn = document.getElementById("openMenuBtn");
+        const closeMenuBtn = document.getElementById("closeMenuBtn");
+        const mobileMenu = document.getElementById("mobileMenu");
+        const body = document.body;
+
+        if (openMenuBtn) {
+          openMenuBtn.addEventListener("click", () => {
+            mobileMenu.classList.add("is-active");
+            body.classList.add("menu-open");
+          });
+        }
+
+        if (closeMenuBtn) {
+          closeMenuBtn.addEventListener("click", () => {
+            mobileMenu.classList.remove("is-active");
+            body.classList.remove("menu-open");
+          });
+        }
+
+        document.querySelectorAll(".mobile-nav-link").forEach((link) => {
+          link.addEventListener("click", () => {
+            mobileMenu.classList.remove("is-active");
+            body.classList.remove("menu-open");
+          });
+        });
+
+        const navbar = document.querySelector(".navbar-inner");
+        if (navbar) {
+          window.addEventListener("scroll", () => {
+            if (window.scrollY > 20) {
+              navbar.style.boxShadow = "0 10px 30px rgba(0,0,0,0.08)";
+            } else {
+              navbar.style.boxShadow = "var(--clay-sm)";
+            }
+          });
+        }
+
+        /* ---------- Footer year ---------- */
+        const yearEl = document.getElementById("year");
+        if (yearEl) yearEl.textContent = new Date().getFullYear();
+
+        /* ---------- Footer newsletter ---------- */
+        const form = document.getElementById("footerNewsletterForm");
+        if (form) {
+          const emailInput = document.getElementById("footerEmail");
+          const emailWrap = emailInput.closest(".field");
+          const emailErr = document.getElementById("err-footerEmail");
+          const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[a-zA-Z]{2,}$/;
+
+          function validateFooterNl() {
+            const v = (emailInput.value || "").trim();
+            let msg = "";
+
+            if (!v) {
+              msg = "Email address is required.";
+            } else if (!EMAIL_RE.test(v)) {
+              msg = "Enter a valid email, e.g. you@example.com";
+            }
+
+            if (msg) {
+              emailWrap.classList.add("has-error");
+              emailErr.textContent = msg;
+              emailInput.setAttribute("aria-invalid", "true");
+              return false;
+            }
+
+            emailWrap.classList.remove("has-error");
+            emailErr.textContent = "";
+            emailInput.removeAttribute("aria-invalid");
+            return true;
+          }
+
+          emailInput.addEventListener("blur", validateFooterNl);
+          emailInput.addEventListener("input", () => {
+            if (emailWrap.classList.contains("has-error")) validateFooterNl();
+          });
+
+          form.addEventListener("submit", function (e) {
+            e.preventDefault();
+            if (!validateFooterNl()) {
+              emailInput.focus({ preventScroll: true });
+              return;
+            }
+            form.setAttribute("action", "./404.html");
+            form.setAttribute("method", "get");
+            HTMLFormElement.prototype.submit.call(form);
+          });
+        }
+      })();
+    </script>
+  </body>
+</html>

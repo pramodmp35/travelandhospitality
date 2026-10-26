@@ -1,0 +1,2173 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, viewport-fit=cover"
+    />
+    <title>Admin Dashboard · STACKLY</title>
+    <meta name="description" content="STACKLY Admin Dashboard." />
+
+    <!-- ============ FONTS ============ -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800&family=Inter:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- ============ BOOTSTRAP 5 ============ -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+
+    <!-- ============ AOS ============ -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css"
+      rel="stylesheet"
+    />
+
+    <!-- ============ TAILWIND ============ -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              brand: "#39b6ab",
+              sand: "#e7b490",
+              accent: "#ff6f1a",
+              ink: "#000000",
+            },
+            fontFamily: {
+              display: ['"Plus Jakarta Sans"', "system-ui", "sans-serif"],
+              body: ["Inter", "system-ui", "sans-serif"],
+            },
+          },
+        },
+      };
+    </script>
+
+    <style>
+      /* ============================================================
+   STACKLY — DESIGN TOKENS
+   ============================================================ */
+      :root {
+        --brand: #39b6ab;
+        --sand: #e7b490;
+        --accent: #ff6f1a;
+        --ink: #000000;
+        --sidebar-w: 260px;
+
+        --clay:
+          12px 12px 28px rgba(0, 0, 0, 0.1),
+          -12px -12px 28px rgba(255, 255, 255, 0.92);
+        --clay-sm:
+          6px 6px 16px rgba(0, 0, 0, 0.09),
+          -6px -6px 16px rgba(255, 255, 255, 0.95);
+        --clay-in:
+          inset 4px 4px 10px rgba(0, 0, 0, 0.07),
+          inset -4px -4px 10px rgba(255, 255, 255, 0.95);
+      }
+
+      /* FIX DOUBLE SCROLLBAR: Lock body, let wrappers scroll */
+      html,
+      body {
+        overflow: hidden;
+        height: 100vh;
+        -webkit-text-size-adjust: 100%;
+        text-size-adjust: 100%;
+        margin: 0;
+      }
+      * {
+        -webkit-tap-highlight-color: transparent;
+        touch-action: manipulation;
+      }
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        font-family: "Inter", system-ui, sans-serif;
+        color: var(--ink);
+        background-color: #f4f7f6;
+        background-image:
+          radial-gradient(
+            60vw 60vw at 6% 4%,
+            rgba(57, 182, 171, 0.1),
+            transparent 62%
+          ),
+          radial-gradient(
+            60vw 60vw at 96% 98%,
+            rgba(231, 180, 144, 0.2),
+            transparent 62%
+          );
+      }
+
+      h1,
+      h2,
+      h3,
+      h4,
+      h5,
+      h6,
+      .font-display {
+        font-family: "Plus Jakarta Sans", system-ui, sans-serif;
+        letter-spacing: -0.02em;
+        overflow-wrap: break-word;
+        word-wrap: break-word;
+      }
+
+      img,
+      svg,
+      iframe,
+      canvas {
+        max-width: 100%;
+      }
+
+      /* ============================================================
+   CLAYMORPHISM PRIMITIVES
+   ============================================================ */
+      .clay {
+        background: rgba(255, 255, 255, 0.86);
+        -webkit-backdrop-filter: blur(8px);
+        backdrop-filter: blur(8px);
+        border-radius: 1.25rem;
+        box-shadow: var(--clay);
+      }
+      @media (min-width: 640px) {
+        .clay {
+          border-radius: 1.75rem;
+        }
+      }
+      .clay-sm {
+        background: rgba(255, 255, 255, 0.9);
+        border-radius: 1rem;
+        box-shadow: var(--clay-sm);
+      }
+      .clay-accent {
+        background: linear-gradient(145deg, #ff8540, #ee5f05);
+        color: #fff;
+        box-shadow:
+          8px 8px 22px rgba(255, 111, 26, 0.35),
+          -6px -6px 18px rgba(255, 255, 255, 0.9),
+          inset 2px 2px 6px rgba(255, 255, 255, 0.4),
+          inset -3px -3px 8px rgba(0, 0, 0, 0.14);
+        transition:
+          transform 0.2s ease,
+          box-shadow 0.2s ease;
+      }
+      .clay-accent:hover {
+        color: #fff;
+        transform: translateY(-2px);
+        box-shadow:
+          10px 10px 26px rgba(255, 111, 26, 0.45),
+          -6px -6px 18px rgba(255, 255, 255, 0.9),
+          inset 2px 2px 6px rgba(255, 255, 255, 0.4),
+          inset -3px -3px 8px rgba(0, 0, 0, 0.14);
+      }
+      .clay-brand {
+        background: linear-gradient(145deg, #46c4b8, #2ba49b);
+        color: #fff;
+        box-shadow:
+          8px 8px 22px rgba(57, 182, 171, 0.35),
+          -6px -6px 18px rgba(255, 255, 255, 0.9),
+          inset 2px 2px 6px rgba(255, 255, 255, 0.4),
+          inset -3px -3px 8px rgba(0, 0, 0, 0.14);
+        transition:
+          transform 0.2s ease,
+          box-shadow 0.2s ease;
+      }
+      .clay-brand:hover {
+        color: #fff;
+        transform: translateY(-2px);
+        box-shadow:
+          10px 10px 26px rgba(57, 182, 171, 0.45),
+          -6px -6px 18px rgba(255, 255, 255, 0.9),
+          inset 2px 2px 6px rgba(255, 255, 255, 0.4),
+          inset -3px -3px 8px rgba(0, 0, 0, 0.14);
+      }
+
+      /* ============================================================
+   SIDEBAR & LAYOUT
+   ============================================================ */
+      .mobile-header {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 70px;
+        z-index: 40;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0 1rem;
+        background: rgba(255, 255, 255, 0.95);
+        backdrop-filter: blur(10px);
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+      }
+
+      .sidebar {
+        position: fixed;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        width: var(--sidebar-w);
+        z-index: 50;
+        background: rgba(255, 255, 255, 0.98);
+        box-shadow: 4px 0 24px rgba(0, 0, 0, 0.06);
+        transform: translateX(-100%);
+        transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+        display: flex;
+        flex-direction: column;
+        height: 100vh;
+      }
+      .sidebar.is-open {
+        transform: translateX(0);
+      }
+
+      .sidebar-overlay {
+        position: fixed;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.4);
+        backdrop-filter: blur(2px);
+        z-index: 45;
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 0.3s ease;
+      }
+      .sidebar-overlay.is-open {
+        opacity: 1;
+        pointer-events: auto;
+      }
+
+      .main-wrapper {
+        height: 100vh;
+        overflow-y: auto;
+        padding-top: 70px;
+        transition: padding 0.3s ease;
+        position: relative;
+      }
+
+      @media (min-width: 1024px) {
+        .mobile-header {
+          display: none;
+        }
+        .sidebar {
+          transform: translateX(0);
+        }
+        .sidebar-overlay {
+          display: none !important;
+        }
+        .main-wrapper {
+          padding-top: 0;
+          padding-left: var(--sidebar-w);
+        }
+      }
+
+      /* Sidebar Nav Links */
+      .nav-link {
+        display: flex;
+        align-items: center;
+        gap: 0.85rem;
+        padding: 0.85rem 1.25rem;
+        border-radius: 0.75rem;
+        font-size: 0.9rem;
+        font-weight: 600;
+        color: rgba(0, 0, 0, 0.6);
+        text-decoration: none;
+        transition: all 0.2s ease;
+        margin-bottom: 0.25rem;
+        cursor: pointer;
+      }
+      .nav-link:hover {
+        background: rgba(57, 182, 171, 0.08);
+        color: var(--brand);
+      }
+      .nav-link.active {
+        background: linear-gradient(145deg, #46c4b8, #2ba49b);
+        color: #fff;
+        box-shadow: 4px 4px 12px rgba(57, 182, 171, 0.3);
+      }
+      .nav-link svg {
+        width: 20px;
+        height: 20px;
+        opacity: 0.8;
+      }
+      .nav-link.active svg {
+        opacity: 1;
+      }
+
+      /* ============================================================
+   CHARTS, TABLES & UI COMPONENTS
+   ============================================================ */
+      .chart-container {
+        position: relative;
+        height: 250px;
+        width: 100%;
+      }
+      @media (min-width: 640px) {
+        .chart-container {
+          height: 300px;
+        }
+      }
+
+      .table-row {
+        transition: background 0.2s ease;
+      }
+      .table-row:hover {
+        background: rgba(57, 182, 171, 0.04);
+      }
+
+      .status-badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.35rem;
+        padding: 0.25rem 0.6rem;
+        border-radius: 999px;
+        font-size: 0.65rem;
+        font-weight: 800;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+      }
+      .status-open {
+        background: rgba(255, 111, 26, 0.1);
+        color: var(--accent);
+      }
+      .status-resolved {
+        background: rgba(57, 182, 171, 0.1);
+        color: var(--brand);
+      }
+      .status-pending {
+        background: rgba(0, 0, 0, 0.05);
+        color: rgba(0, 0, 0, 0.5);
+      }
+
+      /* Custom scrollbar for sidebar and main */
+      .sidebar::-webkit-scrollbar,
+      .main-wrapper::-webkit-scrollbar {
+        width: 6px;
+      }
+      .sidebar::-webkit-scrollbar-track,
+      .main-wrapper::-webkit-scrollbar-track {
+        background: transparent;
+      }
+      .sidebar::-webkit-scrollbar-thumb,
+      .main-wrapper::-webkit-scrollbar-thumb {
+        background: rgba(0, 0, 0, 0.15);
+        border-radius: 10px;
+      }
+      .sidebar::-webkit-scrollbar-thumb:hover,
+      .main-wrapper::-webkit-scrollbar-thumb:hover {
+        background: rgba(0, 0, 0, 0.25);
+      }
+
+      /* Views */
+      .view-section {
+        display: none;
+        animation: fadeIn 0.3s ease;
+      }
+      .view-section.active {
+        display: block;
+      }
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+          transform: translateY(10px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      /* Form Inputs inside views */
+      .dash-input {
+        width: 100%;
+        background: rgba(0, 0, 0, 0.03);
+        border: 1px solid rgba(0, 0, 0, 0.05);
+        border-radius: 0.75rem;
+        padding: 0.75rem 1rem;
+        font-size: 0.85rem;
+        outline: none;
+        transition: all 0.2s ease;
+      }
+      .dash-input:focus {
+        background: #fff;
+        border-color: var(--brand);
+        box-shadow: 0 0 0 3px rgba(57, 182, 171, 0.15);
+      }
+
+      /* ============================================================
+   REDUCED MOTION
+   ============================================================ */
+      @media (prefers-reduced-motion: reduce) {
+        html {
+          scroll-behavior: auto;
+        }
+        * {
+          animation-duration: 0.001ms !important;
+          transition-duration: 0.001ms !important;
+        }
+      }
+    </style>
+  </head>
+
+  <body class="font-body antialiased">
+    <!-- ============================================================
+     MOBILE HEADER
+     ============================================================ -->
+    <header class="mobile-header">
+      <!-- Logo (Keeping original link) -->
+      <a href="./admin.html" class="flex items-center gap-2 no-underline">
+        <img
+          src="./assets/logo.webp"
+          alt="STACKLY"
+          class="h-12 w-auto object-contain"
+        />
+      </a>
+      <button
+        id="mobileMenuBtn"
+        type="button"
+        class="w-10 h-10 flex items-center justify-center rounded-xl bg-white shadow-sm text-ink active:scale-95 transition-transform"
+        aria-label="Open menu"
+      >
+        <svg
+          width="24"
+          height="24"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2.5"
+          stroke-linecap="round"
+        >
+          <line x1="3" y1="7" x2="21" y2="7" />
+          <line x1="3" y1="12" x2="21" y2="12" />
+          <line x1="3" y1="17" x2="21" y2="17" />
+        </svg>
+      </button>
+    </header>
+
+    <!-- ============================================================
+     SIDEBAR
+     ============================================================ -->
+    <div id="sidebarOverlay" class="sidebar-overlay"></div>
+
+    <aside id="sidebar" class="sidebar">
+      <div class="hidden lg:flex items-center gap-2 p-6 pb-2">
+        <!-- Logo (Keeping original link) -->
+        <a href="./admin.html" class="no-underline">
+          <img
+            src="./assets/logo.webp"
+            alt="STACKLY"
+            class="h-12 w-auto object-contain"
+          />
+        </a>
+      </div>
+
+      <div class="flex lg:hidden justify-end p-4 pb-0">
+        <button
+          id="closeSidebarBtn"
+          class="w-8 h-8 flex items-center justify-center rounded-full bg-black/5 text-ink/60"
+        >
+          <svg
+            width="16"
+            height="16"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="3"
+            stroke-linecap="round"
+          >
+            <line x1="18" y1="6" x2="6" y2="18" />
+            <line x1="6" y1="6" x2="18" y2="18" />
+          </svg>
+        </button>
+      </div>
+
+      <nav class="flex-1 overflow-y-auto p-4 pt-6 lg:pt-4">
+        <p
+          class="px-3 text-[10px] font-extrabold uppercase tracking-[.2em] text-ink/30 mb-3"
+        >
+          Menu
+        </p>
+
+        <a href="#dashboard" class="nav-link active" data-view="dashboard">
+          <svg
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <rect x="3" y="3" width="7" height="7" />
+            <rect x="14" y="3" width="7" height="7" />
+            <rect x="14" y="14" width="7" height="7" />
+            <rect x="3" y="14" width="7" height="7" />
+          </svg>
+          Dashboard
+        </a>
+
+        <a href="#users" class="nav-link" data-view="users">
+          <svg
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
+            <circle cx="9" cy="7" r="4" />
+            <path d="M23 21v-2a4 4 0 0 0-3-3.87" />
+            <path d="M16 3.13a4 4 0 0 1 0 7.75" />
+          </svg>
+          Users
+        </a>
+
+        <a href="#bookings" class="nav-link" data-view="bookings">
+          <svg
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <rect x="2" y="7" width="20" height="14" rx="2" />
+            <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16" />
+          </svg>
+          Bookings
+        </a>
+
+        <a href="#messages" class="nav-link" data-view="messages">
+          <svg
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path
+              d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"
+            />
+          </svg>
+          Messages
+        </a>
+
+        <a href="#analytics" class="nav-link" data-view="analytics">
+          <svg
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <line x1="12" y1="20" x2="12" y2="10" />
+            <line x1="18" y1="20" x2="18" y2="4" />
+            <line x1="6" y1="20" x2="6" y2="16" />
+          </svg>
+          Analytics
+        </a>
+
+        <p
+          class="px-3 text-[10px] font-extrabold uppercase tracking-[.2em] text-ink/30 mt-8 mb-3"
+        >
+          System
+        </p>
+
+        <a href="#settings" class="nav-link" data-view="settings">
+          <svg
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <circle cx="12" cy="12" r="3" />
+            <path
+              d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"
+            />
+          </svg>
+          Settings
+        </a>
+
+        <!-- Logout (Keeping original link) -->
+        <a
+          href="./login.html"
+          id="logoutBtn"
+          class="nav-link text-accent hover:bg-accent/5 hover:text-accent mt-4"
+        >
+          <svg
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4" />
+            <polyline points="16 17 21 12 16 7" />
+            <line x1="21" y1="12" x2="9" y2="12" />
+          </svg>
+          Logout
+        </a>
+      </nav>
+
+      <div class="p-4 border-t border-black/5 mt-auto">
+        <div class="flex items-center gap-3">
+          <div
+            class="w-10 h-10 rounded-full bg-brand/20 flex items-center justify-center text-brand font-bold font-display uppercase"
+            id="avatarLetter"
+          >
+            A
+          </div>
+          <div class="min-w-0">
+            <p class="text-sm font-bold text-ink truncate" id="sidebarEmail">
+              admin@stackly.com
+            </p>
+            <p
+              class="text-[10px] font-bold uppercase tracking-wider text-ink/40"
+            >
+              Administrator
+            </p>
+          </div>
+        </div>
+      </div>
+    </aside>
+
+    <!-- ============================================================
+     MAIN CONTENT
+     ============================================================ -->
+    <main class="main-wrapper">
+      <div class="p-4 sm:p-6 lg:p-8 max-w-7xl mx-auto">
+        <!-- ==========================================
+         VIEW: DASHBOARD
+         ========================================== -->
+        <div id="view-dashboard" class="view-section active">
+          <!-- HERO BANNER -->
+          <section
+            class="hero relative isolate overflow-hidden rounded-[1.5rem] sm:rounded-[2rem] mb-6 sm:mb-8 shadow-lg"
+          >
+            <div
+              class="absolute inset-0 -z-10 bg-cover bg-center"
+              style="background-image: url(&quot;./assets/h2.webp&quot;)"
+            ></div>
+            <div
+              class="absolute inset-0 -z-10"
+              style="
+                background: linear-gradient(
+                  120deg,
+                  rgba(0, 0, 0, 0.85) 0%,
+                  rgba(0, 0, 0, 0.6) 50%,
+                  rgba(57, 182, 171, 0.6) 100%
+                );
+              "
+            ></div>
+
+            <div
+              class="relative z-10 p-6 sm:p-10 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-6"
+            >
+              <div>
+                <p
+                  class="inline-flex items-center gap-2 rounded-full bg-white/15 border border-white/25 px-3 py-1.5 text-[10px] font-bold uppercase tracking-[.18em] text-white backdrop-blur-sm"
+                >
+                  <span class="w-1.5 h-1.5 rounded-full bg-accent"></span>
+                  Admin Dashboard
+                </p>
+                <h1
+                  class="mt-4 font-display font-extrabold text-white text-[clamp(1.8rem,5vw,2.8rem)] leading-[1.1]"
+                >
+                  Welcome back,<br />
+                  <span
+                    class="text-sand text-[clamp(1.3rem,4vw,2rem)]"
+                    id="heroEmail"
+                    >admin@stackly.com</span
+                  >
+                </h1>
+                <p
+                  class="mt-2 text-white/75 text-[13px] sm:text-[15px] max-w-md"
+                >
+                  Here's what's happening with STACKLY today. You have 3 new
+                  messages and 2 open tickets.
+                </p>
+              </div>
+              <div class="flex gap-3">
+                <a
+                  href="./404.html"
+                  class="clay-accent inline-flex items-center justify-center gap-2 rounded-xl px-5 py-3 text-[11px] font-extrabold uppercase tracking-[.12em] text-white no-underline"
+                >
+                  <svg
+                    width="16"
+                    height="16"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2.6"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  >
+                    <line x1="12" y1="5" x2="12" y2="19" />
+                    <line x1="5" y1="12" x2="19" y2="12" />
+                  </svg>
+                  New Booking
+                </a>
+              </div>
+            </div>
+          </section>
+
+          <!-- STATS GRID -->
+          <section
+            class="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-5 mb-6 sm:mb-8"
+          >
+            <div
+              class="clay-sm p-4 sm:p-5 flex flex-col justify-between h-full bg-white relative overflow-hidden group"
+            >
+              <div
+                class="absolute -right-4 -top-4 w-16 h-16 rounded-full bg-brand/10 group-hover:scale-150 transition-transform duration-500"
+              ></div>
+              <div class="flex items-center justify-between mb-3 relative z-10">
+                <span
+                  class="text-[10px] font-bold uppercase tracking-[.14em] text-ink/50"
+                  >Total Revenue</span
+                >
+                <span
+                  class="w-8 h-8 rounded-lg bg-brand/10 text-brand flex items-center justify-center"
+                  ><svg
+                    width="16"
+                    height="16"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2.5"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  >
+                    <line x1="12" y1="1" x2="12" y2="23" />
+                    <path
+                      d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"
+                    /></svg
+                ></span>
+              </div>
+              <div class="relative z-10">
+                <p
+                  class="font-display font-extrabold text-2xl sm:text-3xl text-ink"
+                >
+                  $<span class="stat-counter" data-target="48500">0</span>
+                </p>
+                <p
+                  class="text-[10px] font-semibold text-brand mt-1 flex items-center gap-1"
+                >
+                  <svg
+                    width="10"
+                    height="10"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="3"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  >
+                    <polyline points="18 15 12 9 6 15" />
+                  </svg>
+                  12% this month
+                </p>
+              </div>
+            </div>
+
+            <div
+              class="clay-sm p-4 sm:p-5 flex flex-col justify-between h-full bg-white relative overflow-hidden group"
+            >
+              <div
+                class="absolute -right-4 -top-4 w-16 h-16 rounded-full bg-accent/10 group-hover:scale-150 transition-transform duration-500"
+              ></div>
+              <div class="flex items-center justify-between mb-3 relative z-10">
+                <span
+                  class="text-[10px] font-bold uppercase tracking-[.14em] text-ink/50"
+                  >Bookings</span
+                >
+                <span
+                  class="w-8 h-8 rounded-lg bg-accent/10 text-accent flex items-center justify-center"
+                  ><svg
+                    width="16"
+                    height="16"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2.5"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  >
+                    <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
+                    <polyline points="22 4 12 14.01 9 11.01" /></svg
+                ></span>
+              </div>
+              <div class="relative z-10">
+                <p
+                  class="font-display font-extrabold text-2xl sm:text-3xl text-ink"
+                >
+                  <span class="stat-counter" data-target="1420">0</span>
+                </p>
+                <p
+                  class="text-[10px] font-semibold text-brand mt-1 flex items-center gap-1"
+                >
+                  <svg
+                    width="10"
+                    height="10"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="3"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  >
+                    <polyline points="18 15 12 9 6 15" />
+                  </svg>
+                  8% this week
+                </p>
+              </div>
+            </div>
+
+            <div
+              class="clay-sm p-4 sm:p-5 flex flex-col justify-between h-full bg-white relative overflow-hidden group"
+            >
+              <div
+                class="absolute -right-4 -top-4 w-16 h-16 rounded-full bg-sand/30 group-hover:scale-150 transition-transform duration-500"
+              ></div>
+              <div class="flex items-center justify-between mb-3 relative z-10">
+                <span
+                  class="text-[10px] font-bold uppercase tracking-[.14em] text-ink/50"
+                  >New Users</span
+                >
+                <span
+                  class="w-8 h-8 rounded-lg bg-sand/20 text-[#a65d2b] flex items-center justify-center"
+                  ><svg
+                    width="16"
+                    height="16"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2.5"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  >
+                    <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
+                    <circle cx="12" cy="7" r="4" /></svg
+                ></span>
+              </div>
+              <div class="relative z-10">
+                <p
+                  class="font-display font-extrabold text-2xl sm:text-3xl text-ink"
+                >
+                  <span class="stat-counter" data-target="345">0</span>
+                </p>
+                <p class="text-[10px] font-semibold text-ink/50 mt-1">
+                  Steady growth
+                </p>
+              </div>
+            </div>
+
+            <div
+              class="clay-sm p-4 sm:p-5 flex flex-col justify-between h-full bg-white relative overflow-hidden group"
+            >
+              <div
+                class="absolute -right-4 -top-4 w-16 h-16 rounded-full bg-ink/5 group-hover:scale-150 transition-transform duration-500"
+              ></div>
+              <div class="flex items-center justify-between mb-3 relative z-10">
+                <span
+                  class="text-[10px] font-bold uppercase tracking-[.14em] text-ink/50"
+                  >Open Tickets</span
+                >
+                <span
+                  class="w-8 h-8 rounded-lg bg-ink/5 text-ink/70 flex items-center justify-center"
+                  ><svg
+                    width="16"
+                    height="16"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2.5"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  >
+                    <circle cx="12" cy="12" r="10" />
+                    <line x1="12" y1="8" x2="12" y2="12" />
+                    <line x1="12" y1="16" x2="12.01" y2="16" /></svg
+                ></span>
+              </div>
+              <div class="relative z-10">
+                <p
+                  class="font-display font-extrabold text-2xl sm:text-3xl text-ink"
+                >
+                  <span class="stat-counter" data-target="12">0</span>
+                </p>
+                <p class="text-[10px] font-semibold text-accent mt-1">
+                  Needs attention
+                </p>
+              </div>
+            </div>
+          </section>
+
+          <!-- CHARTS -->
+          <section class="grid lg:grid-cols-3 gap-6 mb-6 sm:mb-8">
+            <div class="clay bg-white p-5 sm:p-6 lg:col-span-2">
+              <div class="flex items-center justify-between mb-4">
+                <div>
+                  <h3 class="font-display font-extrabold text-lg text-ink">
+                    Revenue Overview
+                  </h3>
+                  <p class="text-[11px] text-ink/50">Monthly performance</p>
+                </div>
+              </div>
+              <div class="chart-container">
+                <canvas id="revenueChart"></canvas>
+              </div>
+            </div>
+
+            <div class="clay bg-white p-5 sm:p-6">
+              <div class="flex items-center justify-between mb-4">
+                <div>
+                  <h3 class="font-display font-extrabold text-lg text-ink">
+                    Traffic Sources
+                  </h3>
+                  <p class="text-[11px] text-ink/50">Where users come from</p>
+                </div>
+              </div>
+              <div class="chart-container">
+                <canvas id="trafficChart"></canvas>
+              </div>
+            </div>
+          </section>
+
+          <!-- DATA TABLES -->
+          <section class="grid lg:grid-cols-2 gap-6">
+            <div class="clay bg-white p-5 sm:p-6 flex flex-col">
+              <div class="flex items-center justify-between mb-4">
+                <h3 class="font-display font-extrabold text-lg text-ink">
+                  Recent Tickets
+                </h3>
+                <a
+                  href="./404.html"
+                  class="text-[11px] font-bold text-brand hover:text-accent transition"
+                  >View all</a
+                >
+              </div>
+
+              <div class="flex-1 overflow-x-auto">
+                <table class="w-full text-left border-collapse">
+                  <thead>
+                    <tr class="border-b border-black/5">
+                      <th
+                        class="pb-3 text-[10px] font-extrabold uppercase tracking-wider text-ink/40"
+                      >
+                        User
+                      </th>
+                      <th
+                        class="pb-3 text-[10px] font-extrabold uppercase tracking-wider text-ink/40"
+                      >
+                        Subject
+                      </th>
+                      <th
+                        class="pb-3 text-[10px] font-extrabold uppercase tracking-wider text-ink/40 text-right"
+                      >
+                        Status
+                      </th>
+                    </tr>
+                  </thead>
+                  <tbody class="text-sm">
+                    <tr class="table-row border-b border-black/5 last:border-0">
+                      <td class="py-3 pr-2 flex items-center gap-2">
+                        <img
+                          src="https://i.pravatar.cc/40?img=32"
+                          class="w-7 h-7 rounded-full"
+                          alt=""
+                        /><span class="font-semibold text-ink text-xs"
+                          >Ananya</span
+                        >
+                      </td>
+                      <td
+                        class="py-3 pr-2 text-xs text-ink/70 truncate max-w-[120px] sm:max-w-none"
+                      >
+                        Booking ref #4892
+                      </td>
+                      <td class="py-3 text-right">
+                        <span class="status-badge status-open">Open</span>
+                      </td>
+                    </tr>
+                    <tr class="table-row border-b border-black/5 last:border-0">
+                      <td class="py-3 pr-2 flex items-center gap-2">
+                        <img
+                          src="https://i.pravatar.cc/40?img=12"
+                          class="w-7 h-7 rounded-full"
+                          alt=""
+                        /><span class="font-semibold text-ink text-xs"
+                          >Rohan</span
+                        >
+                      </td>
+                      <td
+                        class="py-3 pr-2 text-xs text-ink/70 truncate max-w-[120px] sm:max-w-none"
+                      >
+                        Payment failed
+                      </td>
+                      <td class="py-3 text-right">
+                        <span class="status-badge status-resolved"
+                          >Resolved</span
+                        >
+                      </td>
+                    </tr>
+                    <tr class="table-row border-b border-black/5 last:border-0">
+                      <td class="py-3 pr-2 flex items-center gap-2">
+                        <img
+                          src="https://i.pravatar.cc/40?img=47"
+                          class="w-7 h-7 rounded-full"
+                          alt=""
+                        /><span class="font-semibold text-ink text-xs"
+                          >Dev</span
+                        >
+                      </td>
+                      <td
+                        class="py-3 pr-2 text-xs text-ink/70 truncate max-w-[120px] sm:max-w-none"
+                      >
+                        Date change request
+                      </td>
+                      <td class="py-3 text-right">
+                        <span class="status-badge status-pending">Pending</span>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+
+            <div class="clay bg-white p-5 sm:p-6 flex flex-col">
+              <div class="flex items-center justify-between mb-4">
+                <h3 class="font-display font-extrabold text-lg text-ink">
+                  Recent Messages
+                </h3>
+                <a
+                  href="./404.html"
+                  class="text-[11px] font-bold text-brand hover:text-accent transition"
+                  >View all</a
+                >
+              </div>
+
+              <div class="space-y-3 flex-1">
+                <a
+                  href="./404.html"
+                  class="flex items-start gap-3 p-3 rounded-xl hover:bg-black/5 transition border border-transparent hover:border-black/5 text-decoration-none block"
+                >
+                  <div class="relative">
+                    <img
+                      src="https://i.pravatar.cc/40?img=5"
+                      class="w-9 h-9 rounded-full"
+                      alt=""
+                    /><span
+                      class="absolute bottom-0 right-0 w-2.5 h-2.5 rounded-full bg-brand border-2 border-white"
+                    ></span>
+                  </div>
+                  <div class="min-w-0 flex-1">
+                    <div class="flex justify-between items-baseline">
+                      <p class="font-bold text-ink text-xs">Sofia Reis</p>
+                      <span class="text-[9px] text-ink/40">2m ago</span>
+                    </div>
+                    <p class="text-[11px] text-ink/60 truncate">
+                      Hey! Could you send over the updated...
+                    </p>
+                  </div>
+                </a>
+                <a
+                  href="./404.html"
+                  class="flex items-start gap-3 p-3 rounded-xl hover:bg-black/5 transition border border-transparent hover:border-black/5 text-decoration-none block"
+                >
+                  <div class="relative">
+                    <img
+                      src="https://i.pravatar.cc/40?img=47"
+                      class="w-9 h-9 rounded-full"
+                      alt=""
+                    />
+                  </div>
+                  <div class="min-w-0 flex-1">
+                    <div class="flex justify-between items-baseline">
+                      <p class="font-bold text-ink text-xs">Dev Patel</p>
+                      <span class="text-[9px] text-ink/40">1h ago</span>
+                    </div>
+                    <p class="text-[11px] text-ink/60 truncate">
+                      Thanks for the quick fix on the Bali trip!
+                    </p>
+                  </div>
+                </a>
+              </div>
+            </div>
+          </section>
+        </div>
+
+        <!-- ==========================================
+         VIEW: USERS
+         ========================================== -->
+        <div id="view-users" class="view-section">
+          <div
+            class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6"
+          >
+            <div>
+              <h2 class="font-display font-extrabold text-2xl text-ink">
+                User Management
+              </h2>
+              <p class="text-[13px] text-ink/50 mt-1">
+                Manage all registered users, roles, and access levels.
+              </p>
+            </div>
+            <a
+              href="./404.html"
+              class="clay-brand px-5 py-2.5 rounded-xl text-[11px] font-extrabold uppercase tracking-wider flex items-center justify-center gap-2 w-full sm:w-auto no-underline"
+            >
+              <svg
+                width="14"
+                height="14"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2.6"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <line x1="12" y1="5" x2="12" y2="19" />
+                <line x1="5" y1="12" x2="19" y2="12" />
+              </svg>
+              Add New User
+            </a>
+          </div>
+
+          <div
+            class="clay bg-white p-4 sm:p-5 mb-6 flex flex-col sm:flex-row gap-3"
+          >
+            <div class="flex-1 relative">
+              <svg
+                class="absolute left-3 top-1/2 -translate-y-1/2 text-ink/30"
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2.5"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <circle cx="11" cy="11" r="8" />
+                <line x1="21" y1="21" x2="16.65" y2="16.65" />
+              </svg>
+              <input
+                type="text"
+                placeholder="Search by name or email..."
+                class="dash-input pl-9"
+              />
+            </div>
+            <select class="dash-input sm:w-48 cursor-pointer">
+              <option>All Roles</option>
+              <option>Admin</option>
+              <option>User</option>
+            </select>
+          </div>
+
+          <div class="clay bg-white p-5 sm:p-6 overflow-x-auto">
+            <table class="w-full text-left border-collapse min-w-[600px]">
+              <thead>
+                <tr class="border-b border-black/5">
+                  <th
+                    class="pb-3 text-[10px] font-extrabold uppercase tracking-wider text-ink/40 w-12"
+                  >
+                    <input
+                      type="checkbox"
+                      class="rounded text-brand focus:ring-brand"
+                    />
+                  </th>
+                  <th
+                    class="pb-3 text-[10px] font-extrabold uppercase tracking-wider text-ink/40"
+                  >
+                    Name
+                  </th>
+                  <th
+                    class="pb-3 text-[10px] font-extrabold uppercase tracking-wider text-ink/40"
+                  >
+                    Role
+                  </th>
+                  <th
+                    class="pb-3 text-[10px] font-extrabold uppercase tracking-wider text-ink/40"
+                  >
+                    Status
+                  </th>
+                  <th
+                    class="pb-3 text-[10px] font-extrabold uppercase tracking-wider text-ink/40"
+                  >
+                    Joined
+                  </th>
+                  <th
+                    class="pb-3 text-[10px] font-extrabold uppercase tracking-wider text-ink/40 text-right"
+                  >
+                    Actions
+                  </th>
+                </tr>
+              </thead>
+              <tbody class="text-sm">
+                <tr class="table-row border-b border-black/5">
+                  <td class="py-4">
+                    <input
+                      type="checkbox"
+                      class="rounded text-brand focus:ring-brand"
+                    />
+                  </td>
+                  <td class="py-4 flex items-center gap-3">
+                    <img
+                      src="https://i.pravatar.cc/40?img=32"
+                      class="w-8 h-8 rounded-full"
+                      alt=""
+                    />
+                    <div>
+                      <p class="font-bold text-ink">Ananya Reddy</p>
+                      <p class="text-[11px] text-ink/50">ananya@example.com</p>
+                    </div>
+                  </td>
+                  <td class="py-4">
+                    <span class="status-badge bg-brand/10 text-brand"
+                      >User</span
+                    >
+                  </td>
+                  <td class="py-4">
+                    <span
+                      class="flex items-center gap-1.5 text-xs font-semibold text-brand"
+                      ><span class="w-1.5 h-1.5 rounded-full bg-brand"></span>
+                      Active</span
+                    >
+                  </td>
+                  <td class="py-4 text-xs text-ink/60">Oct 12, 2024</td>
+                  <td class="py-4 text-right">
+                    <a
+                      href="./404.html"
+                      class="inline-block text-ink/40 hover:text-brand transition p-1"
+                      ><svg
+                        width="16"
+                        height="16"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2.5"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      >
+                        <path d="M12 20h9" />
+                        <path
+                          d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"
+                        /></svg
+                    ></a>
+                  </td>
+                </tr>
+                <tr class="table-row border-b border-black/5">
+                  <td class="py-4">
+                    <input
+                      type="checkbox"
+                      class="rounded text-brand focus:ring-brand"
+                    />
+                  </td>
+                  <td class="py-4 flex items-center gap-3">
+                    <img
+                      src="https://i.pravatar.cc/40?img=47"
+                      class="w-8 h-8 rounded-full"
+                      alt=""
+                    />
+                    <div>
+                      <p class="font-bold text-ink">Dev Patel</p>
+                      <p class="text-[11px] text-ink/50">dev@example.com</p>
+                    </div>
+                  </td>
+                  <td class="py-4">
+                    <span class="status-badge bg-accent/10 text-accent"
+                      >Admin</span
+                    >
+                  </td>
+                  <td class="py-4">
+                    <span
+                      class="flex items-center gap-1.5 text-xs font-semibold text-brand"
+                      ><span class="w-1.5 h-1.5 rounded-full bg-brand"></span>
+                      Active</span
+                    >
+                  </td>
+                  <td class="py-4 text-xs text-ink/60">Sep 04, 2023</td>
+                  <td class="py-4 text-right">
+                    <a
+                      href="./404.html"
+                      class="inline-block text-ink/40 hover:text-brand transition p-1"
+                      ><svg
+                        width="16"
+                        height="16"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2.5"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      >
+                        <path d="M12 20h9" />
+                        <path
+                          d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"
+                        /></svg
+                    ></a>
+                  </td>
+                </tr>
+                <tr class="table-row border-b border-black/5">
+                  <td class="py-4">
+                    <input
+                      type="checkbox"
+                      class="rounded text-brand focus:ring-brand"
+                    />
+                  </td>
+                  <td class="py-4 flex items-center gap-3">
+                    <img
+                      src="https://i.pravatar.cc/40?img=5"
+                      class="w-8 h-8 rounded-full"
+                      alt=""
+                    />
+                    <div>
+                      <p class="font-bold text-ink">Sofia Reis</p>
+                      <p class="text-[11px] text-ink/50">sofia@example.com</p>
+                    </div>
+                  </td>
+                  <td class="py-4">
+                    <span class="status-badge bg-brand/10 text-brand"
+                      >User</span
+                    >
+                  </td>
+                  <td class="py-4">
+                    <span
+                      class="flex items-center gap-1.5 text-xs font-semibold text-ink/40"
+                      ><span class="w-1.5 h-1.5 rounded-full bg-ink/40"></span>
+                      Inactive</span
+                    >
+                  </td>
+                  <td class="py-4 text-xs text-ink/60">Jan 20, 2025</td>
+                  <td class="py-4 text-right">
+                    <a
+                      href="./404.html"
+                      class="inline-block text-ink/40 hover:text-brand transition p-1"
+                      ><svg
+                        width="16"
+                        height="16"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2.5"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      >
+                        <path d="M12 20h9" />
+                        <path
+                          d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"
+                        /></svg
+                    ></a>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- ==========================================
+         VIEW: BOOKINGS
+         ========================================== -->
+        <div id="view-bookings" class="view-section">
+          <div
+            class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6"
+          >
+            <div>
+              <h2 class="font-display font-extrabold text-2xl text-ink">
+                All Bookings
+              </h2>
+              <p class="text-[13px] text-ink/50 mt-1">
+                Track, manage and update client trips.
+              </p>
+            </div>
+            <a
+              href="./404.html"
+              class="clay-accent px-5 py-2.5 rounded-xl text-[11px] font-extrabold uppercase tracking-wider flex items-center justify-center gap-2 w-full sm:w-auto no-underline"
+            >
+              <svg
+                width="14"
+                height="14"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2.6"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <line x1="12" y1="5" x2="12" y2="19" />
+                <line x1="5" y1="12" x2="19" y2="12" />
+              </svg>
+              Create Booking
+            </a>
+          </div>
+
+          <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
+            <div class="clay-sm bg-white p-4">
+              <p
+                class="text-[10px] font-bold uppercase tracking-wider text-ink/50 mb-1"
+              >
+                Total
+              </p>
+              <p class="font-display font-extrabold text-xl text-ink">1,420</p>
+            </div>
+            <div class="clay-sm bg-white p-4">
+              <p
+                class="text-[10px] font-bold uppercase tracking-wider text-brand mb-1"
+              >
+                Confirmed
+              </p>
+              <p class="font-display font-extrabold text-xl text-ink">984</p>
+            </div>
+            <div class="clay-sm bg-white p-4">
+              <p
+                class="text-[10px] font-bold uppercase tracking-wider text-accent mb-1"
+              >
+                Pending
+              </p>
+              <p class="font-display font-extrabold text-xl text-ink">320</p>
+            </div>
+            <div class="clay-sm bg-white p-4">
+              <p
+                class="text-[10px] font-bold uppercase tracking-wider text-ink/50 mb-1"
+              >
+                Cancelled
+              </p>
+              <p class="font-display font-extrabold text-xl text-ink">116</p>
+            </div>
+          </div>
+
+          <div class="clay bg-white p-5 sm:p-6 overflow-x-auto">
+            <table class="w-full text-left border-collapse min-w-[700px]">
+              <thead>
+                <tr class="border-b border-black/5">
+                  <th
+                    class="pb-3 text-[10px] font-extrabold uppercase tracking-wider text-ink/40"
+                  >
+                    Ref ID
+                  </th>
+                  <th
+                    class="pb-3 text-[10px] font-extrabold uppercase tracking-wider text-ink/40"
+                  >
+                    Guest
+                  </th>
+                  <th
+                    class="pb-3 text-[10px] font-extrabold uppercase tracking-wider text-ink/40"
+                  >
+                    Destination
+                  </th>
+                  <th
+                    class="pb-3 text-[10px] font-extrabold uppercase tracking-wider text-ink/40"
+                  >
+                    Dates
+                  </th>
+                  <th
+                    class="pb-3 text-[10px] font-extrabold uppercase tracking-wider text-ink/40"
+                  >
+                    Amount
+                  </th>
+                  <th
+                    class="pb-3 text-[10px] font-extrabold uppercase tracking-wider text-ink/40 text-right"
+                  >
+                    Status
+                  </th>
+                </tr>
+              </thead>
+              <tbody class="text-sm">
+                <tr class="table-row border-b border-black/5">
+                  <td class="py-4 font-mono text-xs font-semibold text-brand">
+                    #BK-1042
+                  </td>
+                  <td class="py-4 font-bold text-ink">Ananya Reddy</td>
+                  <td class="py-4 text-ink/70">Bali, Indonesia</td>
+                  <td class="py-4 text-xs text-ink/60">Oct 15 - Oct 22</td>
+                  <td class="py-4 font-bold text-ink">$1,250</td>
+                  <td class="py-4 text-right">
+                    <span class="status-badge status-resolved">Confirmed</span>
+                  </td>
+                </tr>
+                <tr class="table-row border-b border-black/5">
+                  <td class="py-4 font-mono text-xs font-semibold text-brand">
+                    #BK-1043
+                  </td>
+                  <td class="py-4 font-bold text-ink">Rohan Mehta</td>
+                  <td class="py-4 text-ink/70">Kyoto, Japan</td>
+                  <td class="py-4 text-xs text-ink/60">Nov 05 - Nov 12</td>
+                  <td class="py-4 font-bold text-ink">$2,100</td>
+                  <td class="py-4 text-right">
+                    <span class="status-badge status-open">Pending</span>
+                  </td>
+                </tr>
+                <tr class="table-row border-b border-black/5">
+                  <td class="py-4 font-mono text-xs font-semibold text-brand">
+                    #BK-1044
+                  </td>
+                  <td class="py-4 font-bold text-ink">Sofia Reis</td>
+                  <td class="py-4 text-ink/70">Santorini, Greece</td>
+                  <td class="py-4 text-xs text-ink/60">Dec 01 - Dec 08</td>
+                  <td class="py-4 font-bold text-ink">$3,400</td>
+                  <td class="py-4 text-right">
+                    <span class="status-badge status-resolved">Confirmed</span>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- ==========================================
+         VIEW: MESSAGES
+         ========================================== -->
+        <div id="view-messages" class="view-section">
+          <div
+            class="clay bg-white p-4 sm:p-6 h-[calc(100vh-120px)] min-h-[500px] flex flex-col"
+          >
+            <h2 class="font-display font-extrabold text-2xl mb-4">Inbox</h2>
+
+            <div class="flex-1 flex flex-col md:flex-row gap-6 min-h-0">
+              <div
+                class="w-full md:w-1/3 overflow-y-auto pr-2 space-y-2 border-r border-black/5"
+              >
+                <a
+                  href="./404.html"
+                  class="block p-3 bg-brand/10 rounded-xl cursor-pointer border border-brand/20 text-decoration-none"
+                >
+                  <div class="flex justify-between items-baseline mb-1">
+                    <p class="font-bold text-sm text-brand">Sofia Reis</p>
+                    <span class="text-[10px] font-semibold text-brand/70"
+                      >2m ago</span
+                    >
+                  </div>
+                  <p class="text-xs text-ink/70 truncate">
+                    Hey! Could you send over the updated itinerary for...
+                  </p>
+                </a>
+                <a
+                  href="./404.html"
+                  class="block p-3 hover:bg-black/5 rounded-xl cursor-pointer transition text-decoration-none"
+                >
+                  <div class="flex justify-between items-baseline mb-1">
+                    <p class="font-bold text-sm text-ink">Dev Patel</p>
+                    <span class="text-[10px] text-ink/40">1h ago</span>
+                  </div>
+                  <p class="text-xs text-ink/60 truncate">
+                    Thanks for the quick fix on the Bali trip!
+                  </p>
+                </a>
+                <a
+                  href="./404.html"
+                  class="block p-3 hover:bg-black/5 rounded-xl cursor-pointer transition text-decoration-none"
+                >
+                  <div class="flex justify-between items-baseline mb-1">
+                    <p class="font-bold text-sm text-ink">Rohan Mehta</p>
+                    <span class="text-[10px] text-ink/40">3h ago</span>
+                  </div>
+                  <p class="text-xs text-ink/60 truncate">
+                    Can we move the call to tomorrow?
+                  </p>
+                </a>
+              </div>
+
+              <div
+                class="flex-1 flex flex-col h-full bg-[#f8faf9] rounded-2xl border border-black/5 relative"
+              >
+                <div
+                  class="p-4 border-b border-black/5 flex items-center gap-3 bg-white rounded-t-2xl"
+                >
+                  <img
+                    src="https://i.pravatar.cc/40?img=5"
+                    class="w-10 h-10 rounded-full"
+                    alt=""
+                  />
+                  <div>
+                    <p class="font-bold text-ink text-sm">Sofia Reis</p>
+                    <p class="text-[11px] text-brand font-semibold">Online</p>
+                  </div>
+                </div>
+
+                <div class="flex-1 overflow-y-auto p-4 space-y-4">
+                  <div class="flex gap-3 max-w-[80%]">
+                    <img
+                      src="https://i.pravatar.cc/40?img=5"
+                      class="w-8 h-8 rounded-full mt-auto"
+                      alt=""
+                    />
+                    <div
+                      class="bg-white p-3 rounded-2xl rounded-bl-sm shadow-sm text-sm text-ink/80"
+                    >
+                      Hi there! I'm looking at the updated itinerary for the
+                      Bali trip. Could you send over the final PDF?
+                    </div>
+                  </div>
+                  <div class="flex gap-3 max-w-[80%] ml-auto justify-end">
+                    <div
+                      class="bg-brand text-white p-3 rounded-2xl rounded-br-sm shadow-sm text-sm"
+                    >
+                      Sure thing, Sofia! I'm just finalizing the hotel
+                      confirmations. I'll email it over within the hour.
+                    </div>
+                  </div>
+                  <div class="flex gap-3 max-w-[80%]">
+                    <img
+                      src="https://i.pravatar.cc/40?img=5"
+                      class="w-8 h-8 rounded-full mt-auto"
+                      alt=""
+                    />
+                    <div
+                      class="bg-white p-3 rounded-2xl rounded-bl-sm shadow-sm text-sm text-ink/80"
+                    >
+                      Perfect. Also, is the airport transfer private or shared?
+                    </div>
+                  </div>
+                </div>
+
+                <div
+                  class="p-3 bg-white rounded-b-2xl border-t border-black/5 flex gap-2"
+                >
+                  <input
+                    type="text"
+                    placeholder="Type a message..."
+                    class="flex-1 bg-black/5 rounded-xl px-4 py-2 text-sm outline-none focus:ring-2 focus:ring-brand/50"
+                  />
+                  <!-- Send button redirects to 404 -->
+                  <a
+                    href="./404.html"
+                    class="w-10 h-10 rounded-xl bg-brand text-white flex items-center justify-center hover:bg-brand/90 transition text-decoration-none"
+                  >
+                    <svg
+                      width="18"
+                      height="18"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2.5"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    >
+                      <line x1="22" y1="2" x2="11" y2="13" />
+                      <polygon points="22 2 15 22 11 13 2 9 22 2" />
+                    </svg>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ==========================================
+         VIEW: ANALYTICS
+         ========================================== -->
+        <div id="view-analytics" class="view-section">
+          <div
+            class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6"
+          >
+            <div>
+              <h2 class="font-display font-extrabold text-2xl text-ink">
+                Deep Analytics
+              </h2>
+              <p class="text-[13px] text-ink/50 mt-1">
+                Detailed breakdown of site traffic and conversions.
+              </p>
+            </div>
+            <select class="dash-input w-full sm:w-40 cursor-pointer">
+              <option>Last 7 Days</option>
+              <option>Last 30 Days</option>
+              <option>This Year</option>
+            </select>
+          </div>
+
+          <div class="grid lg:grid-cols-3 gap-6 mb-6">
+            <div class="clay bg-white p-5 sm:p-6 lg:col-span-2">
+              <h3 class="font-display font-extrabold text-lg text-ink mb-4">
+                Traffic &amp; Conversions
+              </h3>
+              <div class="chart-container h-[350px]">
+                <canvas id="lineChart"></canvas>
+              </div>
+            </div>
+
+            <div class="clay bg-white p-5 sm:p-6">
+              <h3 class="font-display font-extrabold text-lg text-ink mb-4">
+                Top Pages
+              </h3>
+              <div class="space-y-4">
+                <a
+                  href="./404.html"
+                  class="flex items-center justify-between text-decoration-none group"
+                >
+                  <div class="min-w-0 pr-4">
+                    <p
+                      class="text-sm font-bold text-ink group-hover:text-brand transition truncate"
+                    >
+                      /stays/bali
+                    </p>
+                    <p class="text-[11px] text-ink/50">Destination page</p>
+                  </div>
+                  <span class="text-sm font-bold text-brand">14.2k</span>
+                </a>
+                <a
+                  href="./404.html"
+                  class="flex items-center justify-between text-decoration-none group"
+                >
+                  <div class="min-w-0 pr-4">
+                    <p
+                      class="text-sm font-bold text-ink group-hover:text-brand transition truncate"
+                    >
+                      /journal/slow-travel
+                    </p>
+                    <p class="text-[11px] text-ink/50">Blog post</p>
+                  </div>
+                  <span class="text-sm font-bold text-brand">9.8k</span>
+                </a>
+                <a
+                  href="./404.html"
+                  class="flex items-center justify-between text-decoration-none group"
+                >
+                  <div class="min-w-0 pr-4">
+                    <p
+                      class="text-sm font-bold text-ink group-hover:text-brand transition truncate"
+                    >
+                      /services
+                    </p>
+                    <p class="text-[11px] text-ink/50">Pricing page</p>
+                  </div>
+                  <span class="text-sm font-bold text-brand">7.4k</span>
+                </a>
+                <a
+                  href="./404.html"
+                  class="flex items-center justify-between text-decoration-none group"
+                >
+                  <div class="min-w-0 pr-4">
+                    <p
+                      class="text-sm font-bold text-ink group-hover:text-brand transition truncate"
+                    >
+                      /about
+                    </p>
+                    <p class="text-[11px] text-ink/50">Company info</p>
+                  </div>
+                  <span class="text-sm font-bold text-brand">3.1k</span>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ==========================================
+         VIEW: SETTINGS
+         ========================================== -->
+        <div id="view-settings" class="view-section">
+          <div class="clay bg-white p-6 sm:p-10 max-w-3xl mx-auto">
+            <h2 class="font-display font-extrabold text-2xl mb-6">
+              Account Settings
+            </h2>
+
+            <div class="mb-8 border-b border-black/5 pb-8">
+              <h3 class="text-sm font-bold text-ink mb-4">
+                Profile Information
+              </h3>
+              <div class="flex items-center gap-6 mb-6">
+                <div
+                  class="w-20 h-20 rounded-full bg-brand/20 flex items-center justify-center text-brand font-bold text-3xl font-display"
+                >
+                  A
+                </div>
+                <div>
+                  <a
+                    href="./404.html"
+                    class="clay-sm inline-block px-4 py-2 text-xs font-bold text-ink hover:text-brand transition text-decoration-none"
+                    >Change Avatar</a
+                  >
+                  <p class="text-[10px] text-ink/50 mt-2">
+                    JPG, PNG or GIF. Max size 2MB.
+                  </p>
+                </div>
+              </div>
+
+              <div class="grid sm:grid-cols-2 gap-4">
+                <div>
+                  <label
+                    class="block text-[10px] font-bold uppercase tracking-[.14em] text-ink/55 mb-2"
+                    >First Name</label
+                  >
+                  <input type="text" class="dash-input" value="Admin" />
+                </div>
+                <div>
+                  <label
+                    class="block text-[10px] font-bold uppercase tracking-[.14em] text-ink/55 mb-2"
+                    >Last Name</label
+                  >
+                  <input type="text" class="dash-input" value="User" />
+                </div>
+                <div class="sm:col-span-2">
+                  <label
+                    class="block text-[10px] font-bold uppercase tracking-[.14em] text-ink/55 mb-2"
+                    >Email Address</label
+                  >
+                  <input
+                    type="email"
+                    id="settingsEmail"
+                    class="dash-input"
+                    value="admin@stackly.com"
+                  />
+                </div>
+              </div>
+            </div>
+
+            <div class="mb-8 border-b border-black/5 pb-8">
+              <h3 class="text-sm font-bold text-ink mb-4">
+                Email Notifications
+              </h3>
+
+              <div class="space-y-4">
+                <label class="flex items-center justify-between cursor-pointer">
+                  <div>
+                    <p class="text-sm font-semibold text-ink">New Bookings</p>
+                    <p class="text-[11px] text-ink/50">
+                      Get notified when a client books a trip.
+                    </p>
+                  </div>
+                  <div class="relative inline-flex items-center">
+                    <input type="checkbox" class="peer sr-only" checked />
+                    <div
+                      class="w-11 h-6 bg-black/10 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-brand"
+                    ></div>
+                  </div>
+                </label>
+
+                <label class="flex items-center justify-between cursor-pointer">
+                  <div>
+                    <p class="text-sm font-semibold text-ink">New Messages</p>
+                    <p class="text-[11px] text-ink/50">
+                      Get an email when someone replies.
+                    </p>
+                  </div>
+                  <div class="relative inline-flex items-center">
+                    <input type="checkbox" class="peer sr-only" checked />
+                    <div
+                      class="w-11 h-6 bg-black/10 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-brand"
+                    ></div>
+                  </div>
+                </label>
+              </div>
+            </div>
+
+            <div class="flex justify-end gap-3">
+              <a
+                href="./404.html"
+                class="px-5 py-2.5 rounded-xl text-xs font-bold text-ink/60 hover:bg-black/5 transition text-decoration-none"
+                >Cancel</a
+              >
+              <a
+                href="./404.html"
+                class="clay-accent px-6 py-2.5 rounded-xl text-xs font-bold uppercase tracking-wider text-decoration-none"
+                >Save Changes</a
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <!-- ============================================================
+     SCRIPTS
+     ============================================================ -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <script>
+      (function () {
+        "use strict";
+
+        const reduceMotion = window.matchMedia(
+          "(prefers-reduced-motion: reduce)",
+        ).matches;
+
+        /* ---------------------------------------------------------
+     RETRIEVE USER EMAIL FROM LOCAL STORAGE
+     --------------------------------------------------------- */
+        const savedEmail = localStorage.getItem("stackly_user_email");
+        if (savedEmail) {
+          document.getElementById("sidebarEmail").textContent = savedEmail;
+          document.getElementById("heroEmail").textContent = savedEmail;
+          document.getElementById("settingsEmail").value = savedEmail;
+          document.getElementById("avatarLetter").textContent = savedEmail
+            .charAt(0)
+            .toUpperCase();
+        }
+
+        /* ---------------------------------------------------------
+     LOGOUT LOGIC
+     --------------------------------------------------------- */
+        const logoutBtn = document.getElementById("logoutBtn");
+        if (logoutBtn) {
+          logoutBtn.addEventListener("click", function () {
+            localStorage.removeItem("stackly_user_email");
+            localStorage.removeItem("stackly_user_role");
+          });
+        }
+
+        /* ---------------------------------------------------------
+     AOS (Scroll Reveals)
+     --------------------------------------------------------- */
+        if (window.AOS) {
+          AOS.init({
+            duration: 800,
+            easing: "ease-out-cubic",
+            once: true,
+            offset: 50,
+            disable: reduceMotion,
+          });
+        }
+
+        /* ---------------------------------------------------------
+     SIDEBAR TOGGLE & NAVIGATION LOGIC (Functional Views)
+     --------------------------------------------------------- */
+        const sidebar = document.getElementById("sidebar");
+        const overlay = document.getElementById("sidebarOverlay");
+        const mobileMenuBtn = document.getElementById("mobileMenuBtn");
+        const closeSidebarBtn = document.getElementById("closeSidebarBtn");
+
+        const navLinks = document.querySelectorAll(".nav-link[data-view]");
+        const views = document.querySelectorAll(".view-section");
+
+        function openSidebar() {
+          sidebar.classList.add("is-open");
+          overlay.classList.add("is-open");
+        }
+
+        function closeSidebar() {
+          sidebar.classList.remove("is-open");
+          overlay.classList.remove("is-open");
+        }
+
+        if (mobileMenuBtn) mobileMenuBtn.addEventListener("click", openSidebar);
+        if (closeSidebarBtn)
+          closeSidebarBtn.addEventListener("click", closeSidebar);
+        if (overlay) overlay.addEventListener("click", closeSidebar);
+
+        function switchView(targetViewId) {
+          // 1. Update sidebar active state
+          document.querySelectorAll(".nav-link").forEach((link) => {
+            if (link.dataset.view === targetViewId) {
+              link.classList.add("active");
+            } else {
+              link.classList.remove("active");
+            }
+          });
+
+          // 2. Hide all views, show target
+          views.forEach((view) => {
+            if (view.id === `view-${targetViewId}`) {
+              view.classList.add("active");
+            } else {
+              view.classList.remove("active");
+            }
+          });
+
+          // 3. Scroll main wrapper to top
+          document.querySelector(".main-wrapper").scrollTop = 0;
+
+          // 4. Close sidebar on mobile
+          if (window.innerWidth < 1024) {
+            closeSidebar();
+          }
+
+          // 5. Refresh AOS
+          if (window.AOS) AOS.refresh();
+        }
+
+        navLinks.forEach((link) => {
+          link.addEventListener("click", (e) => {
+            e.preventDefault();
+            const target = link.dataset.view;
+            if (target) {
+              window.location.hash = target;
+              switchView(target);
+            }
+          });
+        });
+
+        // Check initial hash on page load
+        const initialHash = window.location.hash.replace("#", "");
+        if (initialHash && document.getElementById(`view-${initialHash}`)) {
+          switchView(initialHash);
+        }
+
+        /* ---------------------------------------------------------
+     ANIMATED COUNTERS (GSAP)
+     --------------------------------------------------------- */
+        const counters = document.querySelectorAll(".stat-counter");
+
+        if (counters.length) {
+          if (window.gsap && !reduceMotion) {
+            counters.forEach((counter) => {
+              const target = parseInt(counter.dataset.target, 10);
+              gsap.to(counter, {
+                textContent: target,
+                duration: 1.8,
+                ease: "power2.out",
+                snap: { textContent: 1 },
+                scrollTrigger: {
+                  trigger: counter,
+                  start: "top 90%",
+                  once: true,
+                },
+                onUpdate: function () {
+                  if (target >= 1000) {
+                    counter.textContent = parseInt(
+                      counter.textContent,
+                    ).toLocaleString("en-US");
+                  }
+                },
+              });
+            });
+          } else {
+            counters.forEach((counter) => {
+              const target = parseInt(counter.dataset.target, 10);
+              counter.textContent =
+                target >= 1000 ? target.toLocaleString("en-US") : target;
+            });
+          }
+        }
+
+        /* ---------------------------------------------------------
+     CHARTS (Chart.js)
+     --------------------------------------------------------- */
+        if (window.Chart) {
+          Chart.defaults.font.family = "'Inter', sans-serif";
+          Chart.defaults.color = "rgba(0,0,0,0.5)";
+
+          const ctxBar = document.getElementById("revenueChart");
+          if (ctxBar) {
+            new Chart(ctxBar, {
+              type: "bar",
+              data: {
+                labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun"],
+                datasets: [
+                  {
+                    label: "Revenue",
+                    data: [12500, 19000, 15000, 22000, 24000, 28500],
+                    backgroundColor: "#39b6ab",
+                    borderRadius: 6,
+                    barThickness: 20,
+                    maxBarThickness: 32,
+                  },
+                ],
+              },
+              options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                  legend: { display: false },
+                  tooltip: {
+                    backgroundColor: "#000",
+                    callbacks: {
+                      label: function (context) {
+                        return "$" + context.parsed.y.toLocaleString();
+                      },
+                    },
+                  },
+                },
+                scales: {
+                  y: {
+                    beginAtZero: true,
+                    grid: { color: "rgba(0,0,0,0.04)", drawBorder: false },
+                    ticks: {
+                      callback: function (value) {
+                        return "$" + value / 1000 + "k";
+                      },
+                    },
+                  },
+                  x: { grid: { display: false } },
+                },
+              },
+            });
+          }
+
+          const ctxPie = document.getElementById("trafficChart");
+          if (ctxPie) {
+            new Chart(ctxPie, {
+              type: "doughnut",
+              data: {
+                labels: ["Direct", "Social", "Search", "Referral"],
+                datasets: [
+                  {
+                    data: [45, 25, 20, 10],
+                    backgroundColor: [
+                      "#39b6ab",
+                      "#ff6f1a",
+                      "#e7b490",
+                      "#000000",
+                    ],
+                    borderWidth: 2,
+                    borderColor: "#fff",
+                  },
+                ],
+              },
+              options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                cutout: "70%",
+                plugins: {
+                  legend: {
+                    position: "bottom",
+                    labels: { usePointStyle: true, boxWidth: 8, padding: 15 },
+                  },
+                },
+              },
+            });
+          }
+
+          const ctxLine = document.getElementById("lineChart");
+          if (ctxLine) {
+            new Chart(ctxLine, {
+              type: "line",
+              data: {
+                labels: ["Week 1", "Week 2", "Week 3", "Week 4", "Week 5"],
+                datasets: [
+                  {
+                    label: "Page Views",
+                    data: [1500, 2300, 2000, 3200, 4100],
+                    borderColor: "#39b6ab",
+                    backgroundColor: "rgba(57,182,171,0.1)",
+                    fill: true,
+                    tension: 0.4,
+                  },
+                  {
+                    label: "Conversions",
+                    data: [120, 180, 150, 250, 300],
+                    borderColor: "#ff6f1a",
+                    backgroundColor: "rgba(255,111,26,0.1)",
+                    fill: true,
+                    tension: 0.4,
+                  },
+                ],
+              },
+              options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                  legend: { position: "top" },
+                },
+                scales: {
+                  y: { beginAtZero: true, grid: { color: "rgba(0,0,0,0.04)" } },
+                  x: { grid: { display: false } },
+                },
+              },
+            });
+          }
+        }
+      })();
+    </script>
+  </body>
+</html>

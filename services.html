@@ -1,0 +1,3097 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, viewport-fit=cover"
+    />
+    <title>Services · STACKLY — Travel &amp; Hospitality</title>
+    <meta
+      name="description"
+      content="STACKLY services and pricing — bespoke itineraries, boutique stays, private tours and 24/7 concierge. Six packages to fit every kind of journey."
+    />
+
+    <!-- ============ FONTS ============ -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800&family=Inter:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- ============ BOOTSTRAP 5 ============ -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+
+    <!-- ============ AOS ============ -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css"
+      rel="stylesheet"
+    />
+
+    <!-- ============ TAILWIND ============ -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              brand: "#39b6ab",
+              sand: "#e7b490",
+              accent: "#ff6f1a",
+              ink: "#000000",
+            },
+            fontFamily: {
+              display: ['"Plus Jakarta Sans"', "system-ui", "sans-serif"],
+              body: ["Inter", "system-ui", "sans-serif"],
+            },
+          },
+        },
+      };
+    </script>
+
+    <style>
+      /* ============================================================
+   STACKLY — DESIGN TOKENS
+   ============================================================ */
+      :root {
+        --brand: #39b6ab;
+        --sand: #e7b490;
+        --accent: #ff6f1a;
+        --ink: #000000;
+
+        --clay:
+          12px 12px 28px rgba(0, 0, 0, 0.1),
+          -12px -12px 28px rgba(255, 255, 255, 0.92);
+        --clay-sm:
+          6px 6px 16px rgba(0, 0, 0, 0.09),
+          -6px -6px 16px rgba(255, 255, 255, 0.95);
+        --clay-in:
+          inset 4px 4px 10px rgba(0, 0, 0, 0.07),
+          inset -4px -4px 10px rgba(255, 255, 255, 0.95);
+      }
+
+      html,
+      body {
+        overflow-x: hidden;
+        -webkit-text-size-adjust: 100%;
+        text-size-adjust: 100%;
+      }
+      * {
+        -webkit-tap-highlight-color: transparent;
+        touch-action: manipulation;
+      }
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        font-family: "Inter", system-ui, sans-serif;
+        color: var(--ink);
+        background-color: #ffffff;
+        background-image:
+          radial-gradient(
+            60vw 60vw at 6% 4%,
+            rgba(57, 182, 171, 0.14),
+            transparent 62%
+          ),
+          radial-gradient(
+            60vw 60vw at 96% 98%,
+            rgba(231, 180, 144, 0.3),
+            transparent 62%
+          ),
+          radial-gradient(
+            38vw 38vw at 92% 3%,
+            rgba(255, 111, 26, 0.08),
+            transparent 62%
+          );
+        max-width: 100%;
+      }
+      @media (min-width: 768px) {
+        body {
+          background-attachment: fixed;
+        }
+      }
+
+      h1,
+      h2,
+      h3,
+      h4,
+      h5,
+      h6,
+      .font-display {
+        font-family: "Plus Jakarta Sans", system-ui, sans-serif;
+        letter-spacing: -0.02em;
+        overflow-wrap: break-word;
+        word-wrap: break-word;
+      }
+
+      img,
+      svg,
+      iframe {
+        max-width: 100%;
+      }
+
+      /* ============================================================
+   CLAYMORPHISM PRIMITIVES
+   ============================================================ */
+      .clay {
+        background: rgba(255, 255, 255, 0.86);
+        -webkit-backdrop-filter: blur(8px);
+        backdrop-filter: blur(8px);
+        border-radius: 1.5rem;
+        box-shadow: var(--clay);
+      }
+      @media (min-width: 640px) {
+        .clay {
+          border-radius: 1.75rem;
+        }
+      }
+      .clay-sm {
+        background: rgba(255, 255, 255, 0.9);
+        border-radius: 1rem;
+        box-shadow: var(--clay-sm);
+      }
+      @media (min-width: 640px) {
+        .clay-sm {
+          border-radius: 1.15rem;
+        }
+      }
+      .clay-accent {
+        background: linear-gradient(145deg, #ff8540, #ee5f05);
+        color: #fff;
+        box-shadow:
+          8px 8px 22px rgba(255, 111, 26, 0.35),
+          -6px -6px 18px rgba(255, 255, 255, 0.9),
+          inset 2px 2px 6px rgba(255, 255, 255, 0.4),
+          inset -3px -3px 8px rgba(0, 0, 0, 0.14);
+      }
+      .clay-brand {
+        background: linear-gradient(145deg, #46c4b8, #2ba49b);
+        color: #fff;
+        box-shadow:
+          8px 8px 22px rgba(57, 182, 171, 0.35),
+          -6px -6px 18px rgba(255, 255, 255, 0.9),
+          inset 2px 2px 6px rgba(255, 255, 255, 0.4),
+          inset -3px -3px 8px rgba(0, 0, 0, 0.14);
+      }
+
+      /* ============================================================
+   HERO BANNER
+   ============================================================ */
+      .hero-bg {
+        will-change: transform;
+      }
+      .hero-title span {
+        display: block;
+      }
+
+      /* ============================================================
+   SERVICE CARDS
+   ============================================================ */
+      .service-card {
+        transition:
+          transform 0.35s ease,
+          box-shadow 0.35s ease;
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+      }
+      .service-card:hover {
+        transform: translateY(-4px);
+        box-shadow:
+          18px 18px 40px rgba(0, 0, 0, 0.12),
+          -14px -14px 34px rgba(255, 255, 255, 0.98);
+      }
+      .service-icon {
+        display: grid;
+        place-items: center;
+        width: 48px;
+        height: 48px;
+        border-radius: 14px;
+        flex-shrink: 0;
+      }
+      @media (min-width: 640px) {
+        .service-icon {
+          width: 54px;
+          height: 54px;
+          border-radius: 16px;
+        }
+      }
+      .icon-brand {
+        color: #fff;
+        background: linear-gradient(145deg, #46c4b8, #2ba49b);
+        box-shadow:
+          6px 6px 16px rgba(57, 182, 171, 0.35),
+          -4px -4px 12px rgba(255, 255, 255, 0.9),
+          inset 1px 1px 4px rgba(255, 255, 255, 0.4);
+      }
+      .icon-accent {
+        color: #fff;
+        background: linear-gradient(145deg, #ff8540, #ee5f05);
+        box-shadow:
+          6px 6px 16px rgba(255, 111, 26, 0.35),
+          -4px -4px 12px rgba(255, 255, 255, 0.9),
+          inset 1px 1px 4px rgba(255, 255, 255, 0.4);
+      }
+      .icon-sand {
+        color: #7a3f13;
+        background: linear-gradient(145deg, #f0c9aa, #dcae88);
+        box-shadow:
+          6px 6px 16px rgba(231, 180, 144, 0.4),
+          -4px -4px 12px rgba(255, 255, 255, 0.9),
+          inset 1px 1px 4px rgba(255, 255, 255, 0.5);
+      }
+      .icon-ink {
+        color: #fff;
+        background: linear-gradient(145deg, #2b2b2b, #000);
+        box-shadow:
+          6px 6px 16px rgba(0, 0, 0, 0.25),
+          -4px -4px 12px rgba(255, 255, 255, 0.9),
+          inset 1px 1px 4px rgba(255, 255, 255, 0.18);
+      }
+
+      /* ============================================================
+   PRICING CARDS
+   ============================================================ */
+      .price-card {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+        transition:
+          transform 0.35s ease,
+          box-shadow 0.35s ease;
+        background: rgba(255, 255, 255, 0.9);
+        border-radius: 1.15rem;
+        box-shadow: var(--clay-sm);
+        padding: 1.5rem 1.25rem;
+      }
+      @media (min-width: 640px) {
+        .price-card {
+          border-radius: 1.35rem;
+          padding: 1.85rem 1.6rem;
+        }
+      }
+      .price-card:hover {
+        transform: translateY(-4px);
+        box-shadow:
+          18px 18px 40px rgba(0, 0, 0, 0.12),
+          -14px -14px 34px rgba(255, 255, 255, 0.98);
+      }
+      .price-card.is-featured {
+        background: linear-gradient(160deg, #ffffff 0%, #f7f2ed 100%);
+        border: 2px solid transparent;
+        box-shadow:
+          0 0 0 2px #39b6ab,
+          16px 16px 40px rgba(57, 182, 171, 0.22),
+          -12px -12px 32px rgba(255, 255, 255, 0.98);
+        transform: translateY(-6px);
+      }
+      @media (min-width: 640px) {
+        .price-card.is-featured {
+          transform: translateY(-10px);
+        }
+      }
+      .price-card.is-featured:hover {
+        transform: translateY(-10px);
+      }
+      @media (min-width: 640px) {
+        .price-card.is-featured:hover {
+          transform: translateY(-14px);
+        }
+      }
+
+      .featured-ribbon {
+        position: absolute;
+        top: -11px;
+        left: 50%;
+        transform: translateX(-50%);
+        display: inline-flex;
+        align-items: center;
+        gap: 0.4rem;
+        padding: 0.35rem 0.9rem;
+        border-radius: 999px;
+        background: linear-gradient(145deg, #46c4b8, #2ba49b);
+        color: #fff;
+        font-family: "Plus Jakarta Sans", system-ui, sans-serif;
+        font-size: 0.6rem;
+        font-weight: 800;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        white-space: nowrap;
+        box-shadow:
+          4px 4px 12px rgba(57, 182, 171, 0.4),
+          inset 1px 1px 3px rgba(255, 255, 255, 0.35);
+      }
+      @media (min-width: 640px) {
+        .featured-ribbon {
+          top: -13px;
+          font-size: 0.65rem;
+          padding: 0.4rem 1rem;
+        }
+      }
+
+      .price-name {
+        font-family: "Plus Jakarta Sans", system-ui, sans-serif;
+        font-weight: 800;
+        letter-spacing: -0.02em;
+        font-size: 1rem;
+        color: var(--ink);
+      }
+      @media (min-width: 640px) {
+        .price-name {
+          font-size: 1.1rem;
+        }
+      }
+
+      .price-tagline {
+        margin-top: 0.35rem;
+        font-size: 0.75rem;
+        color: rgba(0, 0, 0, 0.55);
+        line-height: 1.4;
+      }
+
+      .price-amount {
+        margin-top: 1.15rem;
+        font-family: "Plus Jakarta Sans", system-ui, sans-serif;
+        font-weight: 800;
+        letter-spacing: -0.03em;
+        font-size: 1.9rem;
+        line-height: 1;
+        color: var(--ink);
+        display: flex;
+        align-items: baseline;
+        gap: 0.35rem;
+      }
+      @media (min-width: 640px) {
+        .price-amount {
+          font-size: 2.25rem;
+        }
+      }
+      .price-amount .currency {
+        font-size: 0.85rem;
+        font-weight: 700;
+        color: rgba(0, 0, 0, 0.55);
+      }
+      .price-amount .unit {
+        font-size: 0.7rem;
+        font-weight: 600;
+        color: rgba(0, 0, 0, 0.45);
+        letter-spacing: 0;
+      }
+      .price-amount.custom {
+        font-size: 1.35rem;
+        background: linear-gradient(135deg, #39b6ab, #ff6f1a);
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+      }
+      @media (min-width: 640px) {
+        .price-amount.custom {
+          font-size: 1.65rem;
+        }
+      }
+
+      .price-divider {
+        margin: 1.1rem 0;
+        height: 1px;
+        background: linear-gradient(
+          90deg,
+          rgba(0, 0, 0, 0.06),
+          rgba(0, 0, 0, 0.12),
+          rgba(0, 0, 0, 0.06)
+        );
+      }
+
+      .price-features {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        flex-direction: column;
+        gap: 0.6rem;
+        flex: 1;
+      }
+      .price-features li {
+        display: flex;
+        align-items: flex-start;
+        gap: 0.55rem;
+        font-size: 0.8rem;
+        line-height: 1.4;
+        color: rgba(0, 0, 0, 0.72);
+      }
+      @media (min-width: 640px) {
+        .price-features li {
+          font-size: 0.85rem;
+          gap: 0.65rem;
+        }
+      }
+      .price-features .check {
+        flex-shrink: 0;
+        display: inline-grid;
+        place-items: center;
+        width: 16px;
+        height: 16px;
+        margin-top: 1px;
+        border-radius: 5px;
+        color: #fff;
+        background: linear-gradient(145deg, #46c4b8, #2ba49b);
+        box-shadow:
+          inset 1px 1px 2px rgba(255, 255, 255, 0.4),
+          1px 1px 3px rgba(57, 182, 171, 0.25);
+      }
+      .price-features .check.muted {
+        background: rgba(0, 0, 0, 0.14);
+        color: rgba(0, 0, 0, 0.4);
+        box-shadow: none;
+      }
+      .price-features .off {
+        color: rgba(0, 0, 0, 0.4);
+        text-decoration: line-through;
+        text-decoration-color: rgba(0, 0, 0, 0.25);
+      }
+
+      .price-cta {
+        margin-top: 1.35rem;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.5rem;
+        width: 100%;
+        padding: 0.85rem 1rem;
+        border-radius: 12px;
+        font-family: "Plus Jakarta Sans", system-ui, sans-serif;
+        font-size: 0.75rem;
+        font-weight: 800;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        text-decoration: none;
+        transition:
+          transform 0.2s ease,
+          box-shadow 0.2s ease;
+      }
+      .price-cta:active {
+        transform: scale(0.98);
+      }
+
+      .cta-primary {
+        background: linear-gradient(145deg, #ff8540, #ee5f05);
+        color: #fff;
+        box-shadow:
+          6px 6px 18px rgba(255, 111, 26, 0.35),
+          -4px -4px 14px rgba(255, 255, 255, 0.9),
+          inset 1px 1px 3px rgba(255, 255, 255, 0.4);
+      }
+      .cta-primary:hover {
+        color: #fff;
+        box-shadow:
+          8px 8px 22px rgba(255, 111, 26, 0.45),
+          -4px -4px 14px rgba(255, 255, 255, 0.9),
+          inset 1px 1px 3px rgba(255, 255, 255, 0.4);
+      }
+
+      .cta-ghost {
+        background: #fff;
+        color: rgba(0, 0, 0, 0.7);
+        box-shadow: var(--clay-sm);
+      }
+      .cta-ghost:hover {
+        color: var(--ink);
+        box-shadow:
+          8px 8px 20px rgba(0, 0, 0, 0.1),
+          -6px -6px 18px rgba(255, 255, 255, 0.98);
+      }
+
+      .cta-brand {
+        background: linear-gradient(145deg, #46c4b8, #2ba49b);
+        color: #fff;
+        box-shadow:
+          6px 6px 18px rgba(57, 182, 171, 0.35),
+          -4px -4px 14px rgba(255, 255, 255, 0.9),
+          inset 1px 1px 3px rgba(255, 255, 255, 0.4);
+      }
+      .cta-brand:hover {
+        color: #fff;
+        box-shadow:
+          8px 8px 22px rgba(57, 182, 171, 0.45),
+          -4px -4px 14px rgba(255, 255, 255, 0.9),
+          inset 1px 1px 3px rgba(255, 255, 255, 0.4);
+      }
+
+      /* ============================================================
+   MARQUEE
+   ============================================================ */
+      .marquee-band {
+        overflow: hidden;
+        background: #000;
+        border-top: 5px solid var(--brand);
+        border-bottom: 5px solid var(--sand);
+        padding: 1.1rem 0;
+        width: 100%;
+      }
+      @media (min-width: 640px) {
+        .marquee-band {
+          border-width: 6px;
+          padding: 1.5rem 0;
+        }
+      }
+      .marquee-track {
+        display: flex;
+        width: max-content;
+        animation: marq 32s linear infinite;
+        will-change: transform;
+      }
+      .marquee-group {
+        display: flex;
+        align-items: center;
+        gap: clamp(1rem, 4vw, 3.25rem);
+        padding-right: clamp(1rem, 4vw, 3.25rem);
+        flex-shrink: 0;
+      }
+      .marquee-group > span {
+        white-space: nowrap;
+      }
+      @keyframes marq {
+        to {
+          transform: translateX(-50%);
+        }
+      }
+      .marquee-band:hover .marquee-track {
+        animation-play-state: paused;
+      }
+
+      /* ============================================================
+   REDUCED MOTION
+   ============================================================ */
+      @media (prefers-reduced-motion: reduce) {
+        html {
+          scroll-behavior: auto;
+        }
+        .marquee-track {
+          animation: none;
+        }
+        * {
+          animation-duration: 0.001ms !important;
+          transition-duration: 0.001ms !important;
+        }
+      }
+      /* ============================================================
+   FULL-WIDTH VIDEO BREAK — PLAY BUTTON ONLY
+   ============================================================ */
+      .video-break video {
+        will-change: transform;
+        border-top: #000 5px solid;
+        border-bottom: #000 5px solid;
+      }
+
+      .video-play-btn {
+        display: grid;
+        place-items: center;
+        width: 76px;
+        height: 76px;
+        border-radius: 999px;
+        border: 0;
+        cursor: pointer;
+        color: #000000;
+        background: #ffffff;
+        box-shadow:
+          12px 12px 28px rgba(0, 0, 0, 0.22),
+          -10px -10px 24px rgba(255, 255, 255, 0.85),
+          inset 2px 2px 5px rgba(255, 255, 255, 1),
+          inset -3px -3px 8px rgba(0, 0, 0, 0.12);
+        transition:
+          transform 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+          box-shadow 0.3s ease,
+          opacity 0.3s ease;
+      }
+      @media (min-width: 640px) {
+        .video-play-btn {
+          width: 96px;
+          height: 96px;
+        }
+      }
+      @media (min-width: 1024px) {
+        .video-play-btn {
+          width: 112px;
+          height: 112px;
+        }
+      }
+
+      .video-play-btn:hover {
+        transform: translate(-50%, -50%) scale(1.06);
+        box-shadow:
+          16px 16px 34px rgba(0, 0, 0, 0.28),
+          -12px -12px 28px rgba(255, 255, 255, 0.9),
+          inset 2px 2px 5px rgba(255, 255, 255, 1),
+          inset -3px -3px 8px rgba(0, 0, 0, 0.12);
+      }
+      .video-play-btn:active {
+        transform: translate(-50%, -50%) scale(0.96);
+      }
+      .video-play-btn svg {
+        width: 26px;
+        height: 26px;
+      }
+      @media (min-width: 640px) {
+        .video-play-btn svg {
+          width: 34px;
+          height: 34px;
+        }
+      }
+      @media (min-width: 1024px) {
+        .video-play-btn svg {
+          width: 40px;
+          height: 40px;
+        }
+      }
+
+      .video-play-btn.is-hidden {
+        opacity: 0;
+        pointer-events: none;
+        transform: translate(-50%, -50%) scale(0.85);
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        .video-break video {
+          display: none;
+        }
+        .video-break {
+          background-image: url("https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1920&q=80");
+          background-size: cover;
+          background-position: center;
+          height: 320px;
+        }
+        @media (min-width: 640px) {
+          .video-break {
+            height: 440px;
+          }
+        }
+        @media (min-width: 1024px) {
+          .video-break {
+            height: 600px;
+          }
+        }
+      }
+    </style>
+
+    <!-- ============================================================
+     NAVBAR + FOOTER STYLES
+     ============================================================ -->
+    <style>
+      /* ---------- Sticky footer layout + navbar clearance ---------- */
+      body {
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+      }
+      main {
+        flex: 1;
+        padding-top: 108px;
+      }
+      @media (min-width: 1024px) {
+        main {
+          padding-top: 136px;
+        }
+      }
+      section[id] {
+        scroll-margin-top: 96px;
+      }
+
+      /* ---------- Navbar base ---------- */
+      .navbar-container {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 100;
+        padding: 1rem;
+        transition: all 0.3s ease;
+      }
+      .navbar-inner {
+        max-width: 1280px;
+        margin: 0 auto;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0.75rem 1.25rem;
+        background: rgba(255, 255, 255, 0.92);
+        -webkit-backdrop-filter: blur(12px);
+        backdrop-filter: blur(12px);
+        border-radius: 1.25rem;
+        box-shadow: var(--clay-sm);
+        transition: box-shadow 0.3s ease;
+      }
+      .desktop-nav {
+        display: none;
+        align-items: center;
+        gap: 2rem;
+      }
+      .nav-link {
+        position: relative;
+        font-size: 0.85rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        color: rgba(0, 0, 0, 0.65);
+        text-decoration: none;
+        transition: color 0.2s ease;
+      }
+      .nav-link:hover {
+        color: var(--brand);
+      }
+      .nav-link::after {
+        content: "";
+        position: absolute;
+        bottom: -4px;
+        left: 0;
+        width: 0;
+        height: 2px;
+        background: var(--brand);
+        transition: width 0.3s ease;
+        border-radius: 99px;
+      }
+      .nav-link:hover::after {
+        width: 100%;
+      }
+      .btn-login {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        padding: 0.6rem 1.5rem;
+        border-radius: 12px;
+        font-family: "Plus Jakarta Sans", system-ui, sans-serif;
+        font-size: 0.75rem;
+        font-weight: 800;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: #fff;
+        text-decoration: none;
+        background: linear-gradient(145deg, #46c4b8, #2ba49b);
+        box-shadow:
+          4px 4px 12px rgba(57, 182, 171, 0.35),
+          -2px -2px 8px rgba(255, 255, 255, 0.9),
+          inset 1px 1px 3px rgba(255, 255, 255, 0.4);
+        transition: all 0.2s ease;
+      }
+      .btn-login:hover {
+        transform: translateY(-1px);
+        box-shadow:
+          6px 6px 16px rgba(57, 182, 171, 0.45),
+          -2px -2px 8px rgba(255, 255, 255, 0.9),
+          inset 1px 1px 3px rgba(255, 255, 255, 0.4);
+      }
+      .btn-hamburger {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 44px;
+        height: 44px;
+        border-radius: 12px;
+        background: #fff;
+        color: var(--ink);
+        border: none;
+        cursor: pointer;
+        box-shadow: var(--clay-sm);
+        transition: transform 0.2s ease;
+      }
+      .btn-hamburger:active {
+        transform: scale(0.95);
+      }
+
+      @media (min-width: 1024px) {
+        .navbar-container {
+          padding: 1.5rem 2rem;
+        }
+        .navbar-inner {
+          padding: 1rem 2rem;
+          border-radius: 1.5rem;
+        }
+        .desktop-nav {
+          display: flex;
+        }
+        .btn-hamburger {
+          display: none;
+        }
+      }
+
+      /* ---------- Mobile full-screen menu ---------- */
+      .mobile-menu-overlay {
+        position: fixed;
+        inset: 0;
+        background: #ffffff;
+        z-index: 9999;
+        display: flex;
+        flex-direction: column;
+        padding: 1.5rem;
+        opacity: 0;
+        pointer-events: none;
+        transform: translateY(-20px);
+        transition:
+          opacity 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+          transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        overflow-y: auto;
+      }
+      .mobile-menu-overlay.is-active {
+        opacity: 1;
+        pointer-events: auto;
+        transform: translateY(0);
+      }
+      .mobile-menu-overlay::before {
+        content: "";
+        position: absolute;
+        top: -10%;
+        right: -20%;
+        width: 70vw;
+        height: 70vw;
+        border-radius: 50%;
+        background: radial-gradient(
+          circle,
+          rgba(57, 182, 171, 0.12) 0%,
+          transparent 70%
+        );
+        z-index: -1;
+        pointer-events: none;
+      }
+      .mobile-menu-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        width: 100%;
+        margin-bottom: 3rem;
+      }
+      .btn-close-menu {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 44px;
+        height: 44px;
+        border-radius: 12px;
+        background: #f4f7f6;
+        color: var(--ink);
+        border: none;
+        cursor: pointer;
+        box-shadow: var(--clay-sm);
+        transition: transform 0.2s ease;
+      }
+      .btn-close-menu:active {
+        transform: scale(0.95);
+      }
+      .mobile-nav {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+        width: 100%;
+      }
+      .mobile-nav-link {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 1rem 0;
+        font-family: "Plus Jakarta Sans", system-ui, sans-serif;
+        font-size: clamp(1.75rem, 6vw, 2.5rem);
+        font-weight: 800;
+        text-transform: uppercase;
+        letter-spacing: -0.02em;
+        color: var(--ink);
+        text-decoration: none;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+        transition:
+          color 0.2s ease,
+          padding-left 0.2s ease;
+        opacity: 0;
+        transform: translateX(-20px);
+      }
+      .mobile-menu-overlay.is-active .mobile-nav-link {
+        opacity: 1;
+        transform: translateX(0);
+      }
+      .mobile-menu-overlay.is-active .mobile-nav-link:nth-child(1) {
+        transition-delay: 0.05s;
+      }
+      .mobile-menu-overlay.is-active .mobile-nav-link:nth-child(2) {
+        transition-delay: 0.1s;
+      }
+      .mobile-menu-overlay.is-active .mobile-nav-link:nth-child(3) {
+        transition-delay: 0.15s;
+      }
+      .mobile-menu-overlay.is-active .mobile-nav-link:nth-child(4) {
+        transition-delay: 0.2s;
+      }
+      .mobile-menu-overlay.is-active .mobile-nav-link:nth-child(5) {
+        transition-delay: 0.25s;
+      }
+      .mobile-nav-link:hover,
+      .mobile-nav-link:active {
+        color: var(--brand);
+        padding-left: 0.5rem;
+      }
+      .mobile-nav-link svg {
+        width: 24px;
+        height: 24px;
+        color: var(--brand);
+        opacity: 0.5;
+      }
+      .mobile-menu-footer {
+        margin-top: auto;
+        padding-top: 3rem;
+        padding-bottom: 2rem;
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+        opacity: 0;
+        transform: translateY(20px);
+        transition:
+          opacity 0.4s ease,
+          transform 0.4s ease;
+      }
+      .mobile-menu-overlay.is-active .mobile-menu-footer {
+        opacity: 1;
+        transform: translateY(0);
+        transition-delay: 0.3s;
+      }
+      .btn-mobile-login {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        padding: 1.25rem;
+        border-radius: 16px;
+        font-family: "Plus Jakarta Sans", system-ui, sans-serif;
+        font-size: 1rem;
+        font-weight: 800;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        color: #fff;
+        text-decoration: none;
+        background: linear-gradient(145deg, #ff8540, #ee5f05);
+        box-shadow:
+          8px 8px 22px rgba(255, 111, 26, 0.35),
+          -6px -6px 18px rgba(255, 255, 255, 0.9),
+          inset 1px 1px 3px rgba(255, 255, 255, 0.4);
+      }
+      body.menu-open {
+        overflow: hidden;
+      }
+
+      /* ---------- Newsletter input & validation ---------- */
+      .field {
+        position: relative;
+      }
+      .clay-input {
+        width: 100%;
+        max-width: 100%;
+        font-size: 16px;
+        line-height: 1.4;
+        color: var(--ink);
+        background: #fff;
+        border: 0;
+        border-radius: 0.9rem;
+        padding: 0.85rem 0.95rem;
+        box-shadow: var(--clay-in);
+        outline: none;
+        transition: box-shadow 0.25s ease;
+        -webkit-appearance: none;
+        appearance: none;
+      }
+      @media (min-width: 640px) {
+        .clay-input {
+          font-size: 14px;
+          border-radius: 1rem;
+          padding: 0.8rem 1rem;
+        }
+      }
+      .clay-input::placeholder {
+        color: rgba(0, 0, 0, 0.36);
+      }
+      .clay-input:focus {
+        box-shadow:
+          inset 4px 4px 10px rgba(0, 0, 0, 0.06),
+          inset -4px -4px 10px rgba(255, 255, 255, 1),
+          0 0 0 3px rgba(57, 182, 171, 0.42);
+      }
+      .field.has-error .clay-input {
+        box-shadow:
+          inset 4px 4px 10px rgba(255, 111, 26, 0.2),
+          inset -4px -4px 10px rgba(255, 255, 255, 1),
+          0 0 0 3px rgba(255, 111, 26, 0.36);
+      }
+      .err-msg {
+        display: none;
+        margin: 0.45rem 0 0 0.3rem;
+        font-size: 0.75rem;
+        font-weight: 600;
+        line-height: 1.35;
+        color: #c94f00;
+      }
+      .field.has-error .err-msg {
+        display: block;
+        animation: errIn 0.26s ease both;
+      }
+      @keyframes errIn {
+        from {
+          opacity: 0;
+          transform: translateY(-4px);
+        }
+        to {
+          opacity: 1;
+          transform: none;
+        }
+      }
+
+      /* ---------- Footer links & socials ---------- */
+      .footer-heading {
+        font-family: "Plus Jakarta Sans", system-ui, sans-serif;
+        font-size: 0.75rem;
+        font-weight: 800;
+        text-transform: uppercase;
+        letter-spacing: 0.15em;
+        color: rgba(0, 0, 0, 0.4);
+        margin-bottom: 1.25rem;
+      }
+      .footer-link {
+        display: inline-block;
+        font-size: 0.9rem;
+        font-weight: 600;
+        color: rgba(0, 0, 0, 0.65);
+        text-decoration: none;
+        margin-bottom: 0.85rem;
+        transition:
+          color 0.2s ease,
+          transform 0.2s ease;
+      }
+      .footer-link:hover {
+        color: var(--brand);
+        transform: translateX(4px);
+      }
+      .social-icon {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 36px;
+        height: 36px;
+        border-radius: 10px;
+        color: rgba(0, 0, 0, 0.6);
+        background: #fff;
+        box-shadow: var(--clay-sm);
+        transition: all 0.2s ease;
+      }
+      .social-icon:hover {
+        color: #fff;
+        background: var(--brand);
+        transform: translateY(-2px);
+        box-shadow: 4px 4px 12px rgba(57, 182, 171, 0.35);
+      }
+
+      /* ---------- Extra hover animation for clay-accent buttons ---------- */
+      .clay-accent {
+        transition:
+          transform 0.2s ease,
+          box-shadow 0.2s ease;
+      }
+      .clay-accent:hover {
+        transform: translateY(-2px);
+        box-shadow:
+          10px 10px 26px rgba(255, 111, 26, 0.42),
+          -6px -6px 18px rgba(255, 255, 255, 0.9),
+          inset 2px 2px 6px rgba(255, 255, 255, 0.4),
+          inset -3px -3px 8px rgba(0, 0, 0, 0.14);
+      }
+    </style>
+  </head>
+
+  <body class="font-body antialiased">
+    <!-- ============================================================
+     NAVBAR (fixed to top)
+     ============================================================ -->
+    <header class="navbar-container">
+      <div class="navbar-inner">
+        <a href="./index.html" class="flex items-center gap-2 no-underline">
+          <img
+            src="./assets/logo.webp"
+            alt="STACKLY Logo"
+            class="h-8 sm:h-12 w-auto object-contain"
+          />
+        </a>
+
+        <nav class="desktop-nav">
+          <a href="./index.html" class="nav-link">Home</a>
+          <a href="./services.html" class="nav-link">Services</a>
+          <a href="./about.html" class="nav-link">About</a>
+          <a href="./blog.html" class="nav-link">Blog</a>
+          <a href="./contact.html" class="nav-link">Contact</a>
+        </nav>
+
+        <div class="flex items-center gap-3">
+          <a href="./login.html" class="btn-login hidden lg:inline-flex"
+            >Login</a
+          >
+
+          <button id="openMenuBtn" class="btn-hamburger" aria-label="Open Menu">
+            <svg
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2.5"
+              stroke-linecap="round"
+            >
+              <line x1="3" y1="7" x2="21" y2="7"></line>
+              <line x1="3" y1="12" x2="21" y2="12"></line>
+              <line x1="3" y1="17" x2="21" y2="17"></line>
+            </svg>
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <!-- ============================================================
+     FULL-SCREEN MOBILE MENU
+     ============================================================ -->
+    <div id="mobileMenu" class="mobile-menu-overlay">
+      <div class="mobile-menu-header">
+        <button
+          id="closeMenuBtn"
+          class="btn-close-menu"
+          aria-label="Close Menu"
+        >
+          <svg
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2.5"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <line x1="18" y1="6" x2="6" y2="18"></line>
+            <line x1="6" y1="6" x2="18" y2="18"></line>
+          </svg>
+        </button>
+      </div>
+
+      <nav class="mobile-nav">
+        <a href="./index.html" class="mobile-nav-link">
+          Home
+          <svg
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2.5"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <line x1="5" y1="12" x2="19" y2="12" />
+            <polyline points="12 5 19 12 12 19" />
+          </svg>
+        </a>
+        <a href="./services.html" class="mobile-nav-link">
+          Services
+          <svg
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2.5"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <line x1="5" y1="12" x2="19" y2="12" />
+            <polyline points="12 5 19 12 12 19" />
+          </svg>
+        </a>
+        <a href="./about.html" class="mobile-nav-link">
+          About
+          <svg
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2.5"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <line x1="5" y1="12" x2="19" y2="12" />
+            <polyline points="12 5 19 12 12 19" />
+          </svg>
+        </a>
+        <a href="./blog.html" class="mobile-nav-link">
+          Blog
+          <svg
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2.5"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <line x1="5" y1="12" x2="19" y2="12" />
+            <polyline points="12 5 19 12 12 19" />
+          </svg>
+        </a>
+        <a href="./contact.html" class="mobile-nav-link">
+          Contact
+          <svg
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2.5"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <line x1="5" y1="12" x2="19" y2="12" />
+            <polyline points="12 5 19 12 12 19" />
+          </svg>
+        </a>
+      </nav>
+
+      <div class="mobile-menu-footer">
+        <a href="./login.html" class="btn-mobile-login">Login</a>
+      </div>
+    </div>
+
+    <main>
+      <!-- ============================================================
+     1 · HERO BANNER
+     ============================================================ -->
+      <section class="hero relative isolate overflow-hidden w-full">
+        <div
+          class="hero-bg absolute inset-0 -z-10 bg-cover bg-center"
+          style="background-image: url(&quot;./assets/h2.webp&quot;)"
+        ></div>
+
+        <div
+          class="absolute inset-0 -z-10"
+          style="
+            background: linear-gradient(
+              155deg,
+              rgba(0, 0, 0, 0.82) 0%,
+              rgba(0, 0, 0, 0.46) 45%,
+              rgba(57, 182, 171, 0.62) 100%
+            );
+          "
+        ></div>
+
+        <div
+          class="pointer-events-none absolute -z-10 -right-24 -top-24 w-56 h-56 sm:w-80 sm:h-80 rounded-full opacity-40 blur-2xl"
+          style="
+            background: radial-gradient(
+              circle at 30% 30%,
+              #ff6f1a,
+              transparent 70%
+            );
+          "
+        ></div>
+
+        <div
+          class="relative z-10 mx-auto max-w-7xl px-4 sm:px-8 lg:px-12 py-10 sm:py-14 lg:py-20"
+        >
+          <p
+            class="hero-eyebrow inline-flex items-center gap-2 rounded-full bg-white/12 border border-white/25 px-3 sm:px-4 py-1.5 text-[10px] sm:text-[11px] font-bold uppercase tracking-[.18em] text-white"
+          >
+            <span class="w-1.5 h-1.5 rounded-full bg-accent"></span>
+            Services · Stackly
+          </p>
+
+          <h1
+            class="hero-title mt-4 sm:mt-5 font-display font-extrabold text-white leading-[0.98] text-[clamp(1.75rem,8vw,4.25rem)]"
+          >
+            <span>Made for you.</span>
+            <span class="text-sand">Priced fairly.</span>
+          </h1>
+
+          <p
+            class="hero-sub mt-4 max-w-xl text-[14px] sm:text-base lg:text-lg leading-relaxed text-white/85"
+          >
+            Six services, six packages. No hidden fees, no surprise markup —
+            just honest travel designed one trip at a time.
+          </p>
+
+          <div class="mt-5 sm:mt-6 flex flex-wrap gap-2 sm:gap-2.5">
+            <span
+              class="hero-chip inline-flex items-center gap-2 rounded-xl sm:rounded-2xl bg-white/12 border border-white/25 px-3 sm:px-4 py-2 sm:py-2.5 text-[10px] sm:text-xs font-bold uppercase tracking-wider text-white"
+            >
+              <svg
+                width="12"
+                height="12"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="#39b6ab"
+                stroke-width="2.6"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <polyline points="20 6 9 17 4 12" />
+              </svg>
+              No hidden fees
+            </span>
+            <span
+              class="hero-chip inline-flex items-center gap-2 rounded-xl sm:rounded-2xl bg-white/12 border border-white/25 px-3 sm:px-4 py-2 sm:py-2.5 text-[10px] sm:text-xs font-bold uppercase tracking-wider text-white"
+            >
+              <svg
+                width="12"
+                height="12"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="#e7b490"
+                stroke-width="2.6"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path
+                  d="M12 2 15 9l7 .6-5.4 4.6L18.2 21 12 17.3 5.8 21l1.6-6.8L2 9.6 9 9z"
+                />
+              </svg>
+              Flexible cancellation
+            </span>
+            <span
+              class="hero-chip inline-flex items-center gap-2 rounded-xl sm:rounded-2xl bg-white/12 border border-white/25 px-3 sm:px-4 py-2 sm:py-2.5 text-[10px] sm:text-xs font-bold uppercase tracking-wider text-white"
+            >
+              <svg
+                width="12"
+                height="12"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="#ff6f1a"
+                stroke-width="2.6"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <circle cx="12" cy="12" r="9" />
+                <polyline points="12 7 12 12 15.5 14" />
+              </svg>
+              24/7 support
+            </span>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============================================================
+     2 · SERVICES
+     ============================================================ -->
+      <section
+        class="px-4 sm:px-5 lg:px-8 pt-12 sm:pt-16 lg:pt-20 pb-4 sm:pb-6"
+        id="services"
+      >
+        <div class="mx-auto max-w-7xl">
+          <div class="text-center mb-8 sm:mb-12" data-aos="fade-up">
+            <p
+              class="text-[10px] sm:text-[11px] font-bold uppercase tracking-[.24em] text-brand"
+            >
+              What we do
+            </p>
+            <h2
+              class="mt-2 font-display font-extrabold text-[clamp(1.5rem,6vw,2.75rem)] leading-[1.08] text-ink"
+            >
+              Six services, <span class="text-accent">one promise</span>
+            </h2>
+            <p
+              class="mt-3 max-w-xl mx-auto text-[13px] sm:text-[15px] leading-relaxed text-ink/60"
+            >
+              Every service is handled by a dedicated designer — not a call
+              centre, not a bot. Here&rsquo;s what we actually do.
+            </p>
+          </div>
+
+          <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5">
+            <!-- Service 1 -->
+            <article class="service-card clay-sm p-5 sm:p-6" data-aos="fade-up">
+              <div class="service-icon icon-brand">
+                <svg
+                  width="22"
+                  height="22"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2.2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <path
+                    d="M9 20l-5.447-2.724A1 1 0 0 1 3 16.382V5.618a1 1 0 0 1 1.447-.894L9 7m0 13l6-3m-6 3V7m6 10l5.447 2.724A1 1 0 0 0 21 18.382V7.618a1 1 0 0 0-1.447-.894L15 9m0 8V7m0 0L9 3"
+                  />
+                </svg>
+              </div>
+              <h3
+                class="mt-4 font-display font-extrabold text-[15px] sm:text-base text-ink leading-snug"
+              >
+                Bespoke itinerary design
+              </h3>
+              <p
+                class="mt-2 text-[12.5px] sm:text-[13px] leading-relaxed text-ink/60 flex-1"
+              >
+                Hand-built routes based on how you actually travel — not a
+                template. Every day has a reason, every stay was vetted in
+                person.
+              </p>
+              <a
+                href="./404.html"
+                class="mt-4 inline-flex items-center gap-1.5 text-[11px] font-extrabold uppercase tracking-[.14em] text-brand no-underline hover:text-accent transition"
+              >
+                Learn more
+                <svg
+                  width="12"
+                  height="12"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="3"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <line x1="4" y1="12" x2="19" y2="12" />
+                  <polyline points="13 6 19 12 13 18" />
+                </svg>
+              </a>
+            </article>
+
+            <!-- Service 2 -->
+            <article
+              class="service-card clay-sm p-5 sm:p-6"
+              data-aos="fade-up"
+              data-aos-delay="60"
+            >
+              <div class="service-icon icon-accent">
+                <svg
+                  width="22"
+                  height="22"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2.2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
+                  <polyline points="9 22 9 12 15 12 15 22" />
+                </svg>
+              </div>
+              <h3
+                class="mt-4 font-display font-extrabold text-[15px] sm:text-base text-ink leading-snug"
+              >
+                Boutique stays
+              </h3>
+              <p
+                class="mt-2 text-[12.5px] sm:text-[13px] leading-relaxed text-ink/60 flex-1"
+              >
+                A personal shortlist of small hotels, villas and homestays
+                we&rsquo;ve stayed in ourselves. We only book what we&rsquo;d
+                stay in again.
+              </p>
+              <a
+                href="./404.html"
+                class="mt-4 inline-flex items-center gap-1.5 text-[11px] font-extrabold uppercase tracking-[.14em] text-brand no-underline hover:text-accent transition"
+              >
+                Learn more
+                <svg
+                  width="12"
+                  height="12"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="3"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <line x1="4" y1="12" x2="19" y2="12" />
+                  <polyline points="13 6 19 12 13 18" />
+                </svg>
+              </a>
+            </article>
+
+            <!-- Service 3 -->
+            <article
+              class="service-card clay-sm p-5 sm:p-6"
+              data-aos="fade-up"
+              data-aos-delay="120"
+            >
+              <div class="service-icon icon-sand">
+                <svg
+                  width="22"
+                  height="22"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2.2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <circle cx="12" cy="12" r="10" />
+                  <polygon
+                    points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"
+                  />
+                </svg>
+              </div>
+              <h3
+                class="mt-4 font-display font-extrabold text-[15px] sm:text-base text-ink leading-snug"
+              >
+                Private tours &amp; experiences
+              </h3>
+              <p
+                class="mt-2 text-[12.5px] sm:text-[13px] leading-relaxed text-ink/60 flex-1"
+              >
+                Small-group walks, sunset sails, cooking classes with real
+                families. Led by locals we&rsquo;ve known for years.
+              </p>
+              <a
+                href="./404.html"
+                class="mt-4 inline-flex items-center gap-1.5 text-[11px] font-extrabold uppercase tracking-[.14em] text-brand no-underline hover:text-accent transition"
+              >
+                Learn more
+                <svg
+                  width="12"
+                  height="12"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="3"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <line x1="4" y1="12" x2="19" y2="12" />
+                  <polyline points="13 6 19 12 13 18" />
+                </svg>
+              </a>
+            </article>
+
+            <!-- Service 4 -->
+            <article class="service-card clay-sm p-5 sm:p-6" data-aos="fade-up">
+              <div class="service-icon icon-brand">
+                <svg
+                  width="22"
+                  height="22"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2.2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <path
+                    d="M17.8 19.2 16 11l3.5-3.5C21 6 21.5 4 21 3c-1-.5-3 0-4.5 1.5L13 8 4.8 6.2c-.5-.1-.9.1-1.1.5l-.3.5c-.2.5-.1 1 .3 1.3L9 12l-2 3H4l-1 1 3 2 2 3 1-1v-3l3-2 3.5 5.3c.3.4.8.5 1.3.3l.5-.2c.4-.3.6-.7.5-1.2z"
+                  />
+                </svg>
+              </div>
+              <h3
+                class="mt-4 font-display font-extrabold text-[15px] sm:text-base text-ink leading-snug"
+              >
+                Airport &amp; private transfers
+              </h3>
+              <p
+                class="mt-2 text-[12.5px] sm:text-[13px] leading-relaxed text-ink/60 flex-1"
+              >
+                Vetted drivers, clear pricing, real-time flight tracking.
+                Someone waiting with your name — every time.
+              </p>
+              <a
+                href="./404.html"
+                class="mt-4 inline-flex items-center gap-1.5 text-[11px] font-extrabold uppercase tracking-[.14em] text-brand no-underline hover:text-accent transition"
+              >
+                Learn more
+                <svg
+                  width="12"
+                  height="12"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="3"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <line x1="4" y1="12" x2="19" y2="12" />
+                  <polyline points="13 6 19 12 13 18" />
+                </svg>
+              </a>
+            </article>
+
+            <!-- Service 5 -->
+            <article
+              class="service-card clay-sm p-5 sm:p-6"
+              data-aos="fade-up"
+              data-aos-delay="60"
+            >
+              <div class="service-icon icon-accent">
+                <svg
+                  width="22"
+                  height="22"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2.2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <rect x="2" y="7" width="20" height="14" rx="2" />
+                  <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16" />
+                </svg>
+              </div>
+              <h3
+                class="mt-4 font-display font-extrabold text-[15px] sm:text-base text-ink leading-snug"
+              >
+                Corporate &amp; group travel
+              </h3>
+              <p
+                class="mt-2 text-[12.5px] sm:text-[13px] leading-relaxed text-ink/60 flex-1"
+              >
+                Offsites, incentive trips and small conferences. One point of
+                contact, one invoice, no spreadsheets.
+              </p>
+              <a
+                href="./404.html"
+                class="mt-4 inline-flex items-center gap-1.5 text-[11px] font-extrabold uppercase tracking-[.14em] text-brand no-underline hover:text-accent transition"
+              >
+                Learn more
+                <svg
+                  width="12"
+                  height="12"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="3"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <line x1="4" y1="12" x2="19" y2="12" />
+                  <polyline points="13 6 19 12 13 18" />
+                </svg>
+              </a>
+            </article>
+
+            <!-- Service 6 -->
+            <article
+              class="service-card clay-sm p-5 sm:p-6"
+              data-aos="fade-up"
+              data-aos-delay="120"
+            >
+              <div class="service-icon icon-ink">
+                <svg
+                  width="22"
+                  height="22"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2.2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <path
+                    d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"
+                  />
+                </svg>
+              </div>
+              <h3
+                class="mt-4 font-display font-extrabold text-[15px] sm:text-base text-ink leading-snug"
+              >
+                24/7 concierge
+              </h3>
+              <p
+                class="mt-2 text-[12.5px] sm:text-[13px] leading-relaxed text-ink/60 flex-1"
+              >
+                Missed connection? Last-minute dinner? Midnight change of plans?
+                One message and it&rsquo;s handled.
+              </p>
+              <a
+                href="./404.html"
+                class="mt-4 inline-flex items-center gap-1.5 text-[11px] font-extrabold uppercase tracking-[.14em] text-brand no-underline hover:text-accent transition"
+              >
+                Learn more
+                <svg
+                  width="12"
+                  height="12"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="3"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <line x1="4" y1="12" x2="19" y2="12" />
+                  <polyline points="13 6 19 12 13 18" />
+                </svg>
+              </a>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============================================================
+     2.5 · FULL-WIDTH VIDEO BREAK
+     ============================================================ -->
+      <section
+        class="video-break relative isolate w-full overflow-hidden"
+        id="film"
+      >
+        <video
+          id="stacklyVideo"
+          class="w-full h-[320px] sm:h-[440px] lg:h-[600px] object-cover"
+          loop
+          playsinline
+          preload="metadata"
+          poster="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1920&q=80"
+        >
+          <source src="./assets/video.mp4" type="video/mp4" />
+          <source
+            src="https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4"
+            type="video/mp4"
+          />
+        </video>
+
+        <div class="absolute inset-0 bg-black/10 pointer-events-none"></div>
+
+        <button
+          id="videoToggle"
+          type="button"
+          aria-label="Play video"
+          class="video-play-btn absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-20"
+        >
+          <svg
+            width="28"
+            height="28"
+            viewBox="0 0 24 24"
+            fill="currentColor"
+            class="ml-1 sm:ml-1.5"
+          >
+            <polygon points="6 4 20 12 6 20 6 4"></polygon>
+          </svg>
+        </button>
+      </section>
+
+      <!-- ============================================================
+     3 · PRICING PACKAGES
+     ============================================================ -->
+      <section
+        class="px-4 sm:px-5 lg:px-8 pt-12 sm:pt-16 lg:pt-20 pb-14 sm:pb-20 lg:pb-24"
+        id="pricing"
+      >
+        <div class="mx-auto max-w-7xl">
+          <div class="text-center mb-8 sm:mb-14" data-aos="fade-up">
+            <p
+              class="text-[10px] sm:text-[11px] font-bold uppercase tracking-[.24em] text-brand"
+            >
+              Pricing
+            </p>
+            <h2
+              class="mt-2 font-display font-extrabold text-[clamp(1.5rem,6vw,2.75rem)] leading-[1.08] text-ink"
+            >
+              Six packages. <span class="text-accent">Zero surprises.</span>
+            </h2>
+            <p
+              class="mt-3 max-w-xl mx-auto text-[13px] sm:text-[15px] leading-relaxed text-ink/60"
+            >
+              Transparent, per-trip pricing. Everything included — no hidden
+              fees, no per-person upcharge, no &ldquo;convenience&rdquo; fees.
+            </p>
+          </div>
+
+          <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6">
+            <!-- 1 — Weekend Escape -->
+            <article class="price-card" data-aos="fade-up">
+              <p class="price-name">Weekend Escape</p>
+              <p class="price-tagline">A short, well-planned break for two.</p>
+
+              <div class="price-amount">
+                <span class="currency">$</span>
+                <span>299</span>
+                <span class="unit">/trip</span>
+              </div>
+
+              <div class="price-divider"></div>
+
+              <ul class="price-features">
+                <li>
+                  <span class="check"
+                    ><svg
+                      width="9"
+                      height="9"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="3.5"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    >
+                      <polyline points="20 6 9 17 4 12" /></svg
+                  ></span>
+                  2-night stay, curated
+                </li>
+                <li>
+                  <span class="check"
+                    ><svg
+                      width="9"
+                      height="9"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="3.5"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    >
+                      <polyline points="20 6 9 17 4 12" /></svg
+                  ></span>
+                  1 private experience
+                </li>
+                <li>
+                  <span class="check"
+                    ><svg
+                      width="9"
+                      height="9"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="3.5"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    >
+                      <polyline points="20 6 9 17 4 12" /></svg
+                  ></span>
+                  Round-trip transfers
+                </li>
+                <li>
+                  <span class="check"
+                    ><svg
+                      width="9"
+                      height="9"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="3.5"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    >
+                      <polyline points="20 6 9 17 4 12" /></svg
+                  ></span>
+                  Email support
+                </li>
+                <li>
+                  <span class="check muted"
+                    ><svg
+                      width="9"
+                      height="9"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="3.5"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    >
+                      <line x1="18" y1="6" x2="6" y2="18" />
+                      <line x1="6" y1="6" x2="18" y2="18" /></svg
+                  ></span>
+                  <span class="off">24/7 concierge</span>
+                </li>
+                <li>
+                  <span class="check muted"
+                    ><svg
+                      width="9"
+                      height="9"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="3.5"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    >
+                      <line x1="18" y1="6" x2="6" y2="18" />
+                      <line x1="6" y1="6" x2="18" y2="18" /></svg
+                  ></span>
+                  <span class="off">Dedicated designer</span>
+                </li>
+              </ul>
+
+              <a href="./404.html" class="price-cta cta-ghost"> Choose plan </a>
+            </article>
+
+            <!-- 2 — Explorer -->
+            <article class="price-card" data-aos="fade-up" data-aos-delay="60">
+              <p class="price-name">Explorer</p>
+              <p class="price-tagline">The classic STACKLY short-haul trip.</p>
+
+              <div class="price-amount">
+                <span class="currency">$</span>
+                <span>599</span>
+                <span class="unit">/trip</span>
+              </div>
+
+              <div class="price-divider"></div>
+
+              <ul class="price-features">
+                <li>
+                  <span class="check"
+                    ><svg
+                      width="9"
+                      height="9"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="3.5"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    >
+                      <polyline points="20 6 9 17 4 12" /></svg
+                  ></span>
+                  4-night stay, curated
+                </li>
+                <li>
+                  <span class="check"
+                    ><svg
+                      width="9"
+                      height="9"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="3.5"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    >
+                      <polyline points="20 6 9 17 4 12" /></svg
+                  ></span>
+                  2 private experiences
+                </li>
+                <li>
+                  <span class="check"
+                    ><svg
+                      width="9"
+                      height="9"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="3.5"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    >
+                      <polyline points="20 6 9 17 4 12" /></svg
+                  ></span>
+                  All transfers included
+                </li>
+                <li>
+                  <span class="check"
+                    ><svg
+                      width="9"
+                      height="9"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="3.5"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    >
+                      <polyline points="20 6 9 17 4 12" /></svg
+                  ></span>
+                  Dedicated designer
+                </li>
+                <li>
+                  <span class="check"
+                    ><svg
+                      width="9"
+                      height="9"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="3.5"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    >
+                      <polyline points="20 6 9 17 4 12" /></svg
+                  ></span>
+                  Email &amp; chat support
+                </li>
+                <li>
+                  <span class="check muted"
+                    ><svg
+                      width="9"
+                      height="9"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="3.5"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    >
+                      <line x1="18" y1="6" x2="6" y2="18" />
+                      <line x1="6" y1="6" x2="18" y2="18" /></svg
+                  ></span>
+                  <span class="off">24/7 concierge</span>
+                </li>
+              </ul>
+
+              <a href="./404.html" class="price-cta cta-ghost"> Choose plan </a>
+            </article>
+
+            <!-- 3 — Voyager (FEATURED) -->
+            <article
+              class="price-card is-featured"
+              data-aos="fade-up"
+              data-aos-delay="120"
+            >
+              <span class="featured-ribbon">
+                <svg
+                  width="10"
+                  height="10"
+                  viewBox="0 0 24 24"
+                  fill="currentColor"
+                >
+                  <path
+                    d="M12 2 15 9l7 .6-5.4 4.6L18.2 21 12 17.3 5.8 21l1.6-6.8L2 9.6 9 9z"
+                  />
+                </svg>
+                Most popular
+              </span>
+
+              <p class="price-name">Voyager</p>
+              <p class="price-tagline">Our best-value long-haul package.</p>
+
+              <div class="price-amount">
+                <span class="currency">$</span>
+                <span>999</span>
+                <span class="unit">/trip</span>
+              </div>
+
+              <div class="price-divider"></div>
+
+              <ul class="price-features">
+                <li>
+                  <span class="check"
+                    ><svg
+                      width="9"
+                      height="9"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="3.5"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    >
+                      <polyline points="20 6 9 17 4 12" /></svg
+                  ></span>
+                  7-night multi-city route
+                </li>
+                <li>
+                  <span class="check"
+                    ><svg
+                      width="9"
+                      height="9"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="3.5"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    >
+                      <polyline points="20 6 9 17 4 12" /></svg
+                  ></span>
+                  4 private experiences
+                </li>
+                <li>
+                  <span class="check"
+                    ><svg
+                      width="9"
+                      height="9"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="3.5"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    >
+                      <polyline points="20 6 9 17 4 12" /></svg
+                  ></span>
+                  All transfers &amp; flights
+                </li>
+                <li>
+                  <span class="check"
+                    ><svg
+                      width="9"
+                      height="9"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="3.5"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    >
+                      <polyline points="20 6 9 17 4 12" /></svg
+                  ></span>
+                  Dedicated designer
+                </li>
+                <li>
+                  <span class="check"
+                    ><svg
+                      width="9"
+                      height="9"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="3.5"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    >
+                      <polyline points="20 6 9 17 4 12" /></svg
+                  ></span>
+                  24/7 concierge line
+                </li>
+                <li>
+                  <span class="check"
+                    ><svg
+                      width="9"
+                      height="9"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="3.5"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    >
+                      <polyline points="20 6 9 17 4 12" /></svg
+                  ></span>
+                  Flexible cancellation
+                </li>
+              </ul>
+
+              <a href="./404.html" class="price-cta cta-brand"> Choose plan </a>
+            </article>
+
+            <!-- 4 — Connoisseur -->
+            <article class="price-card" data-aos="fade-up">
+              <p class="price-name">Connoisseur</p>
+              <p class="price-tagline">
+                For travellers who want the good stuff.
+              </p>
+
+              <div class="price-amount">
+                <span class="currency">$</span>
+                <span>1,899</span>
+                <span class="unit">/trip</span>
+              </div>
+
+              <div class="price-divider"></div>
+
+              <ul class="price-features">
+                <li>
+                  <span class="check"
+                    ><svg
+                      width="9"
+                      height="9"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="3.5"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    >
+                      <polyline points="20 6 9 17 4 12" /></svg
+                  ></span>
+                  10-night curated journey
+                </li>
+                <li>
+                  <span class="check"
+                    ><svg
+                      width="9"
+                      height="9"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="3.5"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    >
+                      <polyline points="20 6 9 17 4 12" /></svg
+                  ></span>
+                  6 private experiences
+                </li>
+                <li>
+                  <span class="check"
+                    ><svg
+                      width="9"
+                      height="9"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="3.5"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    >
+                      <polyline points="20 6 9 17 4 12" /></svg
+                  ></span>
+                  Boutique &amp; design stays
+                </li>
+                <li>
+                  <span class="check"
+                    ><svg
+                      width="9"
+                      height="9"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="3.5"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    >
+                      <polyline points="20 6 9 17 4 12" /></svg
+                  ></span>
+                  Senior designer assigned
+                </li>
+                <li>
+                  <span class="check"
+                    ><svg
+                      width="9"
+                      height="9"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="3.5"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    >
+                      <polyline points="20 6 9 17 4 12" /></svg
+                  ></span>
+                  24/7 concierge line
+                </li>
+                <li>
+                  <span class="check"
+                    ><svg
+                      width="9"
+                      height="9"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="3.5"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    >
+                      <polyline points="20 6 9 17 4 12" /></svg
+                  ></span>
+                  Restaurant reservations
+                </li>
+              </ul>
+
+              <a href="./404.html" class="price-cta cta-ghost"> Choose plan </a>
+            </article>
+
+            <!-- 5 — Elite -->
+            <article class="price-card" data-aos="fade-up" data-aos-delay="60">
+              <p class="price-name">Elite</p>
+              <p class="price-tagline">The full STACKLY luxury treatment.</p>
+
+              <div class="price-amount">
+                <span class="currency">$</span>
+                <span>3,499</span>
+                <span class="unit">/trip</span>
+              </div>
+
+              <div class="price-divider"></div>
+
+              <ul class="price-features">
+                <li>
+                  <span class="check"
+                    ><svg
+                      width="9"
+                      height="9"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="3.5"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    >
+                      <polyline points="20 6 9 17 4 12" /></svg
+                  ></span>
+                  14-night multi-country trip
+                </li>
+                <li>
+                  <span class="check"
+                    ><svg
+                      width="9"
+                      height="9"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="3.5"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    >
+                      <polyline points="20 6 9 17 4 12" /></svg
+                  ></span>
+                  10 private experiences
+                </li>
+                <li>
+                  <span class="check"
+                    ><svg
+                      width="9"
+                      height="9"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="3.5"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    >
+                      <polyline points="20 6 9 17 4 12" /></svg
+                  ></span>
+                  5-star &amp; luxury stays
+                </li>
+                <li>
+                  <span class="check"
+                    ><svg
+                      width="9"
+                      height="9"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="3.5"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    >
+                      <polyline points="20 6 9 17 4 12" /></svg
+                  ></span>
+                  Private guide &amp; driver
+                </li>
+                <li>
+                  <span class="check"
+                    ><svg
+                      width="9"
+                      height="9"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="3.5"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    >
+                      <polyline points="20 6 9 17 4 12" /></svg
+                  ></span>
+                  24/7 personal concierge
+                </li>
+                <li>
+                  <span class="check"
+                    ><svg
+                      width="9"
+                      height="9"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="3.5"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    >
+                      <polyline points="20 6 9 17 4 12" /></svg
+                  ></span>
+                  Business-class flights
+                </li>
+              </ul>
+
+              <a href="./404.html" class="price-cta cta-ghost"> Choose plan </a>
+            </article>
+
+            <!-- 6 — Bespoke -->
+            <article class="price-card" data-aos="fade-up" data-aos-delay="120">
+              <p class="price-name">Bespoke</p>
+              <p class="price-tagline">
+                Something that doesn&rsquo;t fit a box.
+              </p>
+
+              <div class="price-amount custom">Let&rsquo;s talk</div>
+
+              <div class="price-divider"></div>
+
+              <ul class="price-features">
+                <li>
+                  <span class="check"
+                    ><svg
+                      width="9"
+                      height="9"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="3.5"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    >
+                      <polyline points="20 6 9 17 4 12" /></svg
+                  ></span>
+                  Fully custom duration &amp; route
+                </li>
+                <li>
+                  <span class="check"
+                    ><svg
+                      width="9"
+                      height="9"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="3.5"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    >
+                      <polyline points="20 6 9 17 4 12" /></svg
+                  ></span>
+                  Multi-family &amp; group trips
+                </li>
+                <li>
+                  <span class="check"
+                    ><svg
+                      width="9"
+                      height="9"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="3.5"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    >
+                      <polyline points="20 6 9 17 4 12" /></svg
+                  ></span>
+                  Corporate &amp; incentive travel
+                </li>
+                <li>
+                  <span class="check"
+                    ><svg
+                      width="9"
+                      height="9"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="3.5"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    >
+                      <polyline points="20 6 9 17 4 12" /></svg
+                  ></span>
+                  Dedicated point of contact
+                </li>
+                <li>
+                  <span class="check"
+                    ><svg
+                      width="9"
+                      height="9"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="3.5"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    >
+                      <polyline points="20 6 9 17 4 12" /></svg
+                  ></span>
+                  NDAs &amp; privacy on request
+                </li>
+                <li>
+                  <span class="check"
+                    ><svg
+                      width="9"
+                      height="9"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="3.5"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    >
+                      <polyline points="20 6 9 17 4 12" /></svg
+                  ></span>
+                  24/7 dedicated team
+                </li>
+              </ul>
+
+              <a href="./404.html" class="price-cta cta-primary">
+                Get a quote
+              </a>
+            </article>
+          </div>
+
+          <p
+            class="mt-8 sm:mt-10 text-center text-[11px] sm:text-[12px] text-ink/45 leading-relaxed max-w-2xl mx-auto"
+            data-aos="fade-up"
+          >
+            All prices are per-trip planning fees and exclude flights, hotels
+            and activities (booked separately at cost). Every package includes a
+            no-questions-asked one-round revision. Prices shown in USD.
+          </p>
+        </div>
+      </section>
+
+      <!-- ============================================================
+     4 · BRAND MARQUEE
+     ============================================================ -->
+      <section class="marquee-band" aria-label="Partner brands">
+        <div class="marquee-track">
+          <div class="marquee-group">
+            <span
+              class="font-display font-extrabold uppercase tracking-tight text-[clamp(1.4rem,7vw,4.75rem)] leading-none text-white"
+              >AIRBNB</span
+            >
+            <span class="text-[clamp(.85rem,3vw,2rem)] text-brand">✦</span>
+            <span
+              class="font-display font-extrabold uppercase tracking-tight text-[clamp(1.4rem,7vw,4.75rem)] leading-none"
+              style="color: #39b6ab"
+              >BOOKING.COM</span
+            >
+            <span class="text-[clamp(.85rem,3vw,2rem)] text-sand">✦</span>
+            <span
+              class="font-display font-extrabold uppercase tracking-tight text-[clamp(1.4rem,7vw,4.75rem)] leading-none text-white"
+              >EXPEDIA</span
+            >
+            <span class="text-[clamp(.85rem,3vw,2rem)] text-accent">✦</span>
+            <span
+              class="font-display font-extrabold uppercase tracking-tight text-[clamp(1.4rem,7vw,4.75rem)] leading-none"
+              style="color: #e7b490"
+              >AGODA</span
+            >
+            <span class="text-[clamp(.85rem,3vw,2rem)] text-brand">✦</span>
+            <span
+              class="font-display font-extrabold uppercase tracking-tight text-[clamp(1.4rem,7vw,4.75rem)] leading-none text-white"
+              >TRIVAGO</span
+            >
+            <span class="text-[clamp(.85rem,3vw,2rem)] text-accent">✦</span>
+            <span
+              class="font-display font-extrabold uppercase tracking-tight text-[clamp(1.4rem,7vw,4.75rem)] leading-none"
+              style="color: #ff6f1a"
+              >KAYAK</span
+            >
+            <span class="text-[clamp(.85rem,3vw,2rem)] text-brand">✦</span>
+            <span
+              class="font-display font-extrabold uppercase tracking-tight text-[clamp(1.4rem,7vw,4.75rem)] leading-none text-white"
+              >SKYSCANNER</span
+            >
+            <span class="text-[clamp(.85rem,3vw,2rem)] text-sand">✦</span>
+            <span
+              class="font-display font-extrabold uppercase tracking-tight text-[clamp(1.4rem,7vw,4.75rem)] leading-none"
+              style="color: #39b6ab"
+              >TRIPADVISOR</span
+            >
+            <span class="text-[clamp(.85rem,3vw,2rem)] text-accent">✦</span>
+            <span
+              class="font-display font-extrabold uppercase tracking-tight text-[clamp(1.4rem,7vw,4.75rem)] leading-none text-white"
+              >MAKEMYTRIP</span
+            >
+            <span class="text-[clamp(.85rem,3vw,2rem)] text-brand">✦</span>
+            <span
+              class="font-display font-extrabold uppercase tracking-tight text-[clamp(1.4rem,7vw,4.75rem)] leading-none"
+              style="color: #e7b490"
+              >VIATOR</span
+            >
+            <span class="text-[clamp(.85rem,3vw,2rem)] text-accent">✦</span>
+          </div>
+
+          <div class="marquee-group" aria-hidden="true">
+            <span
+              class="font-display font-extrabold uppercase tracking-tight text-[clamp(1.4rem,7vw,4.75rem)] leading-none text-white"
+              >AIRBNB</span
+            >
+            <span class="text-[clamp(.85rem,3vw,2rem)] text-brand">✦</span>
+            <span
+              class="font-display font-extrabold uppercase tracking-tight text-[clamp(1.4rem,7vw,4.75rem)] leading-none"
+              style="color: #39b6ab"
+              >BOOKING.COM</span
+            >
+            <span class="text-[clamp(.85rem,3vw,2rem)] text-sand">✦</span>
+            <span
+              class="font-display font-extrabold uppercase tracking-tight text-[clamp(1.4rem,7vw,4.75rem)] leading-none text-white"
+              >EXPEDIA</span
+            >
+            <span class="text-[clamp(.85rem,3vw,2rem)] text-accent">✦</span>
+            <span
+              class="font-display font-extrabold uppercase tracking-tight text-[clamp(1.4rem,7vw,4.75rem)] leading-none"
+              style="color: #e7b490"
+              >AGODA</span
+            >
+            <span class="text-[clamp(.85rem,3vw,2rem)] text-brand">✦</span>
+            <span
+              class="font-display font-extrabold uppercase tracking-tight text-[clamp(1.4rem,7vw,4.75rem)] leading-none text-white"
+              >TRIVAGO</span
+            >
+            <span class="text-[clamp(.85rem,3vw,2rem)] text-accent">✦</span>
+            <span
+              class="font-display font-extrabold uppercase tracking-tight text-[clamp(1.4rem,7vw,4.75rem)] leading-none"
+              style="color: #ff6f1a"
+              >KAYAK</span
+            >
+            <span class="text-[clamp(.85rem,3vw,2rem)] text-brand">✦</span>
+            <span
+              class="font-display font-extrabold uppercase tracking-tight text-[clamp(1.4rem,7vw,4.75rem)] leading-none text-white"
+              >SKYSCANNER</span
+            >
+            <span class="text-[clamp(.85rem,3vw,2rem)] text-sand">✦</span>
+            <span
+              class="font-display font-extrabold uppercase tracking-tight text-[clamp(1.4rem,7vw,4.75rem)] leading-none"
+              style="color: #39b6ab"
+              >TRIPADVISOR</span
+            >
+            <span class="text-[clamp(.85rem,3vw,2rem)] text-accent">✦</span>
+            <span
+              class="font-display font-extrabold uppercase tracking-tight text-[clamp(1.4rem,7vw,4.75rem)] leading-none text-white"
+              >MAKEMYTRIP</span
+            >
+            <span class="text-[clamp(.85rem,3vw,2rem)] text-brand">✦</span>
+            <span
+              class="font-display font-extrabold uppercase tracking-tight text-[clamp(1.4rem,7vw,4.75rem)] leading-none"
+              style="color: #e7b490"
+              >VIATOR</span
+            >
+            <span class="text-[clamp(.85rem,3vw,2rem)] text-accent">✦</span>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- ============================================================
+     FOOTER
+     ============================================================ -->
+    <footer class="px-4 sm:px-6 lg:px-8 pb-6 sm:pb-8 w-full mt-auto">
+      <div
+        class="max-w-7xl mx-auto clay p-6 sm:p-10 lg:p-14 relative overflow-hidden"
+      >
+        <div
+          class="pointer-events-none absolute -right-20 -top-20 w-64 h-64 rounded-full opacity-20 blur-3xl"
+          style="background: radial-gradient(circle, #39b6ab, transparent 70%)"
+        ></div>
+        <div
+          class="pointer-events-none absolute -left-20 -bottom-20 w-64 h-64 rounded-full opacity-20 blur-3xl"
+          style="background: radial-gradient(circle, #ff6f1a, transparent 70%)"
+        ></div>
+
+        <div
+          class="relative z-10 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-10 lg:gap-8"
+        >
+          <div class="flex flex-col lg:col-span-3">
+            <a href="./index.html" class="mb-4 inline-block no-underline">
+              <img
+                src="./assets/logo.webp"
+                alt="STACKLY Logo"
+                class="h-14 w-auto object-contain"
+              />
+            </a>
+
+            <p class="text-[13px] leading-relaxed text-ink/60 mb-6 max-w-xs">
+              We design slow, human-made trips. No templates, no algorithms —
+              just a dedicated designer turning your dream trip into a story.
+            </p>
+
+            <div class="flex items-center gap-2">
+              <a href="./404.html" aria-label="Instagram" class="social-icon">
+                <svg
+                  width="16"
+                  height="16"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2.2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <rect x="3" y="3" width="18" height="18" rx="5" />
+                  <circle cx="12" cy="12" r="4" />
+                  <circle
+                    cx="17.2"
+                    cy="6.8"
+                    r="1"
+                    fill="currentColor"
+                    stroke="none"
+                  />
+                </svg>
+              </a>
+              <a href="./404.html" aria-label="X" class="social-icon">
+                <svg
+                  width="14"
+                  height="14"
+                  viewBox="0 0 24 24"
+                  fill="currentColor"
+                >
+                  <path
+                    d="M17.5 3h3.2l-7 8 8.3 10h-6.5l-5-6.1L4.7 21H1.5l7.5-8.6L1 3h6.7l4.5 5.6L17.5 3zm-1.1 16h1.8L7.7 4.9H5.8L16.4 19z"
+                  />
+                </svg>
+              </a>
+              <a href="./404.html" aria-label="LinkedIn" class="social-icon">
+                <svg
+                  width="16"
+                  height="16"
+                  viewBox="0 0 24 24"
+                  fill="currentColor"
+                >
+                  <path
+                    d="M4.98 3.5A2.5 2.5 0 1 1 0 3.5a2.5 2.5 0 0 1 4.98 0zM.3 8.2h4.4V24H.3V8.2zM8.3 8.2h4.2v2.2h.06c.6-1.1 2-2.3 4.2-2.3 4.5 0 5.3 2.9 5.3 6.7V24h-4.4v-7.9c0-1.9 0-4.3-2.6-4.3s-3 2-3 4.1V24H8.3V8.2z"
+                  />
+                </svg>
+              </a>
+            </div>
+          </div>
+
+          <div class="lg:col-span-2">
+            <h4 class="footer-heading">Quick Links</h4>
+            <ul class="list-none p-0 m-0 flex flex-col">
+              <li><a href="./index.html" class="footer-link">Home</a></li>
+              <li>
+                <a href="./services.html" class="footer-link">Products</a>
+              </li>
+              <li><a href="./about.html" class="footer-link">About Us</a></li>
+              <li><a href="./blog.html" class="footer-link">Journal</a></li>
+              <li><a href="./contact.html" class="footer-link">Contact</a></li>
+            </ul>
+          </div>
+
+          <div class="lg:col-span-3">
+            <h4 class="footer-heading">Get in Touch</h4>
+            <ul class="list-none p-0 m-0 flex flex-col gap-4">
+              <li class="flex items-start gap-3">
+                <span
+                  class="grid place-items-center w-8 h-8 shrink-0 rounded-lg bg-brand/10 text-brand mt-0.5"
+                >
+                  <svg
+                    width="14"
+                    height="14"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2.5"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  >
+                    <path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 0 1 18 0z" />
+                    <circle cx="12" cy="10" r="3" />
+                  </svg>
+                </span>
+                <div>
+                  <p
+                    class="text-[10px] font-bold uppercase tracking-wider text-ink/40 mb-0.5"
+                  >
+                    Head Office
+                  </p>
+                  <p class="text-[13px] font-semibold text-ink/70 leading-snug">
+                    14 Marine Drive, Panaji<br />Goa 403001, India
+                  </p>
+                </div>
+              </li>
+
+              <li class="flex items-start gap-3">
+                <span
+                  class="grid place-items-center w-8 h-8 shrink-0 rounded-lg bg-accent/10 text-accent mt-0.5"
+                >
+                  <svg
+                    width="14"
+                    height="14"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2.5"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  >
+                    <path
+                      d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8.1 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2z"
+                    />
+                  </svg>
+                </span>
+                <div>
+                  <p
+                    class="text-[10px] font-bold uppercase tracking-wider text-ink/40 mb-0.5"
+                  >
+                    Call Us
+                  </p>
+                  <a
+                    href="./404.html"
+                    class="text-[13px] font-semibold text-ink/70 hover:text-brand transition no-underline"
+                    >+91 98765 43210</a
+                  >
+                </div>
+              </li>
+
+              <li class="flex items-start gap-3">
+                <span
+                  class="grid place-items-center w-8 h-8 shrink-0 rounded-lg bg-sand/20 text-[#a65d2b] mt-0.5"
+                >
+                  <svg
+                    width="14"
+                    height="14"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2.5"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  >
+                    <rect x="2" y="4" width="20" height="16" rx="3" />
+                    <polyline points="2.5 6.5 12 13 21.5 6.5" />
+                  </svg>
+                </span>
+                <div>
+                  <p
+                    class="text-[10px] font-bold uppercase tracking-wider text-ink/40 mb-0.5"
+                  >
+                    Email
+                  </p>
+                  <a
+                    href="./404.html"
+                    class="text-[13px] font-semibold text-ink/70 hover:text-brand transition no-underline break-all"
+                    >hello@stackly.travel</a
+                  >
+                </div>
+              </li>
+            </ul>
+          </div>
+
+          <div class="lg:col-span-4">
+            <h4 class="footer-heading">Newsletter</h4>
+            <p class="text-[13px] leading-relaxed text-ink/60 mb-4">
+              Subscribe to get special offers, free giveaways, and
+              once-in-a-lifetime deals.
+            </p>
+
+            <form
+              id="footerNewsletterForm"
+              action="./404.html"
+              method="get"
+              novalidate
+            >
+              <div class="field">
+                <label for="footerEmail" class="sr-only">Email address</label>
+
+                <div class="flex flex-col gap-2.5">
+                  <input
+                    id="footerEmail"
+                    name="email"
+                    type="email"
+                    class="clay-input w-full"
+                    placeholder="you@example.com"
+                    autocomplete="email"
+                    inputmode="email"
+                    aria-describedby="err-footerEmail"
+                  />
+
+                  <button
+                    type="submit"
+                    class="clay-accent inline-flex items-center justify-center gap-2 rounded-xl px-5 py-3 text-[11px] font-extrabold uppercase tracking-[.12em] transition-transform active:scale-[.98] whitespace-nowrap w-full"
+                  >
+                    Subscribe
+                    <svg
+                      width="14"
+                      height="14"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2.6"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    >
+                      <line x1="4" y1="12" x2="19" y2="12" />
+                      <polyline points="13 6 19 12 13 18" />
+                    </svg>
+                  </button>
+                </div>
+
+                <p class="err-msg" id="err-footerEmail"></p>
+              </div>
+            </form>
+          </div>
+        </div>
+
+        <div
+          class="relative z-10 mt-10 sm:mt-14 pt-6 border-t border-black/5 flex flex-col md:flex-row items-center justify-between gap-4"
+        >
+          <p class="text-[11px] text-ink/45 text-center md:text-left">
+            © <span id="year">2025</span> STACKLY. All rights reserved.
+          </p>
+
+          <div class="flex items-center gap-4">
+            <a
+              href="./404.html"
+              class="text-[11px] font-semibold text-ink/45 hover:text-brand transition no-underline"
+              >Privacy Policy</a
+            >
+            <a
+              href="./404.html"
+              class="text-[11px] font-semibold text-ink/45 hover:text-brand transition no-underline"
+              >Terms of Service</a
+            >
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <!-- ============================================================
+     SCRIPTS
+     ============================================================ -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+
+    <script>
+      (function () {
+        "use strict";
+
+        const reduceMotion = window.matchMedia(
+          "(prefers-reduced-motion: reduce)",
+        ).matches;
+
+        /* AOS */
+        if (window.AOS) {
+          AOS.init({
+            duration: 700,
+            easing: "ease-out-cubic",
+            once: true,
+            offset: 50,
+            disable: reduceMotion,
+          });
+        }
+
+        /* GSAP — hero reveal + bg parallax */
+        if (window.gsap && !reduceMotion) {
+          gsap.registerPlugin(ScrollTrigger);
+
+          gsap
+            .timeline({ defaults: { ease: "power3.out" } })
+            .from(".hero-eyebrow", { y: 14, opacity: 0, duration: 0.5 })
+            .from(
+              ".hero-title span",
+              { y: 40, opacity: 0, duration: 0.8, stagger: 0.08 },
+              "-=.25",
+            )
+            .from(".hero-sub", { y: 18, opacity: 0, duration: 0.6 }, "-=.45")
+            .from(
+              ".hero-chip",
+              { y: 14, opacity: 0, duration: 0.45, stagger: 0.07 },
+              "-=.35",
+            );
+
+          gsap.to(".hero-bg", {
+            yPercent: 10,
+            ease: "none",
+            scrollTrigger: {
+              trigger: ".hero",
+              start: "top top",
+              end: "bottom top",
+              scrub: true,
+            },
+          });
+        }
+      })();
+
+      /* VIDEO BREAK — click play button → play & fade out button */
+      const film = document.getElementById("stacklyVideo");
+      const videoToggle = document.getElementById("videoToggle");
+
+      if (film && videoToggle) {
+        film.addEventListener("play", () => {
+          videoToggle.classList.add("is-hidden");
+          videoToggle.setAttribute("aria-label", "Pause video");
+        });
+
+        film.addEventListener("pause", () => {
+          videoToggle.classList.remove("is-hidden");
+          videoToggle.setAttribute("aria-label", "Play video");
+        });
+
+        videoToggle.addEventListener("click", () => {
+          const p = film.play();
+          if (p && typeof p.catch === "function") p.catch(() => {});
+        });
+
+        film.addEventListener("click", () => {
+          if (!film.paused) film.pause();
+        });
+      }
+    </script>
+
+    <!-- ============================================================
+     NAVBAR + FOOTER SCRIPTS
+     ============================================================ -->
+    <script>
+      (function () {
+        "use strict";
+
+        /* ---------- Navbar mobile menu ---------- */
+        const openMenuBtn = document.getElementById("openMenuBtn");
+        const closeMenuBtn = document.getElementById("closeMenuBtn");
+        const mobileMenu = document.getElementById("mobileMenu");
+        const body = document.body;
+
+        if (openMenuBtn) {
+          openMenuBtn.addEventListener("click", () => {
+            mobileMenu.classList.add("is-active");
+            body.classList.add("menu-open");
+          });
+        }
+
+        if (closeMenuBtn) {
+          closeMenuBtn.addEventListener("click", () => {
+            mobileMenu.classList.remove("is-active");
+            body.classList.remove("menu-open");
+          });
+        }
+
+        document.querySelectorAll(".mobile-nav-link").forEach((link) => {
+          link.addEventListener("click", () => {
+            mobileMenu.classList.remove("is-active");
+            body.classList.remove("menu-open");
+          });
+        });
+
+        const navbar = document.querySelector(".navbar-inner");
+        if (navbar) {
+          window.addEventListener("scroll", () => {
+            if (window.scrollY > 20) {
+              navbar.style.boxShadow = "0 10px 30px rgba(0,0,0,0.08)";
+            } else {
+              navbar.style.boxShadow = "var(--clay-sm)";
+            }
+          });
+        }
+
+        /* ---------- Footer year ---------- */
+        const yearEl = document.getElementById("year");
+        if (yearEl) yearEl.textContent = new Date().getFullYear();
+
+        /* ---------- Footer newsletter ---------- */
+        const form = document.getElementById("footerNewsletterForm");
+        if (form) {
+          const emailInput = document.getElementById("footerEmail");
+          const emailWrap = emailInput.closest(".field");
+          const emailErr = document.getElementById("err-footerEmail");
+          const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[a-zA-Z]{2,}$/;
+
+          function validateFooterNl() {
+            const v = (emailInput.value || "").trim();
+            let msg = "";
+
+            if (!v) {
+              msg = "Email address is required.";
+            } else if (!EMAIL_RE.test(v)) {
+              msg = "Enter a valid email, e.g. you@example.com";
+            }
+
+            if (msg) {
+              emailWrap.classList.add("has-error");
+              emailErr.textContent = msg;
+              emailInput.setAttribute("aria-invalid", "true");
+              return false;
+            }
+
+            emailWrap.classList.remove("has-error");
+            emailErr.textContent = "";
+            emailInput.removeAttribute("aria-invalid");
+            return true;
+          }
+
+          emailInput.addEventListener("blur", validateFooterNl);
+          emailInput.addEventListener("input", () => {
+            if (emailWrap.classList.contains("has-error")) validateFooterNl();
+          });
+
+          form.addEventListener("submit", function (e) {
+            e.preventDefault();
+            if (!validateFooterNl()) {
+              emailInput.focus({ preventScroll: true });
+              return;
+            }
+            form.setAttribute("action", "./404.html");
+            form.setAttribute("method", "get");
+            HTMLFormElement.prototype.submit.call(form);
+          });
+        }
+      })();
+    </script>
+  </body>
+</html>

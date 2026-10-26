@@ -1,0 +1,622 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, viewport-fit=cover"
+    />
+    <title>STACKLY Footer</title>
+
+    <!-- ============ FONTS ============ -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800&family=Inter:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- ============ TAILWIND ============ -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              brand: "#39b6ab",
+              sand: "#e7b490",
+              accent: "#ff6f1a",
+              ink: "#000000",
+            },
+            fontFamily: {
+              display: ['"Plus Jakarta Sans"', "system-ui", "sans-serif"],
+              body: ["Inter", "system-ui", "sans-serif"],
+            },
+          },
+        },
+      };
+    </script>
+
+    <style>
+      /* ============================================================
+   STACKLY — DESIGN TOKENS
+   ============================================================ */
+      :root {
+        --brand: #39b6ab;
+        --sand: #e7b490;
+        --accent: #ff6f1a;
+        --ink: #000000;
+
+        --clay:
+          12px 12px 28px rgba(0, 0, 0, 0.1),
+          -12px -12px 28px rgba(255, 255, 255, 0.92);
+        --clay-sm:
+          6px 6px 16px rgba(0, 0, 0, 0.09),
+          -6px -6px 16px rgba(255, 255, 255, 0.95);
+        --clay-in:
+          inset 4px 4px 10px rgba(0, 0, 0, 0.07),
+          inset -4px -4px 10px rgba(255, 255, 255, 0.95);
+      }
+
+      html,
+      body {
+        margin: 0;
+        padding: 0;
+        overflow-x: hidden;
+        font-family: "Inter", system-ui, sans-serif;
+        background-color: #f4f7f6;
+        background-image:
+          radial-gradient(
+            60vw 60vw at 6% 4%,
+            rgba(57, 182, 171, 0.1),
+            transparent 62%
+          ),
+          radial-gradient(
+            60vw 60vw at 96% 98%,
+            rgba(231, 180, 144, 0.2),
+            transparent 62%
+          );
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+      }
+
+      h1,
+      h2,
+      h3,
+      h4,
+      h5,
+      h6,
+      .font-display {
+        font-family: "Plus Jakarta Sans", system-ui, sans-serif;
+        letter-spacing: -0.02em;
+      }
+
+      /* ============================================================
+   CLAYMORPHISM PRIMITIVES
+   ============================================================ */
+      .clay {
+        background: rgba(255, 255, 255, 0.86);
+        -webkit-backdrop-filter: blur(8px);
+        backdrop-filter: blur(8px);
+        border-radius: 1.5rem;
+        box-shadow: var(--clay);
+      }
+      @media (min-width: 640px) {
+        .clay {
+          border-radius: 2rem;
+        }
+      }
+
+      .clay-accent {
+        background: linear-gradient(145deg, #ff8540, #ee5f05);
+        color: #fff;
+        box-shadow:
+          6px 6px 18px rgba(255, 111, 26, 0.35),
+          -4px -4px 14px rgba(255, 255, 255, 0.9),
+          inset 2px 2px 6px rgba(255, 255, 255, 0.4),
+          inset -3px -3px 8px rgba(0, 0, 0, 0.14);
+        transition:
+          transform 0.2s ease,
+          box-shadow 0.2s ease;
+      }
+      .clay-accent:hover {
+        transform: translateY(-2px);
+        box-shadow:
+          8px 8px 22px rgba(255, 111, 26, 0.45),
+          -4px -4px 14px rgba(255, 255, 255, 0.9),
+          inset 2px 2px 6px rgba(255, 255, 255, 0.4),
+          inset -3px -3px 8px rgba(0, 0, 0, 0.14);
+      }
+
+      /* ============================================================
+   NEWSLETTER INPUT & VALIDATION
+   ============================================================ */
+      .field {
+        position: relative;
+      }
+
+      .clay-input {
+        width: 100%;
+        max-width: 100%;
+        font-size: 16px;
+        line-height: 1.4;
+        color: var(--ink);
+        background: #fff;
+        border: 0;
+        border-radius: 0.9rem;
+        padding: 0.85rem 0.95rem;
+        box-shadow: var(--clay-in);
+        outline: none;
+        transition: box-shadow 0.25s ease;
+        -webkit-appearance: none;
+        appearance: none;
+      }
+      @media (min-width: 640px) {
+        .clay-input {
+          font-size: 14px;
+          border-radius: 1rem;
+          padding: 0.8rem 1rem;
+        }
+      }
+      .clay-input::placeholder {
+        color: rgba(0, 0, 0, 0.36);
+      }
+      .clay-input:focus {
+        box-shadow:
+          inset 4px 4px 10px rgba(0, 0, 0, 0.06),
+          inset -4px -4px 10px rgba(255, 255, 255, 1),
+          0 0 0 3px rgba(57, 182, 171, 0.42);
+      }
+
+      .field.has-error .clay-input {
+        box-shadow:
+          inset 4px 4px 10px rgba(255, 111, 26, 0.2),
+          inset -4px -4px 10px rgba(255, 255, 255, 1),
+          0 0 0 3px rgba(255, 111, 26, 0.36);
+      }
+      .err-msg {
+        display: none;
+        margin: 0.45rem 0 0 0.3rem;
+        font-size: 0.75rem;
+        font-weight: 600;
+        line-height: 1.35;
+        color: #c94f00;
+      }
+      .field.has-error .err-msg {
+        display: block;
+        animation: errIn 0.26s ease both;
+      }
+      @keyframes errIn {
+        from {
+          opacity: 0;
+          transform: translateY(-4px);
+        }
+        to {
+          opacity: 1;
+          transform: none;
+        }
+      }
+
+      /* ============================================================
+   FOOTER LINKS & SOCIALS
+   ============================================================ */
+      .footer-heading {
+        font-family: "Plus Jakarta Sans", system-ui, sans-serif;
+        font-size: 0.75rem;
+        font-weight: 800;
+        text-transform: uppercase;
+        letter-spacing: 0.15em;
+        color: rgba(0, 0, 0, 0.4);
+        margin-bottom: 1.25rem;
+      }
+
+      .footer-link {
+        display: inline-block;
+        font-size: 0.9rem;
+        font-weight: 600;
+        color: rgba(0, 0, 0, 0.65);
+        text-decoration: none;
+        margin-bottom: 0.85rem;
+        transition:
+          color 0.2s ease,
+          transform 0.2s ease;
+      }
+
+      .footer-link:hover {
+        color: var(--brand);
+        transform: translateX(4px);
+      }
+
+      .social-icon {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 36px;
+        height: 36px;
+        border-radius: 10px;
+        color: rgba(0, 0, 0, 0.6);
+        background: #fff;
+        box-shadow: var(--clay-sm);
+        transition: all 0.2s ease;
+      }
+
+      .social-icon:hover {
+        color: #fff;
+        background: var(--brand);
+        transform: translateY(-2px);
+        box-shadow: 4px 4px 12px rgba(57, 182, 171, 0.35);
+      }
+
+      /* ============================================================
+   REDUCED MOTION
+   ============================================================ */
+      @media (prefers-reduced-motion: reduce) {
+        * {
+          animation-duration: 0.001ms !important;
+          transition-duration: 0.001ms !important;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- ============================================================
+     FOOTER
+     ============================================================ -->
+    <footer class="px-4 sm:px-6 lg:px-8 pb-6 sm:pb-8 w-full mt-auto">
+      <div
+        class="max-w-7xl mx-auto clay p-6 sm:p-10 lg:p-14 relative overflow-hidden"
+      >
+        <!-- Decorative Glow Orbs -->
+        <div
+          class="pointer-events-none absolute -right-20 -top-20 w-64 h-64 rounded-full opacity-20 blur-3xl"
+          style="background: radial-gradient(circle, #39b6ab, transparent 70%)"
+        ></div>
+        <div
+          class="pointer-events-none absolute -left-20 -bottom-20 w-64 h-64 rounded-full opacity-20 blur-3xl"
+          style="background: radial-gradient(circle, #ff6f1a, transparent 70%)"
+        ></div>
+
+        <!-- 12-column grid for perfect width distribution -->
+        <div
+          class="relative z-10 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-10 lg:gap-8"
+        >
+          <!-- ==========================================
+           COLUMN 1: BRAND & LOGO (3 Columns wide)
+           ========================================== -->
+          <div class="flex flex-col lg:col-span-3">
+            <!-- Logo (User will provide src) -->
+            <a href="./index.html" class="mb-4 inline-block no-underline">
+              <img
+                src="./assets/logo.webp"
+                alt="STACKLY Logo"
+                class="h-14 w-auto object-contain"
+              />
+            </a>
+
+            <p class="text-[13px] leading-relaxed text-ink/60 mb-6 max-w-xs">
+              We design slow, human-made trips. No templates, no algorithms —
+              just a dedicated designer turning your dream trip into a story.
+            </p>
+
+            <!-- Social Icons -->
+            <div class="flex items-center gap-2">
+              <a href="./404.html" aria-label="Instagram" class="social-icon">
+                <svg
+                  width="16"
+                  height="16"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2.2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <rect x="3" y="3" width="18" height="18" rx="5" />
+                  <circle cx="12" cy="12" r="4" />
+                  <circle
+                    cx="17.2"
+                    cy="6.8"
+                    r="1"
+                    fill="currentColor"
+                    stroke="none"
+                  />
+                </svg>
+              </a>
+              <a href="./404.html" aria-label="X" class="social-icon">
+                <svg
+                  width="14"
+                  height="14"
+                  viewBox="0 0 24 24"
+                  fill="currentColor"
+                >
+                  <path
+                    d="M17.5 3h3.2l-7 8 8.3 10h-6.5l-5-6.1L4.7 21H1.5l7.5-8.6L1 3h6.7l4.5 5.6L17.5 3zm-1.1 16h1.8L7.7 4.9H5.8L16.4 19z"
+                  />
+                </svg>
+              </a>
+              <a href="./404.html" aria-label="LinkedIn" class="social-icon">
+                <svg
+                  width="16"
+                  height="16"
+                  viewBox="0 0 24 24"
+                  fill="currentColor"
+                >
+                  <path
+                    d="M4.98 3.5A2.5 2.5 0 1 1 0 3.5a2.5 2.5 0 0 1 4.98 0zM.3 8.2h4.4V24H.3V8.2zM8.3 8.2h4.2v2.2h.06c.6-1.1 2-2.3 4.2-2.3 4.5 0 5.3 2.9 5.3 6.7V24h-4.4v-7.9c0-1.9 0-4.3-2.6-4.3s-3 2-3 4.1V24H8.3V8.2z"
+                  />
+                </svg>
+              </a>
+            </div>
+          </div>
+
+          <!-- ==========================================
+           COLUMN 2: QUICK LINKS (2 Columns wide)
+           ========================================== -->
+          <div class="lg:col-span-2">
+            <h4 class="footer-heading">Quick Links</h4>
+            <ul class="list-none p-0 m-0 flex flex-col">
+              <li><a href="./index.html" class="footer-link">Home</a></li>
+              <li>
+                <a href="./services.html" class="footer-link">Products</a>
+              </li>
+              <li><a href="./about.html" class="footer-link">About Us</a></li>
+              <li><a href="./blog.html" class="footer-link">Journal</a></li>
+              <li><a href="./contact.html" class="footer-link">Contact</a></li>
+            </ul>
+          </div>
+
+          <!-- ==========================================
+           COLUMN 3: COMPANY INFO (3 Columns wide)
+           ========================================== -->
+          <div class="lg:col-span-3">
+            <h4 class="footer-heading">Get in Touch</h4>
+            <ul class="list-none p-0 m-0 flex flex-col gap-4">
+              <li class="flex items-start gap-3">
+                <span
+                  class="grid place-items-center w-8 h-8 shrink-0 rounded-lg bg-brand/10 text-brand mt-0.5"
+                >
+                  <svg
+                    width="14"
+                    height="14"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2.5"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  >
+                    <path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 0 1 18 0z" />
+                    <circle cx="12" cy="10" r="3" />
+                  </svg>
+                </span>
+                <div>
+                  <p
+                    class="text-[10px] font-bold uppercase tracking-wider text-ink/40 mb-0.5"
+                  >
+                    Head Office
+                  </p>
+                  <p class="text-[13px] font-semibold text-ink/70 leading-snug">
+                    14 Marine Drive, Panaji<br />Goa 403001, India
+                  </p>
+                </div>
+              </li>
+
+              <li class="flex items-start gap-3">
+                <span
+                  class="grid place-items-center w-8 h-8 shrink-0 rounded-lg bg-accent/10 text-accent mt-0.5"
+                >
+                  <svg
+                    width="14"
+                    height="14"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2.5"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  >
+                    <path
+                      d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8.1 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2z"
+                    />
+                  </svg>
+                </span>
+                <div>
+                  <p
+                    class="text-[10px] font-bold uppercase tracking-wider text-ink/40 mb-0.5"
+                  >
+                    Call Us
+                  </p>
+                  <a
+                    href="./404.html"
+                    class="text-[13px] font-semibold text-ink/70 hover:text-brand transition no-underline"
+                    >+91 98765 43210</a
+                  >
+                </div>
+              </li>
+
+              <li class="flex items-start gap-3">
+                <span
+                  class="grid place-items-center w-8 h-8 shrink-0 rounded-lg bg-sand/20 text-[#a65d2b] mt-0.5"
+                >
+                  <svg
+                    width="14"
+                    height="14"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2.5"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  >
+                    <rect x="2" y="4" width="20" height="16" rx="3" />
+                    <polyline points="2.5 6.5 12 13 21.5 6.5" />
+                  </svg>
+                </span>
+                <div>
+                  <p
+                    class="text-[10px] font-bold uppercase tracking-wider text-ink/40 mb-0.5"
+                  >
+                    Email
+                  </p>
+                  <a
+                    href="./404.html"
+                    class="text-[13px] font-semibold text-ink/70 hover:text-brand transition no-underline break-all"
+                    >hello@stackly.travel</a
+                  >
+                </div>
+              </li>
+            </ul>
+          </div>
+
+          <!-- ==========================================
+           COLUMN 4: NEWSLETTER (4 Columns wide)
+           ========================================== -->
+          <div class="lg:col-span-4">
+            <h4 class="footer-heading">Newsletter</h4>
+            <p class="text-[13px] leading-relaxed text-ink/60 mb-4">
+              Subscribe to get special offers, free giveaways, and
+              once-in-a-lifetime deals.
+            </p>
+
+            <form
+              id="newsletterForm"
+              action="./404.html"
+              method="get"
+              novalidate
+            >
+              <div class="field">
+                <label for="footerEmail" class="sr-only">Email address</label>
+
+                <!-- Stacked vertically to guarantee full width for the email input -->
+                <div class="flex flex-col gap-2.5">
+                  <input
+                    id="footerEmail"
+                    name="email"
+                    type="email"
+                    class="clay-input w-full"
+                    placeholder="you@example.com"
+                    autocomplete="email"
+                    inputmode="email"
+                    aria-describedby="err-footerEmail"
+                  />
+
+                  <button
+                    type="submit"
+                    class="clay-accent inline-flex items-center justify-center gap-2 rounded-xl px-5 py-3 text-[11px] font-extrabold uppercase tracking-[.12em] transition-transform active:scale-[.98] whitespace-nowrap w-full"
+                  >
+                    Subscribe
+                    <svg
+                      width="14"
+                      height="14"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2.6"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    >
+                      <line x1="4" y1="12" x2="19" y2="12" />
+                      <polyline points="13 6 19 12 13 18" />
+                    </svg>
+                  </button>
+                </div>
+
+                <p class="err-msg" id="err-footerEmail"></p>
+              </div>
+            </form>
+          </div>
+        </div>
+
+        <!-- ==========================================
+         BOTTOM BAR
+         ========================================== -->
+        <div
+          class="relative z-10 mt-10 sm:mt-14 pt-6 border-t border-black/5 flex flex-col md:flex-row items-center justify-between gap-4"
+        >
+          <p class="text-[11px] text-ink/45 text-center md:text-left">
+            © <span id="year">2025</span> STACKLY. All rights reserved.
+          </p>
+
+          <div class="flex items-center gap-4">
+            <a
+              href="./404.html"
+              class="text-[11px] font-semibold text-ink/45 hover:text-brand transition no-underline"
+              >Privacy Policy</a
+            >
+            <a
+              href="./404.html"
+              class="text-[11px] font-semibold text-ink/45 hover:text-brand transition no-underline"
+              >Terms of Service</a
+            >
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <!-- ============================================================
+     JAVASCRIPT
+     ============================================================ -->
+    <script>
+      (function () {
+        "use strict";
+
+        // Update Year
+        const yearEl = document.getElementById("year");
+        if (yearEl) yearEl.textContent = new Date().getFullYear();
+
+        // Newsletter Form Validation & Redirect
+        const form = document.getElementById("newsletterForm");
+
+        if (form) {
+          const emailInput = document.getElementById("footerEmail");
+          const emailWrap = emailInput.closest(".field");
+          const emailErr = document.getElementById("err-footerEmail");
+          const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[a-zA-Z]{2,}$/;
+
+          function validateNl() {
+            const v = (emailInput.value || "").trim();
+            let msg = "";
+
+            if (!v) {
+              msg = "Email address is required.";
+            } else if (!EMAIL_RE.test(v)) {
+              msg = "Enter a valid email, e.g. you@example.com";
+            }
+
+            if (msg) {
+              emailWrap.classList.add("has-error");
+              emailErr.textContent = msg;
+              emailInput.setAttribute("aria-invalid", "true");
+              return false;
+            }
+
+            emailWrap.classList.remove("has-error");
+            emailErr.textContent = "";
+            emailInput.removeAttribute("aria-invalid");
+            return true;
+          }
+
+          emailInput.addEventListener("blur", validateNl);
+          emailInput.addEventListener("input", () => {
+            if (emailWrap.classList.contains("has-error")) validateNl();
+          });
+
+          form.addEventListener("submit", function (e) {
+            e.preventDefault();
+
+            if (!validateNl()) {
+              emailInput.focus({ preventScroll: true });
+              return;
+            }
+
+            // Hand off to 404.html
+            form.setAttribute("action", "./404.html");
+            form.setAttribute("method", "get");
+            HTMLFormElement.prototype.submit.call(form);
+          });
+        }
+      })();
+    </script>
+  </body>
+</html>

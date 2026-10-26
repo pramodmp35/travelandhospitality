@@ -1,0 +1,2424 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, viewport-fit=cover"
+    />
+    <title>Journal · STACKLY — Travel &amp; Hospitality</title>
+    <meta
+      name="description"
+      content="The STACKLY Journal — real trips, honest stays, and the people and places that make travel unforgettable."
+    />
+
+    <!-- ============ FONTS ============ -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800&family=Inter:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- ============ BOOTSTRAP 5 ============ -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+
+    <!-- ============ AOS ============ -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css"
+      rel="stylesheet"
+    />
+
+    <!-- ============ TAILWIND ============ -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              brand: "#39b6ab",
+              sand: "#e7b490",
+              accent: "#ff6f1a",
+              ink: "#000000",
+            },
+            fontFamily: {
+              display: ['"Plus Jakarta Sans"', "system-ui", "sans-serif"],
+              body: ["Inter", "system-ui", "sans-serif"],
+            },
+          },
+        },
+      };
+    </script>
+
+    <style>
+      /* ============================================================
+   STACKLY — DESIGN TOKENS
+   ============================================================ */
+      :root {
+        --brand: #39b6ab;
+        --sand: #e7b490;
+        --accent: #ff6f1a;
+        --ink: #000000;
+
+        --clay:
+          12px 12px 28px rgba(0, 0, 0, 0.1),
+          -12px -12px 28px rgba(255, 255, 255, 0.92);
+        --clay-sm:
+          6px 6px 16px rgba(0, 0, 0, 0.09),
+          -6px -6px 16px rgba(255, 255, 255, 0.95);
+        --clay-in:
+          inset 4px 4px 10px rgba(0, 0, 0, 0.07),
+          inset -4px -4px 10px rgba(255, 255, 255, 0.95);
+      }
+
+      html,
+      body {
+        overflow-x: hidden;
+        -webkit-text-size-adjust: 100%;
+        text-size-adjust: 100%;
+      }
+      * {
+        -webkit-tap-highlight-color: transparent;
+        touch-action: manipulation;
+      }
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        font-family: "Inter", system-ui, sans-serif;
+        color: var(--ink);
+        background-color: #ffffff;
+        background-image:
+          radial-gradient(
+            60vw 60vw at 6% 4%,
+            rgba(57, 182, 171, 0.14),
+            transparent 62%
+          ),
+          radial-gradient(
+            60vw 60vw at 96% 98%,
+            rgba(231, 180, 144, 0.3),
+            transparent 62%
+          ),
+          radial-gradient(
+            38vw 38vw at 92% 3%,
+            rgba(255, 111, 26, 0.08),
+            transparent 62%
+          );
+        max-width: 100%;
+        /* NEW — sticky footer layout */
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+      }
+      @media (min-width: 768px) {
+        body {
+          background-attachment: fixed;
+        }
+      }
+
+      /* NEW — leave room for the fixed navbar */
+      main {
+        flex: 1;
+        padding-top: 108px;
+      }
+      @media (min-width: 1024px) {
+        main {
+          padding-top: 136px;
+        }
+      }
+
+      h1,
+      h2,
+      h3,
+      h4,
+      h5,
+      h6,
+      .font-display {
+        font-family: "Plus Jakarta Sans", system-ui, sans-serif;
+        letter-spacing: -0.02em;
+        overflow-wrap: break-word;
+        word-wrap: break-word;
+      }
+
+      img,
+      svg,
+      iframe {
+        max-width: 100%;
+      }
+
+      /* ============================================================
+   CLAYMORPHISM PRIMITIVES
+   ============================================================ */
+      .clay {
+        background: rgba(255, 255, 255, 0.86);
+        -webkit-backdrop-filter: blur(8px);
+        backdrop-filter: blur(8px);
+        border-radius: 1.5rem;
+        box-shadow: var(--clay);
+      }
+      @media (min-width: 640px) {
+        .clay {
+          border-radius: 1.75rem;
+        }
+      }
+      .clay-sm {
+        background: rgba(255, 255, 255, 0.9);
+        border-radius: 1rem;
+        box-shadow: var(--clay-sm);
+      }
+      @media (min-width: 640px) {
+        .clay-sm {
+          border-radius: 1.15rem;
+        }
+      }
+      .clay-accent {
+        background: linear-gradient(145deg, #ff8540, #ee5f05);
+        color: #fff;
+        box-shadow:
+          8px 8px 22px rgba(255, 111, 26, 0.35),
+          -6px -6px 18px rgba(255, 255, 255, 0.9),
+          inset 2px 2px 6px rgba(255, 255, 255, 0.4),
+          inset -3px -3px 8px rgba(0, 0, 0, 0.14);
+        /* NEW — footer button hover/transition behavior */
+        transition:
+          transform 0.2s ease,
+          box-shadow 0.2s ease;
+      }
+      .clay-accent:hover {
+        transform: translateY(-2px);
+        box-shadow:
+          10px 10px 26px rgba(255, 111, 26, 0.42),
+          -6px -6px 18px rgba(255, 255, 255, 0.9),
+          inset 2px 2px 6px rgba(255, 255, 255, 0.4),
+          inset -3px -3px 8px rgba(0, 0, 0, 0.14);
+      }
+
+      /* ============================================================
+   HERO BANNER
+   ============================================================ */
+      .hero-bg {
+        will-change: transform;
+      }
+      .hero-title span {
+        display: block;
+      }
+
+      /* ============================================================
+   CATEGORY PILLS / BADGES
+   ============================================================ */
+      .cat-pill {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        padding: 0.55rem 1rem;
+        border-radius: 999px;
+        font-family: "Plus Jakarta Sans", system-ui, sans-serif;
+        font-size: 0.72rem;
+        font-weight: 800;
+        text-transform: uppercase;
+        letter-spacing: 0.12em;
+        color: rgba(0, 0, 0, 0.6);
+        background: #fff;
+        box-shadow: var(--clay-sm);
+        border: 0;
+        cursor: pointer;
+        transition:
+          transform 0.2s ease,
+          box-shadow 0.2s ease,
+          color 0.2s ease,
+          background 0.2s ease;
+        white-space: nowrap;
+      }
+      @media (min-width: 640px) {
+        .cat-pill {
+          padding: 0.6rem 1.15rem;
+          font-size: 0.75rem;
+        }
+      }
+      .cat-pill:hover {
+        transform: translateY(-1px);
+        color: var(--ink);
+      }
+      .cat-pill.is-active {
+        color: #fff;
+        background: linear-gradient(145deg, #46c4b8, #2ba49b);
+        box-shadow:
+          6px 6px 18px rgba(57, 182, 171, 0.38),
+          -4px -4px 14px rgba(255, 255, 255, 0.9),
+          inset 1px 1px 3px rgba(255, 255, 255, 0.35),
+          inset -2px -2px 5px rgba(0, 0, 0, 0.14);
+      }
+
+      .badge-cat {
+        display: inline-flex;
+        align-items: center;
+        padding: 0.35rem 0.7rem;
+        border-radius: 999px;
+        font-size: 0.6rem;
+        font-weight: 800;
+        text-transform: uppercase;
+        letter-spacing: 0.14em;
+        backdrop-filter: blur(8px);
+        -webkit-backdrop-filter: blur(8px);
+      }
+      @media (min-width: 640px) {
+        .badge-cat {
+          font-size: 0.65rem;
+          padding: 0.4rem 0.8rem;
+        }
+      }
+
+      /* ============================================================
+   BLOG CARD
+   ============================================================ */
+      .post-card {
+        transition:
+          transform 0.35s ease,
+          box-shadow 0.35s ease;
+      }
+      .post-card:hover {
+        transform: translateY(-4px);
+        box-shadow:
+          18px 18px 40px rgba(0, 0, 0, 0.12),
+          -14px -14px 34px rgba(255, 255, 255, 0.98);
+      }
+      .post-media {
+        overflow: hidden;
+      }
+      .post-media img {
+        transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+      }
+      .post-card:hover .post-media img {
+        transform: scale(1.06);
+      }
+      .post-card.is-hidden {
+        display: none;
+      }
+
+      .line-2 {
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+      }
+      .line-3 {
+        display: -webkit-box;
+        -webkit-line-clamp: 3;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+      }
+
+      /* ============================================================
+   NEWSLETTER — CLAY INPUT
+   ============================================================ */
+      .clay-input {
+        width: 100%;
+        max-width: 100%;
+        font-size: 16px;
+        line-height: 1.4;
+        color: var(--ink);
+        background: #fff;
+        border: 0;
+        border-radius: 0.9rem;
+        padding: 0.85rem 0.95rem;
+        box-shadow: var(--clay-in);
+        outline: none;
+        transition: box-shadow 0.25s ease;
+        -webkit-appearance: none;
+        appearance: none;
+      }
+      @media (min-width: 640px) {
+        .clay-input {
+          font-size: 15px;
+          border-radius: 1rem;
+          padding: 0.9rem 1.05rem;
+        }
+      }
+      .clay-input::placeholder {
+        color: rgba(0, 0, 0, 0.36);
+      }
+      .clay-input:focus {
+        box-shadow:
+          inset 4px 4px 10px rgba(0, 0, 0, 0.06),
+          inset -4px -4px 10px rgba(255, 255, 255, 1),
+          0 0 0 3px rgba(57, 182, 171, 0.42);
+      }
+      .field.has-error .clay-input {
+        box-shadow:
+          inset 4px 4px 10px rgba(255, 111, 26, 0.2),
+          inset -4px -4px 10px rgba(255, 255, 255, 1),
+          0 0 0 3px rgba(255, 111, 26, 0.36);
+      }
+      .err-msg {
+        display: none;
+        margin: 0.45rem 0 0 0.3rem;
+        font-size: 0.76rem;
+        font-weight: 600;
+        line-height: 1.35;
+        color: #c94f00;
+      }
+      .field.has-error .err-msg {
+        display: block;
+        animation: errIn 0.26s ease both;
+      }
+      @keyframes errIn {
+        from {
+          opacity: 0;
+          transform: translateY(-4px);
+        }
+        to {
+          opacity: 1;
+          transform: none;
+        }
+      }
+
+      /* ============================================================
+   MARQUEE
+   ============================================================ */
+      .marquee-band {
+        overflow: hidden;
+        background: #000;
+        border-top: 5px solid var(--brand);
+        border-bottom: 5px solid var(--sand);
+        padding: 1.1rem 0;
+        width: 100%;
+      }
+      @media (min-width: 640px) {
+        .marquee-band {
+          border-width: 6px;
+          padding: 1.5rem 0;
+        }
+      }
+      .marquee-track {
+        display: flex;
+        width: max-content;
+        animation: marq 32s linear infinite;
+        will-change: transform;
+      }
+      .marquee-group {
+        display: flex;
+        align-items: center;
+        gap: clamp(1rem, 4vw, 3.25rem);
+        padding-right: clamp(1rem, 4vw, 3.25rem);
+        flex-shrink: 0;
+      }
+      .marquee-group > span {
+        white-space: nowrap;
+      }
+      @keyframes marq {
+        to {
+          transform: translateX(-50%);
+        }
+      }
+      .marquee-band:hover .marquee-track {
+        animation-play-state: paused;
+      }
+
+      /* ============================================================
+   NAVBAR BASE (added from navbar file)
+   ============================================================ */
+      .navbar-container {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 100;
+        padding: 1rem;
+        transition: all 0.3s ease;
+      }
+
+      .navbar-inner {
+        max-width: 1280px;
+        margin: 0 auto;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0.75rem 1.25rem;
+        background: rgba(255, 255, 255, 0.92);
+        -webkit-backdrop-filter: blur(12px);
+        backdrop-filter: blur(12px);
+        border-radius: 1.25rem;
+        box-shadow: var(--clay-sm);
+        transition: box-shadow 0.3s ease;
+      }
+
+      .desktop-nav {
+        display: none;
+        align-items: center;
+        gap: 2rem;
+      }
+
+      .nav-link {
+        position: relative;
+        font-size: 0.85rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        color: rgba(0, 0, 0, 0.65);
+        text-decoration: none;
+        transition: color 0.2s ease;
+      }
+      .nav-link:hover {
+        color: var(--brand);
+      }
+      .nav-link::after {
+        content: "";
+        position: absolute;
+        bottom: -4px;
+        left: 0;
+        width: 0;
+        height: 2px;
+        background: var(--brand);
+        transition: width 0.3s ease;
+        border-radius: 99px;
+      }
+      .nav-link:hover::after {
+        width: 100%;
+      }
+
+      .btn-login {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        padding: 0.6rem 1.5rem;
+        border-radius: 12px;
+        font-family: "Plus Jakarta Sans", system-ui, sans-serif;
+        font-size: 0.75rem;
+        font-weight: 800;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: #fff;
+        text-decoration: none;
+        background: linear-gradient(145deg, #46c4b8, #2ba49b);
+        box-shadow:
+          4px 4px 12px rgba(57, 182, 171, 0.35),
+          -2px -2px 8px rgba(255, 255, 255, 0.9),
+          inset 1px 1px 3px rgba(255, 255, 255, 0.4);
+        transition: all 0.2s ease;
+      }
+      .btn-login:hover {
+        transform: translateY(-1px);
+        box-shadow:
+          6px 6px 16px rgba(57, 182, 171, 0.45),
+          -2px -2px 8px rgba(255, 255, 255, 0.9),
+          inset 1px 1px 3px rgba(255, 255, 255, 0.4);
+      }
+
+      .btn-hamburger {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 44px;
+        height: 44px;
+        border-radius: 12px;
+        background: #fff;
+        color: var(--ink);
+        border: none;
+        cursor: pointer;
+        box-shadow: var(--clay-sm);
+        transition: transform 0.2s ease;
+      }
+      .btn-hamburger:active {
+        transform: scale(0.95);
+      }
+
+      @media (min-width: 1024px) {
+        .navbar-container {
+          padding: 1.5rem 2rem;
+        }
+        .navbar-inner {
+          padding: 1rem 2rem;
+          border-radius: 1.5rem;
+        }
+        .desktop-nav {
+          display: flex;
+        }
+        .btn-hamburger {
+          display: none;
+        }
+      }
+
+      /* ============================================================
+   MOBILE FULL-SCREEN MENU (added from navbar file)
+   ============================================================ */
+      .mobile-menu-overlay {
+        position: fixed;
+        inset: 0;
+        background: #ffffff;
+        z-index: 9999;
+        display: flex;
+        flex-direction: column;
+        padding: 1.5rem;
+        opacity: 0;
+        pointer-events: none;
+        transform: translateY(-20px);
+        transition:
+          opacity 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+          transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        overflow-y: auto;
+      }
+      .mobile-menu-overlay.is-active {
+        opacity: 1;
+        pointer-events: auto;
+        transform: translateY(0);
+      }
+      .mobile-menu-overlay::before {
+        content: "";
+        position: absolute;
+        top: -10%;
+        right: -20%;
+        width: 70vw;
+        height: 70vw;
+        border-radius: 50%;
+        background: radial-gradient(
+          circle,
+          rgba(57, 182, 171, 0.12) 0%,
+          transparent 70%
+        );
+        z-index: -1;
+        pointer-events: none;
+      }
+
+      .mobile-menu-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        width: 100%;
+        margin-bottom: 3rem;
+      }
+
+      .btn-close-menu {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 44px;
+        height: 44px;
+        border-radius: 12px;
+        background: #f4f7f6;
+        color: var(--ink);
+        border: none;
+        cursor: pointer;
+        box-shadow: var(--clay-sm);
+        transition: transform 0.2s ease;
+      }
+      .btn-close-menu:active {
+        transform: scale(0.95);
+      }
+
+      .mobile-nav {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+        width: 100%;
+      }
+
+      .mobile-nav-link {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 1rem 0;
+        font-family: "Plus Jakarta Sans", system-ui, sans-serif;
+        font-size: clamp(1.75rem, 6vw, 2.5rem);
+        font-weight: 800;
+        text-transform: uppercase;
+        letter-spacing: -0.02em;
+        color: var(--ink);
+        text-decoration: none;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+        transition:
+          color 0.2s ease,
+          padding-left 0.2s ease;
+        opacity: 0;
+        transform: translateX(-20px);
+      }
+      .mobile-menu-overlay.is-active .mobile-nav-link {
+        opacity: 1;
+        transform: translateX(0);
+      }
+      .mobile-menu-overlay.is-active .mobile-nav-link:nth-child(1) {
+        transition-delay: 0.05s;
+      }
+      .mobile-menu-overlay.is-active .mobile-nav-link:nth-child(2) {
+        transition-delay: 0.1s;
+      }
+      .mobile-menu-overlay.is-active .mobile-nav-link:nth-child(3) {
+        transition-delay: 0.15s;
+      }
+      .mobile-menu-overlay.is-active .mobile-nav-link:nth-child(4) {
+        transition-delay: 0.2s;
+      }
+      .mobile-menu-overlay.is-active .mobile-nav-link:nth-child(5) {
+        transition-delay: 0.25s;
+      }
+
+      .mobile-nav-link:hover,
+      .mobile-nav-link:active {
+        color: var(--brand);
+        padding-left: 0.5rem;
+      }
+
+      .mobile-nav-link svg {
+        width: 24px;
+        height: 24px;
+        color: var(--brand);
+        opacity: 0.5;
+      }
+
+      .mobile-menu-footer {
+        margin-top: auto;
+        padding-top: 3rem;
+        padding-bottom: 2rem;
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+        opacity: 0;
+        transform: translateY(20px);
+        transition:
+          opacity 0.4s ease,
+          transform 0.4s ease;
+      }
+      .mobile-menu-overlay.is-active .mobile-menu-footer {
+        opacity: 1;
+        transform: translateY(0);
+        transition-delay: 0.3s;
+      }
+
+      .btn-mobile-login {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        padding: 1.25rem;
+        border-radius: 16px;
+        font-family: "Plus Jakarta Sans", system-ui, sans-serif;
+        font-size: 1rem;
+        font-weight: 800;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        color: #fff;
+        text-decoration: none;
+        background: linear-gradient(145deg, #ff8540, #ee5f05);
+        box-shadow:
+          8px 8px 22px rgba(255, 111, 26, 0.35),
+          -6px -6px 18px rgba(255, 255, 255, 0.9),
+          inset 1px 1px 3px rgba(255, 255, 255, 0.4);
+      }
+
+      body.menu-open {
+        overflow: hidden;
+      }
+
+      /* ============================================================
+   FOOTER LINKS & SOCIALS (added from footer file)
+   ============================================================ */
+      .footer-heading {
+        font-family: "Plus Jakarta Sans", system-ui, sans-serif;
+        font-size: 0.75rem;
+        font-weight: 800;
+        text-transform: uppercase;
+        letter-spacing: 0.15em;
+        color: rgba(0, 0, 0, 0.4);
+        margin-bottom: 1.25rem;
+      }
+
+      .footer-link {
+        display: inline-block;
+        font-size: 0.9rem;
+        font-weight: 600;
+        color: rgba(0, 0, 0, 0.65);
+        text-decoration: none;
+        margin-bottom: 0.85rem;
+        transition:
+          color 0.2s ease,
+          transform 0.2s ease;
+      }
+      .footer-link:hover {
+        color: var(--brand);
+        transform: translateX(4px);
+      }
+
+      .social-icon {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 36px;
+        height: 36px;
+        border-radius: 10px;
+        color: rgba(0, 0, 0, 0.6);
+        background: #fff;
+        box-shadow: var(--clay-sm);
+        transition: all 0.2s ease;
+      }
+      .social-icon:hover {
+        color: #fff;
+        background: var(--brand);
+        transform: translateY(-2px);
+        box-shadow: 4px 4px 12px rgba(57, 182, 171, 0.35);
+      }
+
+      /* ============================================================
+   REDUCED MOTION
+   ============================================================ */
+      @media (prefers-reduced-motion: reduce) {
+        html {
+          scroll-behavior: auto;
+        }
+        .marquee-track {
+          animation: none;
+        }
+        .post-media img {
+          transition: none;
+        }
+        * {
+          animation-duration: 0.001ms !important;
+          transition-duration: 0.001ms !important;
+        }
+      }
+    </style>
+  </head>
+
+  <body class="font-body antialiased">
+    <!-- ============================================================
+     NAVBAR (fixed to top)
+     ============================================================ -->
+    <header class="navbar-container">
+      <div class="navbar-inner">
+        <a href="./index.html" class="flex items-center gap-2 no-underline">
+          <img
+            src="./assets/logo.webp"
+            alt="STACKLY Logo"
+            class="h-8 sm:h-12 w-auto object-contain"
+          />
+        </a>
+
+        <nav class="desktop-nav">
+          <a href="./index.html" class="nav-link">Home</a>
+          <a href="./services.html" class="nav-link">Services</a>
+          <a href="./about.html" class="nav-link">About</a>
+          <a href="./blog.html" class="nav-link">Blog</a>
+          <a href="./contact.html" class="nav-link">Contact</a>
+        </nav>
+
+        <div class="flex items-center gap-3">
+          <a href="./login.html" class="btn-login hidden lg:inline-flex"
+            >Login</a
+          >
+
+          <button id="openMenuBtn" class="btn-hamburger" aria-label="Open Menu">
+            <svg
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2.5"
+              stroke-linecap="round"
+            >
+              <line x1="3" y1="7" x2="21" y2="7"></line>
+              <line x1="3" y1="12" x2="21" y2="12"></line>
+              <line x1="3" y1="17" x2="21" y2="17"></line>
+            </svg>
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <!-- ============================================================
+     FULL-SCREEN MOBILE MENU
+     ============================================================ -->
+    <div id="mobileMenu" class="mobile-menu-overlay">
+      <div class="mobile-menu-header">
+        <button
+          id="closeMenuBtn"
+          class="btn-close-menu"
+          aria-label="Close Menu"
+        >
+          <svg
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2.5"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <line x1="18" y1="6" x2="6" y2="18"></line>
+            <line x1="6" y1="6" x2="18" y2="18"></line>
+          </svg>
+        </button>
+      </div>
+
+      <nav class="mobile-nav">
+        <a href="./index.html" class="mobile-nav-link">
+          Home
+          <svg
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2.5"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <line x1="5" y1="12" x2="19" y2="12" />
+            <polyline points="12 5 19 12 12 19" />
+          </svg>
+        </a>
+        <a href="./services.html" class="mobile-nav-link">
+          Services
+          <svg
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2.5"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <line x1="5" y1="12" x2="19" y2="12" />
+            <polyline points="12 5 19 12 12 19" />
+          </svg>
+        </a>
+        <a href="./about.html" class="mobile-nav-link">
+          About
+          <svg
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2.5"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <line x1="5" y1="12" x2="19" y2="12" />
+            <polyline points="12 5 19 12 12 19" />
+          </svg>
+        </a>
+        <a href="./blog.html" class="mobile-nav-link">
+          Blog
+          <svg
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2.5"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <line x1="5" y1="12" x2="19" y2="12" />
+            <polyline points="12 5 19 12 12 19" />
+          </svg>
+        </a>
+        <a href="./contact.html" class="mobile-nav-link">
+          Contact
+          <svg
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2.5"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <line x1="5" y1="12" x2="19" y2="12" />
+            <polyline points="12 5 19 12 12 19" />
+          </svg>
+        </a>
+      </nav>
+
+      <div class="mobile-menu-footer">
+        <a href="./login.html" class="btn-mobile-login">Login</a>
+      </div>
+    </div>
+
+    <main>
+      <!-- ============================================================
+     1 · HERO BANNER
+     ============================================================ -->
+      <section class="hero relative isolate overflow-hidden w-full">
+        <div
+          class="hero-bg absolute inset-0 -z-10 bg-cover bg-center"
+          style="background-image: url(&quot;./assets/h3.webp&quot;)"
+        ></div>
+
+        <div
+          class="absolute inset-0 -z-10"
+          style="
+            background: linear-gradient(
+              155deg,
+              rgba(0, 0, 0, 0.82) 0%,
+              rgba(0, 0, 0, 0.46) 45%,
+              rgba(57, 182, 171, 0.62) 100%
+            );
+          "
+        ></div>
+
+        <div
+          class="pointer-events-none absolute -z-10 -right-24 -top-24 w-56 h-56 sm:w-80 sm:h-80 rounded-full opacity-40 blur-2xl"
+          style="
+            background: radial-gradient(
+              circle at 30% 30%,
+              #ff6f1a,
+              transparent 70%
+            );
+          "
+        ></div>
+
+        <div
+          class="relative z-10 mx-auto max-w-7xl px-4 sm:px-8 lg:px-12 py-10 sm:py-14 lg:py-20"
+        >
+          <p
+            class="hero-eyebrow inline-flex items-center gap-2 rounded-full bg-white/12 border border-white/25 px-3 sm:px-4 py-1.5 text-[10px] sm:text-[11px] font-bold uppercase tracking-[.18em] text-white"
+          >
+            <span class="w-1.5 h-1.5 rounded-full bg-accent"></span>
+            The Journal · Stackly
+          </p>
+
+          <h1
+            class="hero-title mt-4 sm:mt-5 font-display font-extrabold text-white leading-[0.98] text-[clamp(1.75rem,8vw,4.25rem)]"
+          >
+            <span>Stories from</span>
+            <span class="text-sand">the road.</span>
+          </h1>
+
+          <p
+            class="hero-sub mt-4 max-w-xl text-[14px] sm:text-base lg:text-lg leading-relaxed text-white/85"
+          >
+            Real trips, honest stays, and the people and places that make travel
+            unforgettable — written by the designers who plan it.
+          </p>
+
+          <div class="mt-5 sm:mt-6 flex flex-wrap gap-2 sm:gap-2.5">
+            <span
+              class="hero-chip inline-flex items-center gap-2 rounded-xl sm:rounded-2xl bg-white/12 border border-white/25 px-3 sm:px-4 py-2 sm:py-2.5 text-[10px] sm:text-xs font-bold uppercase tracking-wider text-white"
+            >
+              <svg
+                width="12"
+                height="12"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="#39b6ab"
+                stroke-width="2.6"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path
+                  d="M4 19.5V4.5A2.5 2.5 0 0 1 6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5z"
+                />
+                <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20" />
+              </svg>
+              48 stories
+            </span>
+            <span
+              class="hero-chip inline-flex items-center gap-2 rounded-xl sm:rounded-2xl bg-white/12 border border-white/25 px-3 sm:px-4 py-2 sm:py-2.5 text-[10px] sm:text-xs font-bold uppercase tracking-wider text-white"
+            >
+              <svg
+                width="12"
+                height="12"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="#e7b490"
+                stroke-width="2.6"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
+                <circle cx="12" cy="7" r="4" />
+              </svg>
+              12 writers
+            </span>
+            <span
+              class="hero-chip inline-flex items-center gap-2 rounded-xl sm:rounded-2xl bg-white/12 border border-white/25 px-3 sm:px-4 py-2 sm:py-2.5 text-[10px] sm:text-xs font-bold uppercase tracking-wider text-white"
+            >
+              <svg
+                width="12"
+                height="12"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="#ff6f1a"
+                stroke-width="2.6"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <circle cx="12" cy="12" r="10" />
+                <line x1="2" y1="12" x2="22" y2="12" />
+                <path
+                  d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"
+                />
+              </svg>
+              5 continents
+            </span>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============================================================
+     2 · FEATURED STORY
+     ============================================================ -->
+      <section
+        class="px-4 sm:px-5 lg:px-8 pt-12 sm:pt-16 lg:pt-20 pb-8 sm:pb-10"
+        id="featured"
+      >
+        <div class="mx-auto max-w-7xl">
+          <div
+            class="mb-6 sm:mb-8 flex items-end justify-between gap-4"
+            data-aos="fade-up"
+          >
+            <div>
+              <p
+                class="text-[10px] sm:text-[11px] font-bold uppercase tracking-[.24em] text-brand"
+              >
+                Editor&rsquo;s pick
+              </p>
+              <h2
+                class="mt-2 font-display font-extrabold text-[clamp(1.5rem,6vw,2.75rem)] leading-[1.08] text-ink"
+              >
+                This week&rsquo;s <span class="text-accent">must-read</span>
+              </h2>
+            </div>
+          </div>
+
+          <article
+            class="clay overflow-hidden"
+            data-aos="fade-up"
+            data-aos-delay="80"
+          >
+            <div class="grid lg:grid-cols-2">
+              <!-- image -->
+              <div
+                class="relative aspect-[16/10] sm:aspect-[16/9] lg:aspect-auto lg:min-h-[460px] overflow-hidden"
+              >
+                <img
+                  src="./assets/tour2.webp"
+                  alt="A quiet Balinese temple courtyard at golden hour"
+                  class="absolute inset-0 w-full h-full object-cover"
+                  loading="lazy"
+                />
+                <span
+                  class="badge-cat absolute top-3 left-3 sm:top-4 sm:left-4 bg-white/95 text-ink"
+                >
+                  <span
+                    class="w-1.5 h-1.5 rounded-full bg-accent mr-1.5"
+                  ></span>
+                  Featured
+                </span>
+                <span
+                  class="badge-cat absolute bottom-3 left-3 sm:bottom-4 sm:left-4 bg-brand text-white"
+                >
+                  Destinations
+                </span>
+              </div>
+
+              <!-- content -->
+              <div class="p-5 sm:p-8 lg:p-12 flex flex-col justify-center">
+                <div
+                  class="flex items-center gap-2 text-[10px] sm:text-[11px] font-bold uppercase tracking-[.16em] text-ink/45"
+                >
+                  <span>Mar 12, 2025</span>
+                  <span class="w-1 h-1 rounded-full bg-ink/25"></span>
+                  <span>9 min read</span>
+                </div>
+
+                <h3
+                  class="mt-3 sm:mt-4 font-display font-extrabold text-[clamp(1.35rem,5.5vw,2.5rem)] leading-[1.1] text-ink"
+                >
+                  Beyond the itinerary: why slow travel is the only way to see
+                  Bali
+                </h3>
+
+                <p
+                  class="mt-3 sm:mt-4 text-[13px] sm:text-[15px] leading-relaxed text-ink/65 line-3"
+                >
+                  We spent three weeks moving between Ubud, Sidemen and the
+                  quiet northern coast — no checklist, no itinerary. What we
+                  found changed how we design every trip: the best moments
+                  happen in the gaps between plans.
+                </p>
+
+                <!-- author row -->
+                <div class="mt-5 sm:mt-6 flex items-center gap-3">
+                  <img
+                    src="./assets/t1.webp"
+                    alt=""
+                    class="w-10 h-10 rounded-full object-cover ring-2 ring-white shadow-md"
+                    loading="lazy"
+                  />
+                  <div class="min-w-0">
+                    <p
+                      class="text-[12px] sm:text-sm font-bold text-ink leading-tight"
+                    >
+                      Mira Fernandes
+                    </p>
+                    <p
+                      class="text-[10px] sm:text-[11px] text-ink/50 font-medium"
+                    >
+                      Senior travel designer
+                    </p>
+                  </div>
+                </div>
+
+                <a
+                  href="./404.html"
+                  class="clay-accent mt-6 sm:mt-7 self-start inline-flex items-center justify-center gap-2.5 rounded-xl sm:rounded-2xl px-6 sm:px-7 py-3 sm:py-3.5 text-[11px] sm:text-xs font-extrabold uppercase tracking-[.12em] no-underline transition-transform active:scale-[.98]"
+                >
+                  Read the story
+                  <svg
+                    width="15"
+                    height="15"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2.6"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  >
+                    <line x1="4" y1="12" x2="19" y2="12" />
+                    <polyline points="13 6 19 12 13 18" />
+                  </svg>
+                </a>
+              </div>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <!-- ============================================================
+     3 · ALL STORIES — FILTERS + GRID
+     ============================================================ -->
+      <section
+        class="px-4 sm:px-5 lg:px-8 pt-8 sm:pt-12 lg:pt-16 pb-14 sm:pb-20 lg:pb-24"
+        id="stories"
+      >
+        <div class="mx-auto max-w-7xl">
+          <div
+            class="mb-6 sm:mb-8 flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4"
+            data-aos="fade-up"
+          >
+            <div>
+              <p
+                class="text-[10px] sm:text-[11px] font-bold uppercase tracking-[.24em] text-brand"
+              >
+                All stories
+              </p>
+              <h2
+                class="mt-2 font-display font-extrabold text-[clamp(1.5rem,6vw,2.75rem)] leading-[1.08] text-ink"
+              >
+                Browse the <span class="text-accent">journal</span>
+              </h2>
+            </div>
+            <p
+              class="text-[12px] sm:text-sm text-ink/55 max-w-xs sm:text-right"
+            >
+              Filter by what you love — or just scroll and wander.
+            </p>
+          </div>
+
+          <!-- filter pills -->
+          <div
+            class="flex flex-wrap gap-2 sm:gap-2.5 mb-7 sm:mb-9"
+            role="tablist"
+            aria-label="Filter stories by category"
+            data-aos="fade-up"
+            data-aos-delay="60"
+          >
+            <button
+              type="button"
+              class="cat-pill is-active"
+              data-filter="all"
+              role="tab"
+              aria-selected="true"
+            >
+              All
+            </button>
+            <button
+              type="button"
+              class="cat-pill"
+              data-filter="destinations"
+              role="tab"
+              aria-selected="false"
+            >
+              Destinations
+            </button>
+            <button
+              type="button"
+              class="cat-pill"
+              data-filter="stays"
+              role="tab"
+              aria-selected="false"
+            >
+              Stays
+            </button>
+            <button
+              type="button"
+              class="cat-pill"
+              data-filter="experiences"
+              role="tab"
+              aria-selected="false"
+            >
+              Experiences
+            </button>
+            <button
+              type="button"
+              class="cat-pill"
+              data-filter="guides"
+              role="tab"
+              aria-selected="false"
+            >
+              Guides
+            </button>
+            <button
+              type="button"
+              class="cat-pill"
+              data-filter="culture"
+              role="tab"
+              aria-selected="false"
+            >
+              Culture
+            </button>
+          </div>
+
+          <!-- grid -->
+          <div
+            class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6"
+            id="postGrid"
+          >
+            <!-- CARD 1 — Stays -->
+            <article
+              class="post-card clay-sm overflow-hidden"
+              data-category="stays"
+              data-aos="fade-up"
+            >
+              <a href="./404.html" class="block no-underline text-ink">
+                <div class="post-media relative aspect-[4/3] overflow-hidden">
+                  <img
+                    src="./assets/tour3.webp"
+                    alt="A boutique pool villa in Goa"
+                    class="w-full h-full object-cover"
+                    loading="lazy"
+                  />
+                  <span class="badge-cat absolute top-3 left-3 bg-sand text-ink"
+                    >Stays</span
+                  >
+                </div>
+                <div class="p-4 sm:p-5">
+                  <h3
+                    class="font-display font-extrabold text-[15px] sm:text-base leading-snug line-2"
+                  >
+                    The boutique hotel revival in coastal Goa
+                  </h3>
+                  <p
+                    class="mt-2 text-[12.5px] sm:text-[13px] leading-relaxed text-ink/60 line-2"
+                  >
+                    Nine small properties that traded infinity pools for
+                    personality — and won.
+                  </p>
+                  <div
+                    class="mt-4 flex items-center justify-between gap-3 pt-3 border-t border-black/5"
+                  >
+                    <div class="flex items-center gap-2 min-w-0">
+                      <img
+                        src="https://i.pravatar.cc/60?img=12"
+                        alt=""
+                        class="w-7 h-7 rounded-full object-cover shrink-0"
+                        loading="lazy"
+                      />
+                      <span
+                        class="text-[11px] sm:text-xs font-semibold text-ink/70 truncate"
+                        >Aarav Sharma</span
+                      >
+                    </div>
+                    <div
+                      class="flex items-center gap-1.5 text-[10px] sm:text-[11px] font-semibold text-ink/45 whitespace-nowrap"
+                    >
+                      <span>6 min</span
+                      ><span class="w-0.5 h-0.5 rounded-full bg-ink/30"></span
+                      ><span>Mar 08</span>
+                    </div>
+                  </div>
+                </div>
+              </a>
+            </article>
+
+            <!-- CARD 2 — Experiences -->
+            <article
+              class="post-card clay-sm overflow-hidden"
+              data-category="experiences"
+              data-aos="fade-up"
+              data-aos-delay="60"
+            >
+              <a href="./404.html" class="block no-underline text-ink">
+                <div class="post-media relative aspect-[4/3] overflow-hidden">
+                  <img
+                    src="./assets/tour4.webp"
+                    alt="Hot air balloon floating over the desert at sunrise"
+                    class="w-full h-full object-cover"
+                    loading="lazy"
+                  />
+                  <span
+                    class="badge-cat absolute top-3 left-3 bg-accent text-white"
+                    >Experiences</span
+                  >
+                </div>
+                <div class="p-4 sm:p-5">
+                  <h3
+                    class="font-display font-extrabold text-[15px] sm:text-base leading-snug line-2"
+                  >
+                    A sunrise hot-air balloon over Jaipur — worth the 4am alarm?
+                  </h3>
+                  <p
+                    class="mt-2 text-[12.5px] sm:text-[13px] leading-relaxed text-ink/60 line-2"
+                  >
+                    We woke up before the city did. Here&rsquo;s what the desert
+                    sky looks like from 1,200 feet.
+                  </p>
+                  <div
+                    class="mt-4 flex items-center justify-between gap-3 pt-3 border-t border-black/5"
+                  >
+                    <div class="flex items-center gap-2 min-w-0">
+                      <img
+                        src="./assets/t2.webp"
+                        alt=""
+                        class="w-7 h-7 rounded-full object-cover shrink-0"
+                        loading="lazy"
+                      />
+                      <span
+                        class="text-[11px] sm:text-xs font-semibold text-ink/70 truncate"
+                        >Dev Patel</span
+                      >
+                    </div>
+                    <div
+                      class="flex items-center gap-1.5 text-[10px] sm:text-[11px] font-semibold text-ink/45 whitespace-nowrap"
+                    >
+                      <span>7 min</span
+                      ><span class="w-0.5 h-0.5 rounded-full bg-ink/30"></span
+                      ><span>Mar 04</span>
+                    </div>
+                  </div>
+                </div>
+              </a>
+            </article>
+
+            <!-- CARD 3 — Guides -->
+            <article
+              class="post-card clay-sm overflow-hidden"
+              data-category="guides"
+              data-aos="fade-up"
+              data-aos-delay="120"
+            >
+              <a href="./404.html" class="block no-underline text-ink">
+                <div class="post-media relative aspect-[4/3] overflow-hidden">
+                  <img
+                    src="./assets/tour5.webp"
+                    alt="Tiled rooftops and yellow tram in Lisbon"
+                    class="w-full h-full object-cover"
+                    loading="lazy"
+                  />
+                  <span
+                    class="badge-cat absolute top-3 left-3 bg-ink text-white"
+                    >Guides</span
+                  >
+                </div>
+                <div class="p-4 sm:p-5">
+                  <h3
+                    class="font-display font-extrabold text-[15px] sm:text-base leading-snug line-2"
+                  >
+                    48 hours in Lisbon, the STACKLY way
+                  </h3>
+                  <p
+                    class="mt-2 text-[12.5px] sm:text-[13px] leading-relaxed text-ink/60 line-2"
+                  >
+                    Pastéis, miradouros, and one perfect tiled alley you
+                    won&rsquo;t find on any list.
+                  </p>
+                  <div
+                    class="mt-4 flex items-center justify-between gap-3 pt-3 border-t border-black/5"
+                  >
+                    <div class="flex items-center gap-2 min-w-0">
+                      <img
+                        src="./assets/t4.webp"
+                        alt=""
+                        class="w-7 h-7 rounded-full object-cover shrink-0"
+                        loading="lazy"
+                      />
+                      <span
+                        class="text-[11px] sm:text-xs font-semibold text-ink/70 truncate"
+                        >Sofia Reis</span
+                      >
+                    </div>
+                    <div
+                      class="flex items-center gap-1.5 text-[10px] sm:text-[11px] font-semibold text-ink/45 whitespace-nowrap"
+                    >
+                      <span>8 min</span
+                      ><span class="w-0.5 h-0.5 rounded-full bg-ink/30"></span
+                      ><span>Feb 28</span>
+                    </div>
+                  </div>
+                </div>
+              </a>
+            </article>
+
+            <!-- CARD 4 — Culture -->
+            <article
+              class="post-card clay-sm overflow-hidden"
+              data-category="culture"
+              data-aos="fade-up"
+            >
+              <a href="./404.html" class="block no-underline text-ink">
+                <div class="post-media relative aspect-[4/3] overflow-hidden">
+                  <img
+                    src="./assets/tour6.webp"
+                    alt="Colourful handwoven textiles drying in the sun"
+                    class="w-full h-full object-cover"
+                    loading="lazy"
+                  />
+                  <span
+                    class="badge-cat absolute top-3 left-3 bg-brand text-white"
+                    >Culture</span
+                  >
+                </div>
+                <div class="p-4 sm:p-5">
+                  <h3
+                    class="font-display font-extrabold text-[15px] sm:text-base leading-snug line-2"
+                  >
+                    Meet the weavers keeping Rajasthan&rsquo;s craft alive
+                  </h3>
+                  <p
+                    class="mt-2 text-[12.5px] sm:text-[13px] leading-relaxed text-ink/60 line-2"
+                  >
+                    Three families, one dying art, and the slow revival
+                    happening in a small desert town.
+                  </p>
+                  <div
+                    class="mt-4 flex items-center justify-between gap-3 pt-3 border-t border-black/5"
+                  >
+                    <div class="flex items-center gap-2 min-w-0">
+                      <img
+                        src="./assets/t6.webp"
+                        alt=""
+                        class="w-7 h-7 rounded-full object-cover shrink-0"
+                        loading="lazy"
+                      />
+                      <span
+                        class="text-[11px] sm:text-xs font-semibold text-ink/70 truncate"
+                        >Mira Fernandes</span
+                      >
+                    </div>
+                    <div
+                      class="flex items-center gap-1.5 text-[10px] sm:text-[11px] font-semibold text-ink/45 whitespace-nowrap"
+                    >
+                      <span>10 min</span
+                      ><span class="w-0.5 h-0.5 rounded-full bg-ink/30"></span
+                      ><span>Feb 22</span>
+                    </div>
+                  </div>
+                </div>
+              </a>
+            </article>
+
+            <!-- CARD 5 — Stays -->
+            <article
+              class="post-card clay-sm overflow-hidden"
+              data-category="stays"
+              data-aos="fade-up"
+              data-aos-delay="60"
+            >
+              <a href="./404.html" class="block no-underline text-ink">
+                <div class="post-media relative aspect-[4/3] overflow-hidden">
+                  <img
+                    src="./assets/tour7.webp"
+                    alt="White cliffside villas and blue domes in Santorini"
+                    class="w-full h-full object-cover"
+                    loading="lazy"
+                  />
+                  <span class="badge-cat absolute top-3 left-3 bg-sand text-ink"
+                    >Stays</span
+                  >
+                </div>
+                <div class="p-4 sm:p-5">
+                  <h3
+                    class="font-display font-extrabold text-[15px] sm:text-base leading-snug line-2"
+                  >
+                    Inside the cliffside villas of Santorini (and which one to
+                    book)
+                  </h3>
+                  <p
+                    class="mt-2 text-[12.5px] sm:text-[13px] leading-relaxed text-ink/60 line-2"
+                  >
+                    Not all caldera views are created equal. Our honest
+                    side-by-side of five stays.
+                  </p>
+                  <div
+                    class="mt-4 flex items-center justify-between gap-3 pt-3 border-t border-black/5"
+                  >
+                    <div class="flex items-center gap-2 min-w-0">
+                      <img
+                        src="./assets/t4.webp"
+                        alt=""
+                        class="w-7 h-7 rounded-full object-cover shrink-0"
+                        loading="lazy"
+                      />
+                      <span
+                        class="text-[11px] sm:text-xs font-semibold text-ink/70 truncate"
+                        >Dev Patel</span
+                      >
+                    </div>
+                    <div
+                      class="flex items-center gap-1.5 text-[10px] sm:text-[11px] font-semibold text-ink/45 whitespace-nowrap"
+                    >
+                      <span>6 min</span
+                      ><span class="w-0.5 h-0.5 rounded-full bg-ink/30"></span
+                      ><span>Feb 15</span>
+                    </div>
+                  </div>
+                </div>
+              </a>
+            </article>
+
+            <!-- CARD 6 — Destinations -->
+            <article
+              class="post-card clay-sm overflow-hidden"
+              data-category="destinations"
+              data-aos="fade-up"
+              data-aos-delay="120"
+            >
+              <a href="./404.html" class="block no-underline text-ink">
+                <div class="post-media relative aspect-[4/3] overflow-hidden">
+                  <img
+                    src="./assets/tour12.webp"
+                    alt="A quiet rice terrace and palm trees in northern Bali"
+                    class="w-full h-full object-cover"
+                    loading="lazy"
+                  />
+                  <span
+                    class="badge-cat absolute top-3 left-3 bg-brand text-white"
+                    >Destinations</span
+                  >
+                </div>
+                <div class="p-4 sm:p-5">
+                  <h3
+                    class="font-display font-extrabold text-[15px] sm:text-base leading-snug line-2"
+                  >
+                    The quiet side of Bali you haven&rsquo;t seen yet
+                  </h3>
+                  <p
+                    class="mt-2 text-[12.5px] sm:text-[13px] leading-relaxed text-ink/60 line-2"
+                  >
+                    Skip Canggu. Head north, where the rice terraces are empty
+                    and the coffee is better.
+                  </p>
+                  <div
+                    class="mt-4 flex items-center justify-between gap-3 pt-3 border-t border-black/5"
+                  >
+                    <div class="flex items-center gap-2 min-w-0">
+                      <img
+                        src="./assets/t8.webp"
+                        alt=""
+                        class="w-7 h-7 rounded-full object-cover shrink-0"
+                        loading="lazy"
+                      />
+                      <span
+                        class="text-[11px] sm:text-xs font-semibold text-ink/70 truncate"
+                        >Sofia Reis</span
+                      >
+                    </div>
+                    <div
+                      class="flex items-center gap-1.5 text-[10px] sm:text-[11px] font-semibold text-ink/45 whitespace-nowrap"
+                    >
+                      <span>7 min</span
+                      ><span class="w-0.5 h-0.5 rounded-full bg-ink/30"></span
+                      ><span>Feb 09</span>
+                    </div>
+                  </div>
+                </div>
+              </a>
+            </article>
+          </div>
+
+          <!-- empty state -->
+          <p
+            id="emptyState"
+            class="hidden text-center text-sm text-ink/50 mt-8"
+          >
+            No stories in this category yet — check back soon.
+          </p>
+        </div>
+      </section>
+
+      <!-- ============================================================
+     4 · NEWSLETTER
+     ============================================================ -->
+      <section class="px-4 sm:px-5 lg:px-8 pb-14 sm:pb-20 lg:pb-24">
+        <div class="mx-auto max-w-4xl">
+          <div
+            class="clay p-6 sm:p-10 lg:p-12 text-center relative overflow-hidden"
+            data-aos="fade-up"
+          >
+            <div
+              class="pointer-events-none absolute -right-16 -top-16 w-48 h-48 rounded-full opacity-25 blur-2xl"
+              style="
+                background: radial-gradient(circle, #39b6ab, transparent 70%);
+              "
+            ></div>
+            <div
+              class="pointer-events-none absolute -left-16 -bottom-16 w-48 h-48 rounded-full opacity-25 blur-2xl"
+              style="
+                background: radial-gradient(circle, #ff6f1a, transparent 70%);
+              "
+            ></div>
+
+            <div class="relative">
+              <span
+                class="inline-flex items-center gap-2 rounded-full bg-brand/10 px-3.5 py-1.5 text-[10px] font-bold uppercase tracking-[.18em] text-brand"
+              >
+                <svg
+                  width="12"
+                  height="12"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2.6"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <path
+                    d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"
+                  />
+                  <polyline points="22,6 12,13 2,6" />
+                </svg>
+                The Weekly Stack
+              </span>
+
+              <h2
+                class="mt-4 font-display font-extrabold text-[clamp(1.4rem,5.5vw,2.5rem)] leading-[1.1] text-ink"
+              >
+                One story, every Friday.
+              </h2>
+              <p
+                class="mt-3 max-w-md mx-auto text-[13px] sm:text-[15px] leading-relaxed text-ink/60"
+              >
+                A single hand-picked read from our journal — no spam, no
+                promotions, no 47-tab roundups. Just one good story to carry
+                into the weekend.
+              </p>
+
+              <form
+                id="newsletterForm"
+                action="./404.html"
+                method="get"
+                class="mt-6 sm:mt-7 max-w-md mx-auto"
+                novalidate
+              >
+                <div class="flex flex-col sm:flex-row gap-2.5">
+                  <div class="field flex-1">
+                    <label for="nlEmail" class="sr-only">Email address</label>
+                    <input
+                      id="nlEmail"
+                      name="email"
+                      type="email"
+                      class="clay-input text-center sm:text-left"
+                      placeholder="you@example.com"
+                      autocomplete="email"
+                      inputmode="email"
+                      aria-describedby="err-nlEmail"
+                    />
+                  </div>
+                  <button
+                    type="submit"
+                    class="clay-accent inline-flex items-center justify-center gap-2 rounded-xl sm:rounded-2xl px-6 py-3.5 text-[11px] sm:text-xs font-extrabold uppercase tracking-[.12em] transition-transform active:scale-[.98] whitespace-nowrap"
+                  >
+                    Subscribe
+                    <svg
+                      width="14"
+                      height="14"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2.6"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    >
+                      <line x1="4" y1="12" x2="19" y2="12" />
+                      <polyline points="13 6 19 12 13 18" />
+                    </svg>
+                  </button>
+                </div>
+                <p class="err-msg text-left" id="err-nlEmail"></p>
+              </form>
+
+              <p class="mt-3 text-[10.5px] sm:text-[11px] text-ink/40">
+                Join 6,200+ readers. Unsubscribe anytime.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============================================================
+     5 · BRAND MARQUEE
+     ============================================================ -->
+      <section class="marquee-band" aria-label="Partner brands">
+        <div class="marquee-track">
+          <div class="marquee-group">
+            <span
+              class="font-display font-extrabold uppercase tracking-tight text-[clamp(1.4rem,7vw,4.75rem)] leading-none text-white"
+              >AIRBNB</span
+            >
+            <span class="text-[clamp(.85rem,3vw,2rem)] text-brand">✦</span>
+            <span
+              class="font-display font-extrabold uppercase tracking-tight text-[clamp(1.4rem,7vw,4.75rem)] leading-none"
+              style="color: #39b6ab"
+              >BOOKING.COM</span
+            >
+            <span class="text-[clamp(.85rem,3vw,2rem)] text-sand">✦</span>
+            <span
+              class="font-display font-extrabold uppercase tracking-tight text-[clamp(1.4rem,7vw,4.75rem)] leading-none text-white"
+              >EXPEDIA</span
+            >
+            <span class="text-[clamp(.85rem,3vw,2rem)] text-accent">✦</span>
+            <span
+              class="font-display font-extrabold uppercase tracking-tight text-[clamp(1.4rem,7vw,4.75rem)] leading-none"
+              style="color: #e7b490"
+              >AGODA</span
+            >
+            <span class="text-[clamp(.85rem,3vw,2rem)] text-brand">✦</span>
+            <span
+              class="font-display font-extrabold uppercase tracking-tight text-[clamp(1.4rem,7vw,4.75rem)] leading-none text-white"
+              >TRIVAGO</span
+            >
+            <span class="text-[clamp(.85rem,3vw,2rem)] text-accent">✦</span>
+            <span
+              class="font-display font-extrabold uppercase tracking-tight text-[clamp(1.4rem,7vw,4.75rem)] leading-none"
+              style="color: #ff6f1a"
+              >KAYAK</span
+            >
+            <span class="text-[clamp(.85rem,3vw,2rem)] text-brand">✦</span>
+            <span
+              class="font-display font-extrabold uppercase tracking-tight text-[clamp(1.4rem,7vw,4.75rem)] leading-none text-white"
+              >SKYSCANNER</span
+            >
+            <span class="text-[clamp(.85rem,3vw,2rem)] text-sand">✦</span>
+            <span
+              class="font-display font-extrabold uppercase tracking-tight text-[clamp(1.4rem,7vw,4.75rem)] leading-none"
+              style="color: #39b6ab"
+              >TRIPADVISOR</span
+            >
+            <span class="text-[clamp(.85rem,3vw,2rem)] text-accent">✦</span>
+            <span
+              class="font-display font-extrabold uppercase tracking-tight text-[clamp(1.4rem,7vw,4.75rem)] leading-none text-white"
+              >MAKEMYTRIP</span
+            >
+            <span class="text-[clamp(.85rem,3vw,2rem)] text-brand">✦</span>
+            <span
+              class="font-display font-extrabold uppercase tracking-tight text-[clamp(1.4rem,7vw,4.75rem)] leading-none"
+              style="color: #e7b490"
+              >VIATOR</span
+            >
+            <span class="text-[clamp(.85rem,3vw,2rem)] text-accent">✦</span>
+          </div>
+
+          <div class="marquee-group" aria-hidden="true">
+            <span
+              class="font-display font-extrabold uppercase tracking-tight text-[clamp(1.4rem,7vw,4.75rem)] leading-none text-white"
+              >AIRBNB</span
+            >
+            <span class="text-[clamp(.85rem,3vw,2rem)] text-brand">✦</span>
+            <span
+              class="font-display font-extrabold uppercase tracking-tight text-[clamp(1.4rem,7vw,4.75rem)] leading-none"
+              style="color: #39b6ab"
+              >BOOKING.COM</span
+            >
+            <span class="text-[clamp(.85rem,3vw,2rem)] text-sand">✦</span>
+            <span
+              class="font-display font-extrabold uppercase tracking-tight text-[clamp(1.4rem,7vw,4.75rem)] leading-none text-white"
+              >EXPEDIA</span
+            >
+            <span class="text-[clamp(.85rem,3vw,2rem)] text-accent">✦</span>
+            <span
+              class="font-display font-extrabold uppercase tracking-tight text-[clamp(1.4rem,7vw,4.75rem)] leading-none"
+              style="color: #e7b490"
+              >AGODA</span
+            >
+            <span class="text-[clamp(.85rem,3vw,2rem)] text-brand">✦</span>
+            <span
+              class="font-display font-extrabold uppercase tracking-tight text-[clamp(1.4rem,7vw,4.75rem)] leading-none text-white"
+              >TRIVAGO</span
+            >
+            <span class="text-[clamp(.85rem,3vw,2rem)] text-accent">✦</span>
+            <span
+              class="font-display font-extrabold uppercase tracking-tight text-[clamp(1.4rem,7vw,4.75rem)] leading-none"
+              style="color: #ff6f1a"
+              >KAYAK</span
+            >
+            <span class="text-[clamp(.85rem,3vw,2rem)] text-brand">✦</span>
+            <span
+              class="font-display font-extrabold uppercase tracking-tight text-[clamp(1.4rem,7vw,4.75rem)] leading-none text-white"
+              >SKYSCANNER</span
+            >
+            <span class="text-[clamp(.85rem,3vw,2rem)] text-sand">✦</span>
+            <span
+              class="font-display font-extrabold uppercase tracking-tight text-[clamp(1.4rem,7vw,4.75rem)] leading-none"
+              style="color: #39b6ab"
+              >TRIPADVISOR</span
+            >
+            <span class="text-[clamp(.85rem,3vw,2rem)] text-accent">✦</span>
+            <span
+              class="font-display font-extrabold uppercase tracking-tight text-[clamp(1.4rem,7vw,4.75rem)] leading-none text-white"
+              >MAKEMYTRIP</span
+            >
+            <span class="text-[clamp(.85rem,3vw,2rem)] text-brand">✦</span>
+            <span
+              class="font-display font-extrabold uppercase tracking-tight text-[clamp(1.4rem,7vw,4.75rem)] leading-none"
+              style="color: #e7b490"
+              >VIATOR</span
+            >
+            <span class="text-[clamp(.85rem,3vw,2rem)] text-accent">✦</span>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- ============================================================
+     FOOTER
+     ============================================================ -->
+    <footer class="px-4 sm:px-6 lg:px-8 pb-6 sm:pb-8 w-full mt-auto">
+      <div
+        class="max-w-7xl mx-auto clay p-6 sm:p-10 lg:p-14 relative overflow-hidden"
+      >
+        <div
+          class="pointer-events-none absolute -right-20 -top-20 w-64 h-64 rounded-full opacity-20 blur-3xl"
+          style="background: radial-gradient(circle, #39b6ab, transparent 70%)"
+        ></div>
+        <div
+          class="pointer-events-none absolute -left-20 -bottom-20 w-64 h-64 rounded-full opacity-20 blur-3xl"
+          style="background: radial-gradient(circle, #ff6f1a, transparent 70%)"
+        ></div>
+
+        <div
+          class="relative z-10 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-10 lg:gap-8"
+        >
+          <!-- Brand -->
+          <div class="flex flex-col lg:col-span-3">
+            <a href="./index.html" class="mb-4 inline-block no-underline">
+              <img
+                src="./assets/logo.webp"
+                alt="STACKLY Logo"
+                class="h-14 w-auto object-contain"
+              />
+            </a>
+
+            <p class="text-[13px] leading-relaxed text-ink/60 mb-6 max-w-xs">
+              We design slow, human-made trips. No templates, no algorithms —
+              just a dedicated designer turning your dream trip into a story.
+            </p>
+
+            <div class="flex items-center gap-2">
+              <a href="./404.html" aria-label="Instagram" class="social-icon">
+                <svg
+                  width="16"
+                  height="16"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2.2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <rect x="3" y="3" width="18" height="18" rx="5" />
+                  <circle cx="12" cy="12" r="4" />
+                  <circle
+                    cx="17.2"
+                    cy="6.8"
+                    r="1"
+                    fill="currentColor"
+                    stroke="none"
+                  />
+                </svg>
+              </a>
+              <a href="./404.html" aria-label="X" class="social-icon">
+                <svg
+                  width="14"
+                  height="14"
+                  viewBox="0 0 24 24"
+                  fill="currentColor"
+                >
+                  <path
+                    d="M17.5 3h3.2l-7 8 8.3 10h-6.5l-5-6.1L4.7 21H1.5l7.5-8.6L1 3h6.7l4.5 5.6L17.5 3zm-1.1 16h1.8L7.7 4.9H5.8L16.4 19z"
+                  />
+                </svg>
+              </a>
+              <a href="./404.html" aria-label="LinkedIn" class="social-icon">
+                <svg
+                  width="16"
+                  height="16"
+                  viewBox="0 0 24 24"
+                  fill="currentColor"
+                >
+                  <path
+                    d="M4.98 3.5A2.5 2.5 0 1 1 0 3.5a2.5 2.5 0 0 1 4.98 0zM.3 8.2h4.4V24H.3V8.2zM8.3 8.2h4.2v2.2h.06c.6-1.1 2-2.3 4.2-2.3 4.5 0 5.3 2.9 5.3 6.7V24h-4.4v-7.9c0-1.9 0-4.3-2.6-4.3s-3 2-3 4.1V24H8.3V8.2z"
+                  />
+                </svg>
+              </a>
+            </div>
+          </div>
+
+          <!-- Quick Links -->
+          <div class="lg:col-span-2">
+            <h4 class="footer-heading">Quick Links</h4>
+            <ul class="list-none p-0 m-0 flex flex-col">
+              <li><a href="./index.html" class="footer-link">Home</a></li>
+              <li>
+                <a href="./services.html" class="footer-link">Products</a>
+              </li>
+              <li><a href="./about.html" class="footer-link">About Us</a></li>
+              <li><a href="./blog.html" class="footer-link">Journal</a></li>
+              <li><a href="./contact.html" class="footer-link">Contact</a></li>
+            </ul>
+          </div>
+
+          <!-- Contact -->
+          <div class="lg:col-span-3">
+            <h4 class="footer-heading">Get in Touch</h4>
+            <ul class="list-none p-0 m-0 flex flex-col gap-4">
+              <li class="flex items-start gap-3">
+                <span
+                  class="grid place-items-center w-8 h-8 shrink-0 rounded-lg bg-brand/10 text-brand mt-0.5"
+                >
+                  <svg
+                    width="14"
+                    height="14"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2.5"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  >
+                    <path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 0 1 18 0z" />
+                    <circle cx="12" cy="10" r="3" />
+                  </svg>
+                </span>
+                <div>
+                  <p
+                    class="text-[10px] font-bold uppercase tracking-wider text-ink/40 mb-0.5"
+                  >
+                    Head Office
+                  </p>
+                  <p class="text-[13px] font-semibold text-ink/70 leading-snug">
+                    14 Marine Drive, Panaji<br />Goa 403001, India
+                  </p>
+                </div>
+              </li>
+
+              <li class="flex items-start gap-3">
+                <span
+                  class="grid place-items-center w-8 h-8 shrink-0 rounded-lg bg-accent/10 text-accent mt-0.5"
+                >
+                  <svg
+                    width="14"
+                    height="14"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2.5"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  >
+                    <path
+                      d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8.1 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2z"
+                    />
+                  </svg>
+                </span>
+                <div>
+                  <p
+                    class="text-[10px] font-bold uppercase tracking-wider text-ink/40 mb-0.5"
+                  >
+                    Call Us
+                  </p>
+                  <a
+                    href="./404.html"
+                    class="text-[13px] font-semibold text-ink/70 hover:text-brand transition no-underline"
+                    >+91 98765 43210</a
+                  >
+                </div>
+              </li>
+
+              <li class="flex items-start gap-3">
+                <span
+                  class="grid place-items-center w-8 h-8 shrink-0 rounded-lg bg-sand/20 text-[#a65d2b] mt-0.5"
+                >
+                  <svg
+                    width="14"
+                    height="14"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2.5"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  >
+                    <rect x="2" y="4" width="20" height="16" rx="3" />
+                    <polyline points="2.5 6.5 12 13 21.5 6.5" />
+                  </svg>
+                </span>
+                <div>
+                  <p
+                    class="text-[10px] font-bold uppercase tracking-wider text-ink/40 mb-0.5"
+                  >
+                    Email
+                  </p>
+                  <a
+                    href="./404.html"
+                    class="text-[13px] font-semibold text-ink/70 hover:text-brand transition no-underline break-all"
+                    >hello@stackly.travel</a
+                  >
+                </div>
+              </li>
+            </ul>
+          </div>
+
+          <!-- Newsletter (footer) — ID renamed to avoid clash with page form -->
+          <div class="lg:col-span-4">
+            <h4 class="footer-heading">Newsletter</h4>
+            <p class="text-[13px] leading-relaxed text-ink/60 mb-4">
+              Subscribe to get special offers, free giveaways, and
+              once-in-a-lifetime deals.
+            </p>
+
+            <form
+              id="footerNewsletterForm"
+              action="./404.html"
+              method="get"
+              novalidate
+            >
+              <div class="field">
+                <label for="footerEmail" class="sr-only">Email address</label>
+
+                <div class="flex flex-col gap-2.5">
+                  <input
+                    id="footerEmail"
+                    name="email"
+                    type="email"
+                    class="clay-input w-full"
+                    placeholder="you@example.com"
+                    autocomplete="email"
+                    inputmode="email"
+                    aria-describedby="err-footerEmail"
+                  />
+
+                  <button
+                    type="submit"
+                    class="clay-accent inline-flex items-center justify-center gap-2 rounded-xl px-5 py-3 text-[11px] font-extrabold uppercase tracking-[.12em] transition-transform active:scale-[.98] whitespace-nowrap w-full"
+                  >
+                    Subscribe
+                    <svg
+                      width="14"
+                      height="14"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2.6"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    >
+                      <line x1="4" y1="12" x2="19" y2="12" />
+                      <polyline points="13 6 19 12 13 18" />
+                    </svg>
+                  </button>
+                </div>
+
+                <p class="err-msg" id="err-footerEmail"></p>
+              </div>
+            </form>
+          </div>
+        </div>
+
+        <div
+          class="relative z-10 mt-10 sm:mt-14 pt-6 border-t border-black/5 flex flex-col md:flex-row items-center justify-between gap-4"
+        >
+          <p class="text-[11px] text-ink/45 text-center md:text-left">
+            © <span id="year">2025</span> STACKLY. All rights reserved.
+          </p>
+
+          <div class="flex items-center gap-4">
+            <a
+              href="./404.html"
+              class="text-[11px] font-semibold text-ink/45 hover:text-brand transition no-underline"
+              >Privacy Policy</a
+            >
+            <a
+              href="./404.html"
+              class="text-[11px] font-semibold text-ink/45 hover:text-brand transition no-underline"
+              >Terms of Service</a
+            >
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <!-- ============================================================
+     SCRIPTS
+     ============================================================ -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+
+    <script>
+      (function () {
+        "use strict";
+
+        const reduceMotion = window.matchMedia(
+          "(prefers-reduced-motion: reduce)",
+        ).matches;
+
+        /* ---------------------------------------------------------
+     AOS
+     --------------------------------------------------------- */
+        if (window.AOS) {
+          AOS.init({
+            duration: 700,
+            easing: "ease-out-cubic",
+            once: true,
+            offset: 50,
+            disable: reduceMotion,
+          });
+        }
+
+        /* ---------------------------------------------------------
+     GSAP — hero reveal + soft bg parallax
+     --------------------------------------------------------- */
+        if (window.gsap && !reduceMotion) {
+          gsap.registerPlugin(ScrollTrigger);
+
+          gsap
+            .timeline({ defaults: { ease: "power3.out" } })
+            .from(".hero-eyebrow", { y: 14, opacity: 0, duration: 0.5 })
+            .from(
+              ".hero-title span",
+              { y: 40, opacity: 0, duration: 0.8, stagger: 0.08 },
+              "-=.25",
+            )
+            .from(".hero-sub", { y: 18, opacity: 0, duration: 0.6 }, "-=.45")
+            .from(
+              ".hero-chip",
+              { y: 14, opacity: 0, duration: 0.45, stagger: 0.07 },
+              "-=.35",
+            );
+
+          gsap.to(".hero-bg", {
+            yPercent: 10,
+            ease: "none",
+            scrollTrigger: {
+              trigger: ".hero",
+              start: "top top",
+              end: "bottom top",
+              scrub: true,
+            },
+          });
+        }
+
+        /* ---------------------------------------------------------
+     CATEGORY FILTER (tab controls — stays functional)
+     --------------------------------------------------------- */
+        const pills = Array.from(document.querySelectorAll(".cat-pill"));
+        const cards = Array.from(document.querySelectorAll(".post-card"));
+        const emptyState = document.getElementById("emptyState");
+
+        function applyFilter(cat) {
+          let visible = 0;
+
+          cards.forEach(function (card) {
+            const match = cat === "all" || card.dataset.category === cat;
+
+            if (match) {
+              card.classList.remove("is-hidden");
+              visible++;
+              if (window.gsap && !reduceMotion) {
+                gsap.fromTo(
+                  card,
+                  { opacity: 0, y: 12 },
+                  {
+                    opacity: 1,
+                    y: 0,
+                    duration: 0.4,
+                    ease: "power2.out",
+                    overwrite: true,
+                  },
+                );
+              }
+            } else {
+              card.classList.add("is-hidden");
+            }
+          });
+
+          if (emptyState) {
+            emptyState.classList.toggle("hidden", visible > 0);
+          }
+        }
+
+        pills.forEach(function (pill) {
+          pill.addEventListener("click", function () {
+            pills.forEach(function (p) {
+              p.classList.remove("is-active");
+              p.setAttribute("aria-selected", "false");
+            });
+            pill.classList.add("is-active");
+            pill.setAttribute("aria-selected", "true");
+            applyFilter(pill.dataset.filter);
+          });
+        });
+
+        /* ---------------------------------------------------------
+     PAGE NEWSLETTER FORM (main content) — validate → submit
+     --------------------------------------------------------- */
+        const nlForm = document.getElementById("newsletterForm");
+        if (nlForm) {
+          const nlEmail = document.getElementById("nlEmail");
+          const nlWrap = nlEmail ? nlEmail.closest(".field") : null;
+          const nlErr = document.getElementById("err-nlEmail");
+          const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[a-zA-Z]{2,}$/;
+
+          function validateNl() {
+            const v = (nlEmail.value || "").trim();
+            let msg = "";
+
+            if (!v) {
+              msg = "Email address is required.";
+            } else if (!EMAIL_RE.test(v)) {
+              msg = "Enter a valid email, e.g. you@example.com";
+            }
+
+            if (msg) {
+              if (nlWrap) nlWrap.classList.add("has-error");
+              if (nlErr) nlErr.textContent = msg;
+              nlEmail.setAttribute("aria-invalid", "true");
+              return false;
+            }
+
+            if (nlWrap) nlWrap.classList.remove("has-error");
+            if (nlErr) nlErr.textContent = "";
+            nlEmail.removeAttribute("aria-invalid");
+            return true;
+          }
+
+          nlEmail.addEventListener("blur", validateNl);
+          nlEmail.addEventListener("input", function () {
+            if (nlWrap && nlWrap.classList.contains("has-error")) validateNl();
+          });
+
+          nlForm.addEventListener("submit", function (e) {
+            e.preventDefault();
+
+            if (!validateNl()) {
+              nlEmail.focus({ preventScroll: true });
+              return;
+            }
+
+            nlForm.setAttribute("action", "./404.html");
+            nlForm.setAttribute("method", "get");
+            HTMLFormElement.prototype.submit.call(nlForm);
+          });
+        }
+      })();
+    </script>
+
+    <!-- ============================================================
+     NAVBAR + FOOTER SCRIPTS
+     ============================================================ -->
+    <script>
+      (function () {
+        "use strict";
+
+        /* ---------- Navbar mobile menu ---------- */
+        const openMenuBtn = document.getElementById("openMenuBtn");
+        const closeMenuBtn = document.getElementById("closeMenuBtn");
+        const mobileMenu = document.getElementById("mobileMenu");
+        const body = document.body;
+
+        if (openMenuBtn) {
+          openMenuBtn.addEventListener("click", () => {
+            mobileMenu.classList.add("is-active");
+            body.classList.add("menu-open");
+          });
+        }
+
+        if (closeMenuBtn) {
+          closeMenuBtn.addEventListener("click", () => {
+            mobileMenu.classList.remove("is-active");
+            body.classList.remove("menu-open");
+          });
+        }
+
+        document.querySelectorAll(".mobile-nav-link").forEach((link) => {
+          link.addEventListener("click", () => {
+            mobileMenu.classList.remove("is-active");
+            body.classList.remove("menu-open");
+          });
+        });
+
+        const navbar = document.querySelector(".navbar-inner");
+        if (navbar) {
+          window.addEventListener("scroll", () => {
+            if (window.scrollY > 20) {
+              navbar.style.boxShadow = "0 10px 30px rgba(0,0,0,0.08)";
+            } else {
+              navbar.style.boxShadow = "var(--clay-sm)";
+            }
+          });
+        }
+
+        /* ---------- Footer year ---------- */
+        const yearEl = document.getElementById("year");
+        if (yearEl) yearEl.textContent = new Date().getFullYear();
+
+        /* ---------- Footer newsletter (renamed ID) ---------- */
+        const form = document.getElementById("footerNewsletterForm");
+        if (form) {
+          const emailInput = document.getElementById("footerEmail");
+          const emailWrap = emailInput.closest(".field");
+          const emailErr = document.getElementById("err-footerEmail");
+          const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[a-zA-Z]{2,}$/;
+
+          function validateFooterNl() {
+            const v = (emailInput.value || "").trim();
+            let msg = "";
+
+            if (!v) {
+              msg = "Email address is required.";
+            } else if (!EMAIL_RE.test(v)) {
+              msg = "Enter a valid email, e.g. you@example.com";
+            }
+
+            if (msg) {
+              emailWrap.classList.add("has-error");
+              emailErr.textContent = msg;
+              emailInput.setAttribute("aria-invalid", "true");
+              return false;
+            }
+
+            emailWrap.classList.remove("has-error");
+            emailErr.textContent = "";
+            emailInput.removeAttribute("aria-invalid");
+            return true;
+          }
+
+          emailInput.addEventListener("blur", validateFooterNl);
+          emailInput.addEventListener("input", () => {
+            if (emailWrap.classList.contains("has-error")) validateFooterNl();
+          });
+
+          form.addEventListener("submit", function (e) {
+            e.preventDefault();
+            if (!validateFooterNl()) {
+              emailInput.focus({ preventScroll: true });
+              return;
+            }
+            form.setAttribute("action", "./404.html");
+            form.setAttribute("method", "get");
+            HTMLFormElement.prototype.submit.call(form);
+          });
+        }
+      })();
+    </script>
+  </body>
+</html>
